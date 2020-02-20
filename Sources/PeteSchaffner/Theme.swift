@@ -24,7 +24,46 @@ extension Theme where Site == PeteSchaffner {
         }
         
         func makeItemHTML(for item: Item<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
-            HTML()
+            let dateTime = DateFormatter()
+            dateTime.dateFormat = "yyyy-MM-dd"
+
+            let body = Node.article(
+                .header(
+                    .if(
+                        !item.title.isEmpty,
+                        .h1(
+                            .if(
+                                item.metadata.link != nil,
+                                .a(
+                                    .unwrap(item.metadata.link) {
+                                        .href($0)
+                                    },
+                                    .text(item.title),
+                                    .span(
+                                        .class("external-link-arrow"),
+                                        .text("→")
+                                    )
+                                ),
+                                else: .text(item.title)
+                            )
+                        )
+                    ),
+                    .time(
+                        .attribute(named: "datetime", value: dateTime.string(from: item.date)),
+                        .text(friendlyDate(item.date))
+                    )
+                ),
+                .contentBody(
+                    Content.Body(
+                        // Remove redundant title as it is already handled above
+                        html: item.body.html.replacingOccurrences(
+                            of: "<h1>.*</h1>", with: "", options: .regularExpression
+                        )
+                    )
+                )
+            )
+            
+            return layout(for: item, site: context.site, body: body)
         }
         
         func makePageHTML(for page: Page, context: PublishingContext<PeteSchaffner>) throws -> HTML {
@@ -35,6 +74,19 @@ extension Theme where Site == PeteSchaffner {
         
         func makeTagDetailsHTML(for page: TagDetailsPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? { nil }
     }
+}
+
+
+extension Node where Context: HTML.BodyContext {
+    static func time(_ nodes: Node<HTML.BodyContext>...) -> Node {
+        .element(named: "time", nodes: nodes)
+    }
+}
+
+func friendlyDate(_ date: Date) -> String {
+    let df = DateFormatter()
+    df.dateFormat = "dd MMM yyyy"
+    return df.string(from: date)
 }
 
 func layout<T: Website>(for location: Location, site: T, body: Node<HTML.BodyContext>? = nil) -> HTML {
@@ -53,7 +105,7 @@ func layout<T: Website>(for location: Location, site: T, body: Node<HTML.BodyCon
         .lang(site.language),
         .head(
             .encoding(.utf8),
-            .title((location.path.absoluteString == "/" ? "": "\(location.title) · ") + site.name),
+            .title((location.path.absoluteString == "/" ? "": "\(location.title.isEmpty ? friendlyDate(location.date) : location.title) · ") + site.name),
             .viewport(.accordingToDevice),
             .description(site.description),
             .meta(.name("author"), .content("Pete Schaffner")),

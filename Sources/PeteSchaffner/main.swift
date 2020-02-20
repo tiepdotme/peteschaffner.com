@@ -8,6 +8,7 @@ struct PeteSchaffner: Website {
     }
 
     struct ItemMetadata: WebsiteItemMetadata {
+        var link: String?
     }
 
     // Update these properties to configure your website:
