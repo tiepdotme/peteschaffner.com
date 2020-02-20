@@ -24,9 +24,6 @@ extension Theme where Site == PeteSchaffner {
         }
         
         func makeItemHTML(for item: Item<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
-            let dateTime = DateFormatter()
-            dateTime.dateFormat = "yyyy-MM-dd"
-
             let body = Node.article(
                 .header(
                     .if(
@@ -35,9 +32,7 @@ extension Theme where Site == PeteSchaffner {
                             .if(
                                 item.metadata.link != nil,
                                 .a(
-                                    .unwrap(item.metadata.link) {
-                                        .href($0)
-                                    },
+                                    .unwrap(item.metadata.link) { .href($0) },
                                     .text(item.title),
                                     .span(
                                         .class("external-link-arrow"),
@@ -49,7 +44,7 @@ extension Theme where Site == PeteSchaffner {
                         )
                     ),
                     .time(
-                        .attribute(named: "datetime", value: dateTime.string(from: item.date)),
+                        .attribute(named: "datetime", value: dateTime(item.date)),
                         .text(friendlyDate(item.date))
                     )
                 ),
@@ -86,6 +81,12 @@ extension Node where Context: HTML.BodyContext {
 func friendlyDate(_ date: Date) -> String {
     let df = DateFormatter()
     df.dateFormat = "dd MMM yyyy"
+    return df.string(from: date)
+}
+
+func dateTime(_ date: Date) -> String {
+    let df = DateFormatter()
+    df.dateFormat = "yyyy-MM-dd"
     return df.string(from: date)
 }
 
