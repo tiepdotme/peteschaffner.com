@@ -5,6 +5,7 @@
 //  Created by Peter Schaffner on 17/02/2020.
 //
 
+import Foundation
 import Publish
 import Plot
 
@@ -36,7 +37,7 @@ extension Theme where Site == PeteSchaffner {
     }
 }
 
-func layout<T: Website>(for location: Location, site: T) -> HTML {
+func layout<T: Website>(for location: Location, site: T, body: Node<HTML.BodyContext>? = nil) -> HTML {
     let pageID: String
     
     switch location.path.absoluteString {
@@ -63,7 +64,44 @@ func layout<T: Website>(for location: Location, site: T) -> HTML {
         ),
         .body(
             .id(pageID),
-            .contentBody(location.body)
+            .nav(
+                .class("constrained"),
+                .text("The "),
+                .a(
+                    .class(location.path.absoluteString == "/words" ? "current" : ""),
+                    .href("/words"),
+                    .text("words")
+                ),
+                .element(named: "i", text: " & "),
+                .a(
+                    .class(location.path.absoluteString == "/work" ? "current" : ""),
+                    .href("/work"),
+                    .text("work")
+                ),
+                .text(" of "),
+                .a(
+                    .class(location.path.absoluteString == "/" ? "current" : ""),
+                    .href("/"),
+                    .text("Pete Schaffner")
+                )
+            ),
+            .main(
+                .class("constrained"),
+                body ?? .contentBody(location.body)
+            ),
+            .footer(
+                .class("constrained"),
+                .text("© \(Calendar.current.component(.year, from: Date())) · "),
+                .a(
+                    .href(Path.defaultForRSSFeed),
+                    .text("RSS")
+                ),
+                .text(" · "),
+                .a(
+                    .href("/colophon"),
+                    .text("Colophon")
+                )
+            )
         )
     )
 }
