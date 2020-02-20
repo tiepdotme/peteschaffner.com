@@ -64,7 +64,11 @@ extension Theme where Site == PeteSchaffner {
                             )
                         )
                     ),
-                    .contentBody(excerpt(from: item.body.html))
+                    .contentBody(excerpt(from: item.body.html)),
+                    .if(
+                        item.body.html.contains("<!-- excerpt -->"),
+                        .a(.href(item.path), .text("More…"))
+                    )
                 )
             }
             
