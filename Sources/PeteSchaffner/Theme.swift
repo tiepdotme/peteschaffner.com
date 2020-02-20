@@ -30,13 +30,9 @@ extension Theme where Site == PeteSchaffner {
             layout(for: page, site: context.site)
         }
         
-        func makeTagListHTML(for page: TagListPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? {
-            HTML()
-        }
+        func makeTagListHTML(for page: TagListPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? { nil }
         
-        func makeTagDetailsHTML(for page: TagDetailsPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? {
-            HTML()
-        }
+        func makeTagDetailsHTML(for page: TagDetailsPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? { nil }
     }
 }
 
