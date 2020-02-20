@@ -52,7 +52,7 @@ func layout<T: Website>(for location: Location, site: T) -> HTML {
         .lang(site.language),
         .head(
             .encoding(.utf8),
-            .if(location.path.absoluteString == "/", .title(site.name), else: .title("\(location.title) · \(site.name)")),
+            .title((location.path.absoluteString == "/" ? "": "\(location.title) · ") + site.name),
             .viewport(.accordingToDevice),
             .description(site.description),
             .meta(.name("author"), .content("Pete Schaffner")),
