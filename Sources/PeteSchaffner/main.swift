@@ -5,7 +5,6 @@ import Plot
 struct PeteSchaffner: Website {
     enum SectionID: String, WebsiteSectionID {
         case words
-        case work
     }
 
     struct ItemMetadata: WebsiteItemMetadata {
