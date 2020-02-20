@@ -7,7 +7,6 @@ sitejs:
 
 .PHONY: dev
 dev: Output sitejs
-	@if [ -z "$(shell which site)" ]; then echo "site.js is required: curl -s https://sitejs.org/install | bash"; exit 1; fi
 	@site Output
 
 .PHONY: deploy
