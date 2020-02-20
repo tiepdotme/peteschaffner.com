@@ -20,7 +20,55 @@ extension Theme where Site == PeteSchaffner {
         }
         
         func makeSectionHTML(for section: Section<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
-            layout(for: section, site: context.site)
+            func excerpt(from contentBody: String) -> Content.Body {
+                return Content.Body(html:
+                    (contentBody.replacingOccurrences(
+                        of: "<h1>.*</h1>",
+                        with: "",
+                        options: .regularExpression
+                    )) // Remove redundant title
+                    .replacingOccurrences(
+                        of: "<!-- excerpt -->.*",
+                        with: "",
+                        options: .regularExpression
+                    ) // Remove everything after the marked excerpt
+                )
+            }
+            
+            let body = Node.forEach(section.items) { item in
+                .section(
+                    .header(
+                        .if(
+                            !item.title.isEmpty,
+                            .h1(
+                                .a(
+                                    // `item.path.string` returns an extra root path fragment (/words/words/<post>), yet creating a `Path` from the same string fixes things 🤷‍♂️
+                                    .href(Path(item.metadata.link ?? item.path.string)),
+                                    .text(item.title),
+                                    .if(
+                                        item.metadata.link != nil,
+                                        .span(
+                                            .class("external-link-arrow"),
+                                            .text("→")
+                                        )
+                                    )
+                                )
+                            )
+                        ),
+                        .time(
+                            .attribute(named: "datetime", value: dateTime(item.date)),
+                            .a(
+                                .href(item.path),
+                                .text(friendlyDate(item.date)),
+                                .span(.text(" ∞"))
+                            )
+                        )
+                    ),
+                    .contentBody(excerpt(from: item.body.html))
+                )
+            }
+            
+            return layout(for: section, site: context.site, body: body)
         }
         
         func makeItemHTML(for item: Item<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
