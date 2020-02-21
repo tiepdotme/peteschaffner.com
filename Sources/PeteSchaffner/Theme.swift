@@ -174,7 +174,7 @@ func layout<T: Website>(for location: Location, site: T, body: Node<HTML.BodyCon
                 .class("constrained"),
                 .text("The "),
                 .a(
-                    .class(location.path.absoluteString == "/words" ? "current" : ""),
+                    .class(location.path.absoluteString.contains("/words") ? "current" : ""),
                     .href("/words"),
                     .text("words")
                 ),
