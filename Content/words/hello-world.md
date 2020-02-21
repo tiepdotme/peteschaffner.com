@@ -9,9 +9,9 @@ Hi, [I'm Pete](/) and this is my little corner of the internet. Today marks the 
 <!-- excerpt -->
 ---
 
-This is kinda new to me: writing my words down and putting them out on the world wide web. I've always been very much in my head though, so I thought it might help to start getting some of it out now and again. <!--I guess I'm also hoping to find some clarity through writing.-->
+This is kinda new to me: writing my words down and putting them out on the world wide web. I've always been very much in my head though, so I thought it might help to start getting some of it out now and again.
 
-And on the subject of writing, [Tim Smith has three rules](https://brightpixels.blog/hello) he follows. I like them so I'm going to use them too:
+And on the subject of writing, [Tim Smith has three rules](https://web.archive.org/web/20190331135008/https://brightpixels.blog/hello/) he follows. I like them so I'm going to use them too:
 
 > 1. I’ll write whenever I feel like it, and won’t worry if it’s not perfect
   2. I will not look at stats of any kind
