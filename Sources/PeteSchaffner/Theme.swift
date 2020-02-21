@@ -164,6 +164,7 @@ func layout<T: Website>(for location: Location, site: T, body: Node<HTML.BodyCon
             .meta(.name("author"), .content("Pete Schaffner")),
             .rssFeedLink(Path.defaultForRSSFeed.absoluteString, title: "Pete Schaffner"),
             .link(.href("https://micro.blog/peteschaffner"), .attribute(named: "rel", value: "me")),
+            .stylesheet("/css/fonts.css"),
             .stylesheet("/css/styles.css"),
             .favicon("/favicon.png")
         ),

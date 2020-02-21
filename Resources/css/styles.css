@@ -1,3 +1,208 @@
+:root {
+    /*--color-accent: 196, 35, 42;*/
+    --color-accent: 179, 83, 82;
+    --color-text: 25, 18, 19;
+    --color-background: 255, 255, 255;
+    --font-serif: "Valkyrie", Baskerville, serif;
+    --font-small-caps: "Valkyrie SC", Baskerville, serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-text: 255, 255, 255;
+        --color-background: 17, 17, 17;
+    }
+}
+
+* , * :before, * :after {
+    box-sizing: border-box; /* Padding and border will be inside of the box */
+    font-kerning: normal; /* Font kerning information stored in the font must be applied */
+}
+
+::selection {
+    background-color: rgba(var(--color-accent), 0.2);
+    text-shadow: none;
+}
+
+html {
+    height: 100%; /* For a sticky footer */
+    font-size: 1.4em;
+    background-color: rgb(var(--color-background));
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 1.15em;
+    }
+}
+
 body {
-    background: green;
+    display: flex; /* For a sticky footer */
+    flex-direction: column; /* For a sticky footer */
+    height: 100%; /* For a sticky footer */
+    align-items: center;
+    margin: 0 1.5rem;
+    font-family: var(--font-serif);
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased; /* Make the text look a little less chunky */
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility; /* Enables kerning and optional ligatures */
+    font-feature-settings: 'onum' 1; /* Use oldstyle figures */
+    color: rgb(var(--color-text));
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: rgba(var(--color-text), 0.8);
+    }
+}
+
+a {
+    text-decoration: none;
+    background-image: linear-gradient(to bottom, rgba(var(--color-text), .3) 50%, rgba(var(--color-text), .3) 50%);
+    background-position: 0 91%;
+    background-repeat: repeat-x;
+    background-size: 1px 1px;
+    text-shadow: -1px -1px rgb(var(--color-background)), -1px 1px rgb(var(--color-background)), 1px -1px rgb(var(--color-background)), 1px 1px rgb(var(--color-background)); /* Skip descenders when underlining */
+    color: inherit;
+}
+
+    a:hover {
+    color: rgb(var(--color-accent));
+    background-image: linear-gradient(to bottom, rgba(var(--color-accent), .3) 50%, rgba(var(--color-accent), .3) 50%);
+}
+
+
+/* Navigation
+   ========== */
+   
+nav {
+    padding: 100px 0 48px 0;
+    font-size: 15px;
+    text-align: center;
+    border-bottom: 1px solid rgba(var(--color-text), .1);
+}
+
+@media (max-width: 600px) {
+    nav {
+        padding-top: 48px;
+    }
+}
+
+nav a {
+    font-family: var(--font-small-caps);
+    position: relative;
+}
+
+nav .current {
+    background-image: none;
+    font-weight: bold;
+}
+
+
+/* Content
+   ======= */
+
+main {
+    flex: 1 0 auto; /* For a sticky footer */
+    padding: 62px 0 48px 0;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2, h3, h4, h5, h6 {
+    font-size: 1.2em;
+}
+
+header, h1 {
+    text-align: center;
+}
+
+hr {
+    text-align: center;
+    border: none;
+}
+
+hr:after {
+    content: "⁂"; /* Asterism */
+}
+
+blockquote {
+    font-style: italic;
+}
+
+article h1 {
+    margin-bottom: 0;
+}
+
+.constrained {
+    max-width: 600px;
+    width: 100%;
+}
+
+.external-link-arrow {
+    display: inline-block;
+    position: relative;
+    left: 3px;
+    font-size: 0.7em;
+    vertical-align: text-top;
+    transform: rotate(-45deg);
+}
+
+time {
+    font-size: 15px;
+    text-transform: lowercase;
+    font-family: var(--font-small-caps);
+    color: rgba(var(--color-text), .5);
+}
+
+time a, time a:hover, h1 > a, h1 > a:hover, h2 > a, h2 > a:hover {
+    background-image: none;
+}
+
+time span {
+    color: rgb(var(--color-accent));
+}
+
+
+/* Words
+   ======= */
+   
+#words h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+#words section {
+    padding: 48px 0;
+    border-bottom: 1px solid rgba(var(--color-text), .1);
+}
+
+#words section:first-child {
+    padding-top: 0;
+}
+
+#words section:last-child {
+    border: none;
+}
+
+
+/* Footer
+   ====== */
+footer {
+    padding: 48px 0;
+    flex-shrink: 0; /* For a sticky footer */
+    font-size: 15px;
+    text-align: center;
+    border-top: 1px solid rgba(var(--color-text), .1);
+}
+
+footer a, footer a:hover {
+    background-image: none;
 }
