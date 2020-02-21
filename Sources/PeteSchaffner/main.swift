@@ -20,4 +20,8 @@ struct PeteSchaffner: Website {
     var tagHTMLConfig: TagHTMLConfiguration? { nil }
 }
 
-try PeteSchaffner().publish(withTheme: .pete)
+try PeteSchaffner().publish(withTheme: .pete, additionalSteps: [
+    .mutateAllItems { item in
+        item.body = item.body.deletingOccurences(of: "<h1>.*</h1>")
+    }
+])

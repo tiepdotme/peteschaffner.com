@@ -20,21 +20,6 @@ extension Theme where Site == PeteSchaffner {
         }
         
         func makeSectionHTML(for section: Section<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
-            func excerpt(from contentBody: String) -> Content.Body {
-                return Content.Body(html:
-                    (contentBody.replacingOccurrences(
-                        of: "<h1>.*</h1>",
-                        with: "",
-                        options: .regularExpression
-                    )) // Remove redundant title
-                    .replacingOccurrences(
-                        of: "<!-- excerpt -->.*",
-                        with: "",
-                        options: .regularExpression
-                    ) // Remove everything after the marked excerpt
-                )
-            }
-            
             let body = Node.forEach(section.items) { item in
                 .section(
                     .header(
@@ -64,7 +49,7 @@ extension Theme where Site == PeteSchaffner {
                             )
                         )
                     ),
-                    .contentBody(excerpt(from: item.body.html)),
+                    .contentBody(item.body.deletingOccurences(of: "<!-- excerpt -->.*")),
                     .if(
                         item.body.html.contains("<!-- excerpt -->"),
                         .a(.href(item.path), .text("More…"))
@@ -126,6 +111,16 @@ extension Theme where Site == PeteSchaffner {
 extension Node where Context: HTML.BodyContext {
     static func time(_ nodes: Node<HTML.BodyContext>...) -> Node {
         .element(named: "time", nodes: nodes)
+    }
+}
+
+extension Content.Body {
+    func deletingOccurences(of string: String) -> Self {
+        return Self(html: html.replacingOccurrences(
+            of: string,
+            with: "",
+            options: .regularExpression
+        ))
     }
 }
 
