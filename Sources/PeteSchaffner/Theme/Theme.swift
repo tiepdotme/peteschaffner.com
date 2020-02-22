@@ -86,12 +86,8 @@ extension Theme where Site == PeteSchaffner {
                     )
                 ),
                 .contentBody(
-                    Content.Body(
-                        // Remove redundant title as it is already handled above
-                        html: item.body.html.replacingOccurrences(
-                            of: "<h1>.*</h1>", with: "", options: .regularExpression
-                        )
-                    )
+                    // Remove redundant title as it is already handled above
+                    item.body.deletingOccurences(of: "<h1>.*</h1>")
                 )
             )
             
