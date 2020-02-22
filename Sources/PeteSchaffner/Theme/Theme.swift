@@ -109,11 +109,18 @@ extension Node where Context: HTML.BodyContext {
 
 extension Content.Body {
     func deletingOccurences(of string: String) -> Self {
-        return Self(html: html.replacingOccurrences(
+        Self(html: html.replacingOccurrences(
             of: string,
             with: "",
             options: .regularExpression
         ))
+    }
+    
+    mutating func convertQuotes() {
+        html = html
+            .replacingOccurrences(of: #"'(\w*)'"#, with: "‘$1’", options: .regularExpression)
+            .replacingOccurrences(of: #"(\w)'(\w)"#, with: "$1’$2", options: .regularExpression)
+            .replacingOccurrences(of: #""(\w*)""#, with: "“$1”", options: .regularExpression)
     }
 }
 

@@ -21,7 +21,14 @@ struct PeteSchaffner: Website {
 }
 
 try PeteSchaffner().publish(withTheme: .pete, additionalSteps: [
+    .mutateAllPages { page in
+        // Replace dumb quotes with smart ones
+        page.body.convertQuotes()
+    },
     .mutateAllItems { item in
+        // Remove redundant titles because we extract and place them manually in a header element
         item.body = item.body.deletingOccurences(of: "<h1>.*</h1>")
+        // Replace dumb quotes with smart ones
+        item.body.convertQuotes()
     }
 ])
