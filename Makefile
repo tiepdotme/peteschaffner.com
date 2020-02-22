@@ -9,11 +9,13 @@ sitejs:
 
 .PHONY: dev
 dev: sitejs
+	@rm -rf .build
 	@swift run
 	@site Output
 
 .PHONY: publish
-deploy: sitejs
+publish: sitejs
+	@rm -rf .build
 	@swift run
 	@site Output --sync-to=pete@139.162.204.237:www --exit-on-sync
 
