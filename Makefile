@@ -9,13 +9,13 @@ sitejs:
 
 .PHONY: dev
 dev: sitejs
-	@rm -rf .build
+	@rm -rf .build # *
 	@swift run
 	@site Output
 
 .PHONY: publish
 publish: sitejs
-	@rm -rf .build
+	@rm -rf .build # *
 	@swift run
 	@site Output --sync-to=pete@139.162.204.237:www --exit-on-sync
 
@@ -23,3 +23,5 @@ publish: sitejs
 blog:
 	@touch $(POST_FILE)
 	@echo "---\ndate: $(POST_DATE) $(POST_META_TIME)\n---\n" >> $(POST_FILE)
+
+# * For some reason swift run seems to error out a lot (might be related to the project being in iCloud Drive)
