@@ -13,8 +13,12 @@ This is kinda new to me: writing my words down and putting them out on the world
 
 And on the subject of writing, [Tim Smith has three rules](https://web.archive.org/web/20190331135008/https://brightpixels.blog/hello/) he follows. I like them so I’m going to use them too:
 
-> 1. I’ll write whenever I feel like it, and won’t worry if it’s not perfect
-  2. I will not look at stats of any kind
-  3. I will write because it’s fun and has a personal archival purpose, not because I want recognition or validation
+<blockquote>
+    <ol>
+        <li>I’ll write whenever I feel like it, and won’t worry if it’s not perfect</li>
+        <li>I will not look at stats of any kind</li>
+        <li>I will write because it’s fun and has a personal archival purpose, not because I want recognition or validation</li>
+    </ol>
+</blockquote>
 
 Other than to write, there is a second reason this site exists: it is a creative outlet for me. I love to tweak its design, tech, you-name-it. If you are curious about how it is designed and/or made, check out the [colophon](/colophon).
