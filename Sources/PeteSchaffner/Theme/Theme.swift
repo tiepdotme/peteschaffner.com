@@ -85,10 +85,7 @@ extension Theme where Site == PeteSchaffner {
                         .text(friendlyDate(item.date))
                     )
                 ),
-                .contentBody(
-                    // Remove redundant title as it is already handled above
-                    item.body.deletingOccurences(of: "<h1>.*</h1>")
-                )
+                .contentBody(item.body)
             )
             
             return layout(for: item, site: context.site, body: body)
