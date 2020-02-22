@@ -49,7 +49,7 @@ extension Theme where Site == PeteSchaffner {
                             )
                         )
                     ),
-                    .contentBody(item.body.deletingOccurences(of: "<!-- excerpt -->.*")),
+                    .contentBody(item.body.deletingOccurences(of: "<!-- excerpt -->((.|\n)*)")),
                     .if(
                         item.body.html.contains("<!-- excerpt -->"),
                         .a(.href(item.path), .text("More…"))
