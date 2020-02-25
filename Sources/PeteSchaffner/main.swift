@@ -9,6 +9,7 @@ struct PeteSchaffner: Website {
 
     struct ItemMetadata: WebsiteItemMetadata {
         var link: String?
+        var draft: Bool?
     }
 
     // Update these properties to configure your website:
@@ -21,6 +22,7 @@ struct PeteSchaffner: Website {
 }
 
 try PeteSchaffner().publish(withTheme: .pete, additionalSteps: [
+    .if(CommandLine.arguments.contains("--removeDrafts"), .removeAllItems(matching: \.metadata.draft == true)),
     .mutateAllPages { page in
         // Replace dumb quotes with smart ones
         page.body.convertQuotes()

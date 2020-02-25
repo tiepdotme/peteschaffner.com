@@ -39,11 +39,11 @@
       },
       {
         "package": "Publish",
-        "repositoryURL": "https://github.com/johnsundell/publish.git",
+        "repositoryURL": "https://github.com/peteschaffner/Publish.git",
         "state": {
-          "branch": null,
-          "revision": "9458bacb992f1fde35648fd4bb379fb7335d571c",
-          "version": "0.5.0"
+          "branch": "master",
+          "revision": "b729a50db3076ab04e60c7661cafbd8c2dffb545",
+          "version": null
         }
       },
       {
