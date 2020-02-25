@@ -24,7 +24,7 @@ extension Theme where Site == PeteSchaffner {
                 .section(
                     .header(
                         .if(
-                            item.title != "",
+                            !item.title.isEmpty,
                             .h1(
                                 .a(
                                     // `item.path.string` returns an extra root path fragment (/words/words/<post>), yet creating a `Path` from the same string fixes things 🤷‍♂️
@@ -64,7 +64,7 @@ extension Theme where Site == PeteSchaffner {
             let body = Node.article(
                 .header(
                     .if(
-                        item.title != "",
+                        !item.title.isEmpty,
                         .h1(
                             .if(
                                 item.metadata.link != nil,
