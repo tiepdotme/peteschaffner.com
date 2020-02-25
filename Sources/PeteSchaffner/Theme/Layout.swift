@@ -25,7 +25,7 @@ func layout<T: Website>(for location: Location, site: T, body: Node<HTML.BodyCon
         .lang(site.language),
         .head(
             .encoding(.utf8),
-            .title((location.path.absoluteString == "/" ? "": "\(location.title.isEmpty ? friendlyDate(location.date) : location.title) · ") + site.name),
+            .title((location.path.absoluteString == "/" ? "" : (location.title != "" ? location.title + " · "  : location.title)) + site.name),
             .viewport(.accordingToDevice),
             .description(site.description),
             .meta(.name("author"), .content("Pete Schaffner")),

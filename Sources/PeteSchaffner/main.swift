@@ -32,5 +32,6 @@ try PeteSchaffner().publish(withTheme: .pete, additionalSteps: [
         item.body = item.body.deletingOccurences(of: "<h1>.*</h1>")
         // Replace dumb quotes with smart ones
         item.body.convertQuotes()
+        item.title = item.path.string.contains(item.title) ? "" : item.title
     }
 ])
