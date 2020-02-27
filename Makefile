@@ -14,8 +14,8 @@ sitejs:
 
 .PHONY: dev
 dev: sitejs entr
-	@find . ! -path "*/\.*" ! -path "./Output/*" | entr swift run --build-path=.tmp PeteSchaffner &>/dev/null &
-	@site Output
+	@site Output &
+	@while true; do find . ! -path "*/\.*" ! -path "./Output/*" | entr -d swift run --build-path=.tmp PeteSchaffner; done &>/dev/null
 
 .PHONY: publish
 publish: sitejs
