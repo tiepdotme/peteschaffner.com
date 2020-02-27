@@ -4,13 +4,17 @@ POST_TIME_STAMP := $(shell date +%H%M)
 POST_FILE := Content/words/$(POST_DATE)-$(POST_TIME_STAMP).md
 SWIFT_RUN_COMMAND := $(swift run PeteSchaffner --build-path=.tmp)
 
+.PHONY: entr
+entr:
+	@if [ -z "$(shell which entr)" ]; then echo "entr is required: https://github.com/eradman/entr"; exit 1; fi
+
 .PHONY: sitejs
 sitejs:
 	@if [ -z "$(shell which site)" ]; then echo "site.js is required: curl -s https://sitejs.org/install | bash"; exit 1; fi
 
 .PHONY: dev
-dev: sitejs
-	@swift run --build-path=.tmp PeteSchaffner
+dev: sitejs entr
+	@find . ! -path "*/\.*" ! -path "./Output/*" | entr swift run --build-path=.tmp PeteSchaffner &>/dev/null &
 	@site Output
 
 .PHONY: publish
