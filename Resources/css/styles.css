@@ -43,7 +43,7 @@ body {
     align-items: center;
     margin: 0 1.5rem;
     font-family: var(--font-serif);
-    line-height: 1.45;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased; /* Make the text look a little less chunky */
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility; /* Enables kerning and optional ligatures */
@@ -112,6 +112,18 @@ main {
     hyphens: auto;
 }
 
+sup {
+    line-height: 0px;
+}
+
+code {
+	font-family: monospace;
+	background: rgba(var(--color-text), 0.03);
+	padding: 2px 4px;
+	border: 1px solid rgba(var(--color-text), 0.1);
+	border-radius: 5px;
+}
+
 h1 {
     font-size: 2em;
 }
@@ -146,6 +158,10 @@ article h1 {
     width: 100%;
 }
 
+article img {
+	width: 100%;
+}
+
 .external-link-arrow {
     display: inline-block;
     position: relative;
@@ -168,6 +184,16 @@ time a, time a:hover, h1 > a, h1 > a:hover, h2 > a, h2 > a:hover {
 
 time span {
     color: rgb(var(--color-accent));
+}
+
+.footnotes {
+	font-size: 15px;
+	color: rgba(var(--color-text), .5);
+	margin-top: 48px;
+}
+
+.footnotes li {
+	padding-bottom: 0.75em;
 }
 
 
