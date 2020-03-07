@@ -79,7 +79,7 @@ a {
 nav {
     padding: 100px 0 48px 0;
     font-size: 15px;
-    text-align: center;
+    text-align: right;
     border-bottom: 1px solid rgba(var(--color-text), .1);
 }
 
@@ -130,10 +130,6 @@ h1 {
 
 h2, h3, h4, h5, h6 {
     font-size: 1.2em;
-}
-
-header, h1 {
-    text-align: center;
 }
 
 hr {
@@ -225,7 +221,7 @@ footer {
     padding: 48px 0;
     flex-shrink: 0; /* For a sticky footer */
     font-size: 15px;
-    text-align: center;
+    text-align: right;
     border-top: 1px solid rgba(var(--color-text), .1);
 }
 
