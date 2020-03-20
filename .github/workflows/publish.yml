@@ -1,13 +1,13 @@
 name: Publish Website
 
 on:
-	push:
-		branches: [ master ]
+    push:
+        branches: [ master ]
 
 jobs:
-	runs-on: macos-latest
-	steps:
-	- uses: actions/checkout@v2
-	- name: Build
-		run: swift run PeteSchaffner --removeDrafts
-	- uses: ./.github/actions/sync
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+        run: swift run PeteSchaffner --removeDrafts
+    - uses: ./.github/actions/sync
