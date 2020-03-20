@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -eu
-
 # Start the SSH agent and load key
 eval "$(ssh-agent -s)"
 echo "$PRIVATE_KEY" | ssh-add
