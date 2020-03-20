@@ -8,8 +8,12 @@ jobs:
     build:
         runs-on: macos-latest
         steps:
-        - uses: actions/checkout@v2
-        - name: Build
-          run: swift run PeteSchaffner --removeDrafts
+            - uses: actions/checkout@v2
+            - name: Build website
+              run: swift run PeteSchaffner --removeDrafts
     publish:
-        - uses: ./.github/actions/sync
+        runs-on: ubuntu-latest
+        env:
+            PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        steps:
+            - uses: ./.github/actions/sync
