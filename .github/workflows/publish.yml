@@ -26,4 +26,5 @@ jobs:
               uses: actions/download-artifact@v1
               with:
                   name: Output
+            - uses: actions/checkout@v2
             - uses: ./.github/actions/sync
