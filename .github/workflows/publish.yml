@@ -5,15 +5,12 @@ on:
         branches: [ master ]
 
 jobs:
-    build:
+    publish:
         runs-on: macos-latest
+        env:
+            PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         steps:
             - uses: actions/checkout@v2
             - name: Build website
               run: swift run PeteSchaffner --removeDrafts
-    publish:
-        runs-on: ubuntu-latest
-        env:
-            PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        steps:
             - uses: ./.github/actions/sync
