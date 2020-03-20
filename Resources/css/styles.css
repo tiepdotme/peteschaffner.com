@@ -79,7 +79,7 @@ a {
 nav {
     padding: 100px 0 48px 0;
     font-size: 15px;
-    text-align: right;
+    text-align: center;
     border-bottom: 1px solid rgba(var(--color-text), .1);
 }
 
@@ -221,7 +221,7 @@ footer {
     padding: 48px 0;
     flex-shrink: 0; /* For a sticky footer */
     font-size: 15px;
-    text-align: right;
+    text-align: center;
     border-top: 1px solid rgba(var(--color-text), .1);
 }
 
