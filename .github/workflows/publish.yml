@@ -10,4 +10,4 @@ jobs:
 	- uses: actions/checkout@v2
 	- name: Build
 		run: swift run PeteSchaffner --removeDrafts
-	- uses: ./.github/sync-action
+	- uses: ./.github/actions/sync
