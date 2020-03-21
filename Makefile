@@ -2,7 +2,6 @@ POST_DATE := $(shell date +%Y-%m-%d)
 POST_META_TIME := $(shell date +%H:%M)
 POST_TIME_STAMP := $(shell date +%H%M)
 POST_FILE := Content/words/$(POST_DATE)-$(POST_TIME_STAMP).md
-SWIFT_RUN_COMMAND := $(swift run PeteSchaffner --build-path=.tmp)
 
 /usr/local/bin/entr:
 	@echo "entr (https://github.com/eradman/entr) is required. Installing..."
@@ -25,7 +24,7 @@ dev: /usr/local/bin/site /usr/local/bin/entr
 .PHONY: publish
 publish: /usr/local/bin/site
 	@swift run --build-path=.tmp PeteSchaffner --removeDrafts
-	@site Output --sync-to=pete@139.162.204.237:www --exit-on-sync
+	@site Output --sync-to=pete@peteschaffner.com:www --exit-on-sync
 
 .PHONY: blog
 blog:
