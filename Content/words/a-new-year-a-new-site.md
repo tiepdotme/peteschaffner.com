@@ -43,5 +43,5 @@ As I write, [entr](https://github.com/eradman/entr) watches for changes and rebu
 And that’s it.
 
 <ol class=footnotes>
-<li id=fn1><a href="https://manton.micro.blog/2014/09/15/defining-a-microblog.html">Title-less posts</a> have really helped keep me blogging more often, as I don’t have to stew over a title/theme/etc. They also work great with Micro.blog, which in turn helps me easily cross-post to Twitter.<a href="#fnr1" title="return to article" class="reversefootnote">↩︎</a></li>
+<li id=fn1><a href="https://manton.micro.blog/2014/09/15/defining-a-microblog.html">Title-less posts</a> have really helped keep me blogging more often, as I don’t have to stew over a title/theme/etc. They also work great with Micro.blog, which in turn helps me easily cross-post to Twitter.<a href="#fnr1" title="return to article" class=reversefootnote>↩︎</a></li>
 </ol>

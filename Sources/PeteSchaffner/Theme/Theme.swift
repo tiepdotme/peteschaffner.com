@@ -21,38 +21,40 @@ extension Theme where Site == PeteSchaffner {
         
         func makeSectionHTML(for section: Section<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
             let body = Node.forEach(section.items) { item in
-                .section(
-                    .header(
-                        .if(
-                            !item.title.isEmpty,
-                            .h1(
-                                .a(
-                                    // `item.path.string` returns an extra root path fragment (/words/words/<post>), yet creating a `Path` from the same string fixes things 🤷‍♂️
-                                    .href(Path(item.metadata.link ?? item.path.string)),
-                                    .text(item.title),
-                                    .if(
-                                        item.metadata.link != nil,
-                                        .span(
-                                            .class("external-link-arrow"),
-                                            .text("→")
+                .article(
+                    .div(
+                        .header(
+                            .if(
+                                !item.title.isEmpty,
+                                .h1(
+                                    .a(
+                                        // `item.path.string` returns an extra root path fragment (/words/words/<post>), yet creating a `Path` from the same string fixes things 🤷‍♂️
+                                        .href(Path(item.metadata.link ?? item.path.string)),
+                                        .text(item.title),
+                                        .if(
+                                            item.metadata.link != nil,
+                                            .span(
+                                                .class("external-link-arrow"),
+                                                .text("→")
+                                            )
                                         )
                                     )
                                 )
+                            ),
+                            .time(
+                                .attribute(named: "datetime", value: dateTime(item.date)),
+                                .a(
+                                    .href(item.path),
+                                    .text(friendlyDate(item.date)),
+                                    .span(.text(" ∞"))
+                                )
                             )
                         ),
-                        .time(
-                            .attribute(named: "datetime", value: dateTime(item.date)),
-                            .a(
-                                .href(item.path),
-                                .text(friendlyDate(item.date)),
-                                .span(.text(" ∞"))
-                            )
+                        .contentBody(item.body.deletingOccurrences(of: "<!-- excerpt -->((.|\n)*)")),
+                        .if(
+                            item.body.html.contains("<!-- excerpt -->"),
+                            .a(.class("read-more"), .href(item.path), .text("Read more…"))
                         )
-                    ),
-                    .contentBody(item.body.deletingOccurences(of: "<!-- excerpt -->((.|\n)*)")),
-                    .if(
-                        item.body.html.contains("<!-- excerpt -->"),
-                        .a(.href(item.path), .text("More…"))
                     )
                 )
             }
@@ -108,7 +110,7 @@ extension Node where Context: HTML.BodyContext {
 }
 
 extension Content.Body {
-    func deletingOccurences(of string: String) -> Self {
+    func deletingOccurrences(of string: String) -> Self {
         Self(html: html.replacingOccurrences(
             of: string,
             with: "",

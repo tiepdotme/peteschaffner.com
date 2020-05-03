@@ -1,16 +1,18 @@
 :root {
-    /*--color-accent: 196, 35, 42;*/
-    --color-accent: 179, 83, 82;
+    --color-accent: 0, 118, 255;
     --color-text: 25, 18, 19;
-    --color-background: 255, 255, 255;
-    --font-serif: "Valkyrie", Baskerville, serif;
-    --font-small-caps: "Valkyrie SC", Baskerville, serif;
+    --color-background: 238, 240, 241;
+    --color-main-background: 255, 255, 255;
+    --opacity-link-underline: 0.15;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --color-accent: 84, 199, 252;
         --color-text: 255, 255, 255;
         --color-background: 17, 17, 17;
+        --color-main-background: 42, 42, 42;
+        --opacity-link-underline: 0.2;
     }
 }
 
@@ -41,13 +43,13 @@ body {
     flex-direction: column; /* For a sticky footer */
     height: 100%; /* For a sticky footer */
     align-items: center;
-    margin: 0 1.5rem;
-    font-family: var(--font-serif);
+    margin: 0 20px;
+    font-family: "Avenir Next", sans-serif;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased; /* Make the text look a little less chunky */
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility; /* Enables kerning and optional ligatures */
-    font-feature-settings: 'onum' 1; /* Use oldstyle figures */
+    /*font-feature-settings: 'onum' 1;*/ /* Use oldstyle figures */
     color: rgb(var(--color-text));
 }
 
@@ -59,7 +61,7 @@ body {
 
 a {
     text-decoration: none;
-    background-image: linear-gradient(to bottom, rgba(var(--color-text), .3) 50%, rgba(var(--color-text), .3) 50%);
+    background-image: linear-gradient(to bottom, rgba(var(--color-text), var(--opacity-link-underline)) 50%, rgba(var(--color-text), var(--opacity-link-underline)) 50%);
     background-position: 0 91%;
     background-repeat: repeat-x;
     background-size: 1px 1px;
@@ -67,9 +69,9 @@ a {
     color: inherit;
 }
 
-    a:hover {
+a:hover {
     color: rgb(var(--color-accent));
-    background-image: linear-gradient(to bottom, rgba(var(--color-accent), .3) 50%, rgba(var(--color-accent), .3) 50%);
+    background-image: linear-gradient(to bottom, rgba(var(--color-accent), var(--opacity-link-underline)) 50%, rgba(var(--color-accent), var(--opacity-link-underline)) 50%);
 }
 
 
@@ -77,10 +79,10 @@ a {
    ========== */
    
 nav {
-    padding: 100px 0 48px 0;
-    font-size: 15px;
+    padding: 70px 0 20px 0;
+    font-size: 13px;
     text-align: center;
-    border-bottom: 1px solid rgba(var(--color-text), .1);
+    font-weight: 500;
 }
 
 @media (max-width: 600px) {
@@ -90,7 +92,6 @@ nav {
 }
 
 nav a {
-    font-family: var(--font-small-caps);
     position: relative;
 }
 
@@ -99,21 +100,68 @@ nav .current {
     font-weight: bold;
 }
 
+@media (prefers-color-scheme: dark) {
+    nav .current {
+        font-weight: 800;
+    }
+}
+
+nav img {
+    position: relative;
+    top: 27px;
+}
+
 
 /* Content
    ======= */
 
 main {
     flex: 1 0 auto; /* For a sticky footer */
-    padding: 62px 0 48px 0;
+    /* Center content vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
 }
 
+body:not(#words) main, #words main > article {
+    padding: 62px 62px 68px 62px;
+    background-color: rgba(var(--color-main-background));
+    border-radius: 13px;
+}
+
+@media (max-width: 600px) {
+    body:not(#words) main, #words main > article {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}
+
+main a {
+    text-shadow: -1px -1px rgb(var(--color-main-background)), -1px 1px rgb(var(--color-main-background)), 1px -1px rgb(var(--color-main-background)), 1px 1px rgb(var(--color-main-background)); /* Skip descenders when underlining */
+}
+
+header > time:first-child {
+    display: block;
+    margin-top: -0.5em;
+}
+
+body:not(#words) article {
+    margin: 0 auto;
+}
+
 sup {
     line-height: 0px;
+    font-size: 0.6em;
+}
+
+sup a {
+    text-shadow: none;
+    background-image: none;
 }
 
 code {
@@ -124,12 +172,23 @@ code {
 	border-radius: 5px;
 }
 
+strong {
+    font-weight: 600;
+}
+
+header {
+    text-align: center;
+}
+
 h1 {
     font-size: 2em;
+    text-align: center;
+    margin: 0.67em 0;
 }
 
 h2, h3, h4, h5, h6 {
     font-size: 1.2em;
+    margin-top: 1.5em;
 }
 
 hr {
@@ -138,11 +197,26 @@ hr {
 }
 
 hr:after {
-    content: "⁂"; /* Asterism */
+    content: "…";
+    vertical-align: super;
 }
 
 blockquote {
-    font-style: italic;
+    position: relative;
+    font-size: 0.85em;
+    color: rgba(var(--color-text), .6);
+    margin-left: 0;
+    padding-left: 40px;
+}
+
+blockquote::before {
+    content: "“";
+    position: absolute;
+    left: 0;
+    top: -23px;
+    font-size: 60px;
+    font-weight: 500;
+    opacity: 0.3;
 }
 
 article h1 {
@@ -150,7 +224,7 @@ article h1 {
 }
 
 .constrained {
-    max-width: 600px;
+    max-width: 760px;
     width: 100%;
 }
 
@@ -169,8 +243,7 @@ article img {
 
 time {
     font-size: 15px;
-    text-transform: lowercase;
-    font-family: var(--font-small-caps);
+    font-variant-caps: all-small-caps;
     color: rgba(var(--color-text), .5);
 }
 
@@ -180,6 +253,8 @@ time a, time a:hover, h1 > a, h1 > a:hover, h2 > a, h2 > a:hover {
 
 time span {
     color: rgb(var(--color-accent));
+    font-weight: 500;
+    vertical-align: text-bottom;
 }
 
 .footnotes {
@@ -201,30 +276,77 @@ time span {
     font-size: 1.5em;
 }
 
-#words section {
-    padding: 48px 0;
-    border-bottom: 1px solid rgba(var(--color-text), .1);
+#words article {
+    margin-bottom: 20px;
 }
 
-#words section:first-child {
-    padding-top: 0;
+#words article:last-child {
+    margin-bottom: 0;
 }
 
-#words section:last-child {
-    border: none;
+#words article > div {
+    width: -moz-fit-content;
+    width: fit-content;
+    margin:  0 auto;
+}
+
+.read-more {
+    font-size: 15px;
+    color: rgb(var(--color-accent));
+}
+
+.read-more, .read-more:hover {
+    background-image: none;
+}
+
+.reversefootnote, .reversefootnote:hover {
+    background-image: none;
 }
 
 
 /* Footer
    ====== */
 footer {
-    padding: 48px 0;
+    padding: 52px 0 48px;
     flex-shrink: 0; /* For a sticky footer */
-    font-size: 15px;
+    font-size: 13px;
+    font-weight: 500;
     text-align: center;
-    border-top: 1px solid rgba(var(--color-text), .1);
 }
 
 footer a, footer a:hover {
     background-image: none;
+}
+
+
+/* 404
+   === */
+
+#four-oh-four main {
+    text-align: center;
+}
+
+#four-oh-four h1 {
+    margin-bottom: 0;
+}
+
+#four-oh-four main p {
+    margin-top: 0;
+}
+
+
+/* Résumé
+   ====== */
+
+#resume h2 {
+    text-align: center;
+}
+
+
+/* Work
+   ==== */
+
+#work main p {
+    text-align: center;
+    opacity: 0.5;
 }

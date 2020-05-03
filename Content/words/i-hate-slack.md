@@ -19,6 +19,6 @@ And, I guess I also hate Slack because I still remember [IRC](https://en.wikiped
 Sorry for being such a grouch. I should probably get off my soapbox and cut everyone some slack.
 
 <ol class=footnotes>
-<li id=fn1>Tweets and selfies? Well, you should have known better. But meaningful thoughts… those should be all yours.<a href="#fnr1" title="return to article" class="reversefootnote">↩︎</a></li>
-<li id=fn2>To be clear, I have nothing against web browsers. I love the web. But the web I love is not the one of “apps,” it is the one of blogs, about pages, portfolios, wikis. It is the “weird web” (as <a href="https://alexainslie.com">my good friend</a> would put it).<a href="#fnr2” title="return to article" class="reversefootnote">↩︎</a></li>
+<li id=fn1>Tweets and selfies? Well, you should have known better. But meaningful thoughts… those should be all yours.<a href="#fnr1" title="return to article" class=reversefootnote>↩︎</a></li>
+<li id=fn2>To be clear, I have nothing against web browsers. I love the web. But the web I love is not the one of “apps,” it is the one of blogs, about pages, portfolios, wikis. It is the “weird web” (as <a href="https://alexainslie.com">my good friend</a> would put it).<a href="#fnr2” title="return to article" class=reversefootnote>↩︎</a></li>
 </ol>

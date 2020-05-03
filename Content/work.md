@@ -2,4 +2,4 @@
 title: Work
 ---
 
-Coming soon…
+*Coming soon…*

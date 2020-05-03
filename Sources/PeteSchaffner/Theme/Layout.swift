@@ -10,15 +10,30 @@ import Publish
 import Plot
 
 func layout<T: Website>(for location: Location, site: T, body: Node<HTML.BodyContext>? = nil) -> HTML {
-    let pageID: String
+    var pageID: String
+    var avatarName: String
 
     switch location.path.absoluteString {
     case "/words":
         pageID = "words"
-    case "/work":
+        avatarName = ".words"
+    case let str where str.contains("/words"):
+        pageID = ""
+        avatarName = ".words"
+    case let str where str.contains("/work"):
         pageID = "work"
+        avatarName = ".work"
+    case "/resume":
+        pageID = "resume"
+        avatarName = ".resume"
     default:
         pageID = ""
+        avatarName = ""
+    }
+    
+    if location.title == "Four Oh Four!" {
+        pageID = "four-oh-four"
+        avatarName = ".404"
     }
 
     return HTML(
@@ -31,7 +46,6 @@ func layout<T: Website>(for location: Location, site: T, body: Node<HTML.BodyCon
             .meta(.name("author"), .content("Pete Schaffner")),
             .rssFeedLink(Path.defaultForRSSFeed.absoluteString, title: "Pete Schaffner"),
             .link(.href("https://micro.blog/peteschaffner"), .attribute(named: "rel", value: "me")),
-            .stylesheet("/css/fonts.css"),
             .stylesheet("/css/styles.css"),
             .favicon("/favicon.png")
         ),
@@ -39,23 +53,38 @@ func layout<T: Website>(for location: Location, site: T, body: Node<HTML.BodyCon
             .id(pageID),
             .nav(
                 .class("constrained"),
-                .text("The "),
-                .a(
-                    .class(location.path.absoluteString.contains("/words") ? "current" : ""),
-                    .href("/words"),
-                    .text("words")
-                ),
-                .element(named: "i", text: " & "),
-                .a(
-                    .class(location.path.absoluteString == "/work" ? "current" : ""),
-                    .href("/work"),
-                    .text("work")
-                ),
-                .text(" of "),
-                .a(
-                    .class(location.path.absoluteString == "/" ? "current" : ""),
-                    .href("/"),
-                    .text("Pete Schaffner")
+                .element(named: "picture", nodes: [
+                    .element(named: "source", attributes: [
+                        .attribute(named: "srcset", value: "/images/avatar\(avatarName).dark.svg"),
+                        .attribute(named: "media", value: "(prefers-color-scheme: dark)")
+                    ]),
+                    .img(.src("/images/avatar\(avatarName).svg"), .alt("My avatar"))
+                ]),
+                .p(
+                    .text("The "),
+                    .if(
+                        location.path.absoluteString == "/resume",
+                        .a(.class("current"), .href("/resume"), .text("résumé")),
+                        else: .group([
+                            .a(
+                                .class(location.path.absoluteString.contains("/words") ? "current" : ""),
+                                .href("/words"),
+                                .text("words")
+                            ),
+                            .text(" & "),
+                            .a(
+                                .class(location.path.absoluteString == "/work" ? "current" : ""),
+                                .href("/work"),
+                                .text("work")
+                            )])
+                    ),
+                    .text(" of "),
+                    .a(
+                        .class(location.path.absoluteString == "/" ? "current" : ""),
+                        .href("/"),
+                        .text("Pete Schaffner")
+                    ),
+                    .text(".")
                 )
             ),
             .main(

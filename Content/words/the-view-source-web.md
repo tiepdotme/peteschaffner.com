@@ -11,7 +11,7 @@ Being able to peak under the hood, tinker and figure out how it all worked was w
 
 Brent Simmons [put it nicely](https://inessential.com/2018/04/15/the_view_source_web) when he said:
 
-> Lesson learned: the discoverable and understandable web is still do-able — it’s there waiting to be discovered. **It just needs some commitment from the people who make websites**.
+> Lesson learned: the discoverable and understandable web is still do-able — it’s there waiting to be discovered. *It just needs some commitment from the people who make websites* [emphasis added].
 
 ---
 
