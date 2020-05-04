@@ -62,7 +62,7 @@ body {
 a {
     text-decoration: none;
     background-image: linear-gradient(to bottom, rgba(var(--color-text), var(--opacity-link-underline)) 50%, rgba(var(--color-text), var(--opacity-link-underline)) 50%);
-    background-position: 0 91%;
+    background-position: 0 87%;
     background-repeat: repeat-x;
     background-size: 1px 1px;
     text-shadow: -1px -1px rgb(var(--color-background)), -1px 1px rgb(var(--color-background)), 1px -1px rgb(var(--color-background)), 1px 1px rgb(var(--color-background)); /* Skip descenders when underlining */
@@ -159,7 +159,7 @@ sup {
     font-size: 0.6em;
 }
 
-sup a {
+sup a, sup a:hover {
     text-shadow: none;
     background-image: none;
 }
@@ -261,6 +261,8 @@ time span {
 	font-size: 15px;
 	color: rgba(var(--color-text), .5);
 	margin-top: 48px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(var(--color-text), 0.05);
 }
 
 .footnotes li {
