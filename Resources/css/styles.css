@@ -28,13 +28,13 @@
 
 html {
     height: 100%; /* For a sticky footer */
-    font-size: 1.4em;
+    font-size: 1.5em;
     background-color: rgb(var(--color-background));
 }
 
 @media (max-width: 600px) {
     html {
-        font-size: 1.15em;
+        font-size: 1.2em;
     }
 }
 
