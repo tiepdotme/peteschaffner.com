@@ -1,6 +1,6 @@
 :root {
     --color-accent: 0, 118, 255;
-    --color-text: 25, 18, 19;
+    --color-text: 0, 0, 0;
     --color-background: 238, 240, 241;
     --color-main-background: 255, 255, 255;
     --opacity-link-underline: 0.15;
@@ -44,7 +44,7 @@ body {
     height: 100%; /* For a sticky footer */
     align-items: center;
     margin: 0 20px;
-    font-family: "Avenir Next", sans-serif;
+    font-family: "Concourse T3", sans-serif;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased; /* Make the text look a little less chunky */
     -moz-osx-font-smoothing: grayscale;
@@ -62,7 +62,7 @@ body {
 a {
     text-decoration: none;
     background-image: linear-gradient(to bottom, rgba(var(--color-text), var(--opacity-link-underline)) 50%, rgba(var(--color-text), var(--opacity-link-underline)) 50%);
-    background-position: 0 87%;
+    background-position: 0 90%;
     background-repeat: repeat-x;
     background-size: 1px 1px;
     text-shadow: -1px -1px rgb(var(--color-background)), -1px 1px rgb(var(--color-background)), 1px -1px rgb(var(--color-background)), 1px 1px rgb(var(--color-background)); /* Skip descenders when underlining */
@@ -80,9 +80,9 @@ a:hover {
    
 nav {
     padding: 70px 0 20px 0;
-    font-size: 13px;
+    font-size: 15px;
     text-align: center;
-    font-weight: 500;
+    font-family: "Concourse T4", sans-serif;
 }
 
 @media (max-width: 600px) {
@@ -97,18 +97,12 @@ nav a {
 
 nav .current {
     background-image: none;
-    font-weight: bold;
-}
-
-@media (prefers-color-scheme: dark) {
-    nav .current {
-        font-weight: 800;
-    }
+    font-family: "Concourse T7";
 }
 
 nav img {
     position: relative;
-    top: 27px;
+    top: 30px;
 }
 
 
@@ -156,7 +150,9 @@ body:not(#words) article {
 
 sup {
     line-height: 0px;
-    font-size: 0.6em;
+    /* Reset things in anticipation of using superscript characters */
+    vertical-align: top;
+    font-size: inherit;
 }
 
 sup a, sup a:hover {
@@ -178,6 +174,10 @@ strong {
 
 header {
     text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Concourse T7";
 }
 
 h1 {
@@ -203,10 +203,9 @@ hr:after {
 
 blockquote {
     position: relative;
-    font-size: 0.85em;
-    color: rgba(var(--color-text), .6);
     margin-left: 0;
     padding-left: 40px;
+    font-style: italic;
 }
 
 blockquote::before {
@@ -217,6 +216,10 @@ blockquote::before {
     font-size: 60px;
     font-weight: 500;
     opacity: 0.3;
+}
+
+blockquote em {
+    font-weight: bold;
 }
 
 article h1 {
@@ -243,7 +246,8 @@ article img {
 
 time {
     font-size: 15px;
-    font-variant-caps: all-small-caps;
+    font-family: "Concourse C4";
+    text-transform: uppercase;
     color: rgba(var(--color-text), .5);
 }
 
@@ -253,8 +257,6 @@ time a, time a:hover, h1 > a, h1 > a:hover, h2 > a, h2 > a:hover {
 
 time span {
     color: rgb(var(--color-accent));
-    font-weight: 500;
-    vertical-align: text-bottom;
 }
 
 .footnotes {
@@ -311,9 +313,10 @@ time span {
 footer {
     padding: 52px 0 48px;
     flex-shrink: 0; /* For a sticky footer */
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 500;
     text-align: center;
+    font-family: "Concourse T4", sans-serif;
 }
 
 footer a, footer a:hover {
