@@ -151,7 +151,7 @@ body:not(#words) article {
 sup {
     line-height: 0px;
     /* Reset things in anticipation of using superscript characters */
-    vertical-align: top;
+    vertical-align: baseline;
     font-size: inherit;
 }
 
