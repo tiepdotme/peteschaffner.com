@@ -176,14 +176,15 @@ header {
     text-align: center;
 }
 
-h1 {
-    font-family: "Concourse T7";
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.15;
 }
 
 h1 {
+    font-family: "Concourse T7";
     font-size: 2em;
     text-align: center;
-    margin: 0.67em 0;
+    margin: 0.67em 0 0.2em;
 }
 
 h2, h3, h4, h5, h6 {
@@ -220,10 +221,6 @@ blockquote::before {
 
 blockquote em {
     font-weight: bold;
-}
-
-article h1 {
-    margin-bottom: 0;
 }
 
 .constrained {
@@ -276,7 +273,6 @@ time span {
    ======= */
    
 #words h1 {
-    margin: 0;
     font-size: 1.5em;
 }
 
