@@ -1,0 +1,3 @@
+ErrorDocument 404 /404/
+
+Header add Cache-Control "max-age=1"
