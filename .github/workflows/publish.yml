@@ -16,4 +16,4 @@ jobs:
             - name: Add SSH key
               run: ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
             - name: Publish website
-              run: rsync --recursive --delete -e 'ssh -o StrictHostKeyChecking=no' $GITHUB_WORKSPACE/Output/ pete@peteschaffner.com:www
+              run: echo "put -r $GITHUB_WORKSPACE/Output/*" | sftp 3643620@sftp.sd3.gpaas.net:vhosts/lauraschaffner.com/htdocs

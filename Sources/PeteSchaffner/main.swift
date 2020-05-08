@@ -37,5 +37,6 @@ try PeteSchaffner().publish(withTheme: .pete, additionalSteps: [
         // Replace dumb quotes with smart ones
         item.body.convertQuotes()
         item.title = item.path.string.contains(item.title) ? "" : item.title
-    }
+    },
+    .copyFile(at: "Resources/.htaccess")
 ])
