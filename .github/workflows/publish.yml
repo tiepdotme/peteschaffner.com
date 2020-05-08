@@ -14,6 +14,8 @@ jobs:
             - name: Start up SSH agent
               run: eval "$(ssh-agent -s)"
             - name: Add SSH key
-              run: ssh-add <(echo "${{ secrets.PRIVATE_KEY }}")
+              run: mkdir -p ~/.ssh
+              run: echo "${{ secrets.PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+              run: ssh-add ~/.ssh/id_rsa
             - name: Publish website
               run: echo "put -r $GITHUB_WORKSPACE/Output/*" | sftp 3643620@sftp.sd3.gpaas.net:vhosts/lauraschaffner.com/htdocs
