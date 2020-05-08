@@ -12,4 +12,4 @@ jobs:
             - name: Build website
               run: swift run PeteSchaffner --removeDrafts
             - name: Publish website
-              run: expect -c "spawn bash -c {echo \"put -r Output/*\" | sftp 3643620@sftp.sd3.gpaas.net:vhosts/lauraschaffner.com/htdocs}; expect \"*fingerprint])?*\"; send \"yes\r\"; expect \"*password:*\"; send \"jadcu3-bizcEr-hicmor\r\"; interact"
+              run: expect -c "spawn bash -c {echo \"put -r Output/*\" | sftp 3643620@sftp.sd3.gpaas.net:vhosts/lauraschaffner.com/htdocs}; expect \"*fingerprint])?*\"; send \"yes\r\"; expect \"*password:*\"; send \"${{ secrets.PASSWORD }}\r\"; interact"
