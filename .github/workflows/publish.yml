@@ -16,4 +16,4 @@ jobs:
             - name: Add SSH key
               run: ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
             - name: Publish website
-              run: mkdir $GITHUB_WORKSPACE/tmp && cp -r $GITHUB_WORKSPACE/Output $GITHUB_WORKSPACE/tmp/htdocs && cd $GITHUB_WORKSPACE/tmp && git init && git remote add gandi git+ssh://3643620@git.sd3.gpaas.net/lauraschaffner.com.git && git add . && git commit -m 'build' && GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push gandi master --force && ssh -o StrictHostKeyChecking=no 3643620@git.sd3.gpaas.net deploy lauraschaffner.com.git && ssh 3643620@git.sd3.gpaas.net clean lauraschaffner.com.git
+              run: mkdir $GITHUB_WORKSPACE/tmp && cp -r $GITHUB_WORKSPACE/Output $GITHUB_WORKSPACE/tmp/htdocs && cd $GITHUB_WORKSPACE/tmp && git init && git remote add gandi git+ssh://3643620@git.sd3.gpaas.net/peteschaffner.com.git && git add . && git commit -m 'build' && GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no" git push gandi master --force && ssh -o StrictHostKeyChecking=no 3643620@git.sd3.gpaas.net deploy peteschaffner.com.git && ssh 3643620@git.sd3.gpaas.net clean peteschaffner.com.git
