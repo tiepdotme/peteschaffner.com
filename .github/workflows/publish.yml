@@ -15,5 +15,7 @@ jobs:
               run: eval "$(ssh-agent -s)"
             - name: Add SSH key
               run: ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
+            - name: Remove known_hosts
+              run: rm -rf ~/.ssh/known_hosts
             - name: Publish website
               run: echo "put -r $GITHUB_WORKSPACE/Output/*" | sftp 3643620@sftp.sd3.gpaas.net:vhosts/lauraschaffner.com/htdocs
