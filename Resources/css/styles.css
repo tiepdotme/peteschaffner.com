@@ -43,14 +43,21 @@ body {
     flex-direction: column; /* For a sticky footer */
     height: 100%; /* For a sticky footer */
     align-items: center;
-    margin: 0 20px;
+    margin-left: 20px;
+    margin-right: 20px;
     font-family: "Concourse T3", sans-serif;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased; /* Make the text look a little less chunky */
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility; /* Enables kerning and optional ligatures */
-    /*font-feature-settings: 'onum' 1;*/ /* Use oldstyle figures */
     color: rgb(var(--color-text));
+}
+
+@media (max-width: 600px) {
+    body {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -79,7 +86,7 @@ a:hover {
    ========== */
    
 nav {
-    padding: 70px 0 20px 0;
+    padding: 70px 0 7px 0;
     font-size: 15px;
     text-align: center;
     font-family: "Concourse T4", sans-serif;
@@ -123,7 +130,7 @@ main {
 }
 
 body:not(#words) main, #words main > article {
-    padding: 62px 62px 68px 62px;
+    padding: 62px 102px 68px 102px;
     background-color: rgba(var(--color-main-background));
     border-radius: 13px;
 }
@@ -189,7 +196,7 @@ h1 {
 
 h2, h3, h4, h5, h6 {
     font-size: 1.2em;
-    margin-top: 1.5em;
+    margin-top: 2em;
 }
 
 hr {
@@ -278,6 +285,12 @@ time span {
 
 #words article {
     margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    #words article {
+        margin-bottom: 10px;
+    }
 }
 
 #words article:last-child {
