@@ -38,5 +38,7 @@ try PeteSchaffner().publish(withTheme: .pete, additionalSteps: [
         item.body.convertQuotes()
         item.title = item.path.string.contains(item.title) ? "" : item.title
     },
-    .copyFile(at: "Resources/.htaccess")
+    .step(named: "Rename .htaccess", body: { context in
+        try context.outputFile(at: "htaccess").rename(to: ".htaccess")
+    })
 ])
