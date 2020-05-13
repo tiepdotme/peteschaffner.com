@@ -8,6 +8,7 @@
 import Foundation
 import Publish
 import Plot
+import Ink
 
 extension Theme where Site == PeteSchaffner {
     static var pete: Self {
@@ -123,6 +124,38 @@ extension Content.Body {
             .replacingOccurrences(of: #"'(\w*)'"#, with: "‘$1’", options: .regularExpression)
             .replacingOccurrences(of: #"(\w)'(\w)"#, with: "$1’$2", options: .regularExpression)
             .replacingOccurrences(of: #""(\w*)""#, with: "“$1”", options: .regularExpression)
+    }
+    
+    mutating func addFootnotes(from source: String) {
+        let superscriptChars = ["0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹"]
+        let footnoteReferenceRegex = try! NSRegularExpression(pattern: #"(?<=\w)\[\^(.+?)\]"#)
+        let parser = MarkdownParser()
+        let footnoteReferenceMatches = footnoteReferenceRegex.matches(in: html, options: [], range: NSRange(html.startIndex..<html.endIndex, in: html))
+        var totalOffset = 0
+        var footnotes = ""
+        
+        footnoteReferenceMatches.enumerated().forEach { index, match in
+            let footnoteNumber = String(index + 1)
+            let footnoteSuperscript = footnoteNumber.compactMap {
+                superscriptChars[$0.description]
+            }.joined()
+            let footnoteReference = Node.element(named: "sup", nodes: [Node.a(.href("#fn\(footnoteNumber)"), .id("fnr\(footnoteNumber)"), .attribute(named: "title", value: "See footnote"), .text(footnoteSuperscript))]).render()
+            
+            totalOffset += index > 0 ? footnoteReferenceMatches[index - 1].range.length - footnoteReference.count : 0
+            let range = Range(NSRange(location: match.range.lowerBound - totalOffset, length: match.range.length), in: html)!
+            guard let footnoteSubstring = source.firstSubstring(between: .init(stringLiteral: "\(html[range]):"), and: .init(unicodeScalarLiteral: "\n")) else {
+                fatalError("Missing footnote definition")
+            }
+            let footnoteMarkdown = String(footnoteSubstring).trimmingCharacters(in: .whitespaces)
+            
+            html = html.replacingCharacters(in: range, with: footnoteReference)
+
+            footnotes += Node.li(.id("fn\(footnoteNumber)"), .raw(parser.html(from: footnoteMarkdown).replacingOccurrences(of: #"<\/?p>"#, with: "", options: .regularExpression)), .a(.href("#fnr\(footnoteNumber)"), .attribute(named: "title", value: "Return to article"), .class("reversefootnote"), .text("↑"))).render()
+            
+            if match == footnoteReferenceMatches.last {
+                html += Node.ol(.class("footnotes"), .raw(footnotes)).render()
+            }
+        }
     }
 }
 
