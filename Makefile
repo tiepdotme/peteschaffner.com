@@ -20,6 +20,7 @@ dev: /usr/local/bin/fswatch
 
 .PHONY: publish
 publish:
+	@rm -rf .publish/Caches
 	@swift run PeteSchaffner --removeDrafts
 	@mkdir tmp
 	@cp -r Output tmp/htdocs
