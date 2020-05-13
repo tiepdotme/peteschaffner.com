@@ -90,11 +90,12 @@ nav {
     font-size: 15px;
     text-align: center;
     font-family: "Concourse T4", sans-serif;
+    opacity: 0.7;
 }
 
 @media (max-width: 600px) {
     nav {
-        padding-top: 48px;
+        padding-top: 0px;
     }
 }
 
@@ -104,12 +105,12 @@ nav a {
 
 nav .current {
     background-image: none;
-    font-family: "Concourse T7";
+    font-family: "Concourse T7", sans-serif;
 }
 
 nav img {
     position: relative;
-    top: 30px;
+    top: 33px;
 }
 
 
@@ -188,7 +189,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-family: "Concourse T7";
+    font-family: "Concourse T7", sans-serif;
     font-size: 2em;
     text-align: center;
     margin: 0.67em 0 0.2em;
@@ -250,7 +251,7 @@ article img {
 
 time {
     font-size: 15px;
-    font-family: "Concourse C4";
+    font-family: "Concourse C4", sans-serif;
     text-transform: uppercase;
     color: rgba(var(--color-text), .5);
 }
@@ -314,18 +315,20 @@ time span {
 
 .reversefootnote, .reversefootnote:hover {
     background-image: none;
+    margin-left: 3px;
 }
 
 
 /* Footer
    ====== */
 footer {
-    padding: 52px 0 48px;
+    padding: 52px 0 calc(52px + env(safe-area-inset-bottom));
     flex-shrink: 0; /* For a sticky footer */
     font-size: 15px;
     font-weight: 500;
     text-align: center;
     font-family: "Concourse T4", sans-serif;
+    opacity: 0.7;
 }
 
 footer a, footer a:hover {
