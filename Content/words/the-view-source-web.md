@@ -3,7 +3,7 @@ date: 2019-05-24 14:57
 link: https://inessential.com/2018/04/15/the_view_source_web
 ---
 
-# “The View-Source Web”
+# "The View-Source Web"
 
 Being able to peak under the hood, tinker and figure out how it all worked was what got me started as a web developer. Come to think of it, it is still how I learn and work. I’m afraid we might be losing some of that, however.
 

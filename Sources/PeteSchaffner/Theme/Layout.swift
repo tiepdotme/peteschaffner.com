@@ -9,7 +9,7 @@ import Foundation
 import Publish
 import Plot
 
-func layout<T: Website>(for location: Location, site: T, body: Node<HTML.BodyContext>? = nil) -> HTML {
+func layout<T: Website>(for location: Location, site: T, body: Content.Body) -> HTML {
     var pageID: String
     var avatarName: String
 
@@ -90,7 +90,7 @@ func layout<T: Website>(for location: Location, site: T, body: Node<HTML.BodyCon
             ),
             .main(
                 .class("constrained"),
-                body ?? .contentBody(location.body)
+                .contentBody(body.makingSmartSubstitutions())
             ),
             .footer(
                 .class("constrained"),
