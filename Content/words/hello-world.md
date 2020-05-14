@@ -6,7 +6,8 @@ date: 2019-05-21 22:35
 
 Hi, [I’m Pete](/) and this is my little corner of the internet. Today marks the first day of its existence—I hope there are many more to come.
 
-<!-- excerpt -->
++++
+
 ---
 
 This is kinda new to me: writing my words down and putting them out on the world wide web. I’ve always been very much in my head though, so I thought it might help to start getting some of it out now and again.

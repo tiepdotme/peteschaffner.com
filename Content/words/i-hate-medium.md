@@ -6,7 +6,7 @@ date: 2020-02-25 20:39
 
 Too many good writers, articles and thoughts have been sucked into [that siloed black hole](https://medium.com).
 
-<!-- excerpt --> 
++++
 
 I mean, I get it. Who wants to set up a blog? Just write, right? But what about owning your content? Tweets are small and usually conversational, so I can see using something like Twitter without too much thought. But when it comes time to write, why would you want to give it all over to someone else?
 

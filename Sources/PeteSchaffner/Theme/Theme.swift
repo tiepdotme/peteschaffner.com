@@ -51,9 +51,9 @@ extension Theme where Site == PeteSchaffner {
                                 )
                             )
                         ),
-                        .contentBody(item.body.deletingOccurrences(of: "<!-- excerpt -->((.|\n)*)")),
+                        .contentBody(item.body.deletingOccurrences(of: #"\+\+\+((.|\n)*)"#)),
                         .if(
-                            item.body.html.contains("<!-- excerpt -->"),
+                            item.body.html.contains("+++"),
                             .a(.class("read-more"), .href(item.path), .text("Read more…"))
                         )
                     )
@@ -88,7 +88,7 @@ extension Theme where Site == PeteSchaffner {
                         .text(friendlyDate(item.date))
                     )
                 ),
-                .contentBody(item.body)
+                .contentBody(item.body.deletingOccurrences(of: #"<p>\+\+\+<\/p>"#))
             )
             
             return layout(for: item, site: context.site, body: body)
@@ -124,7 +124,7 @@ extension Content.Body {
         // Quotes
         .replacingOccurrences(of: #"'(.+?)'"#, with: "‘$1’", options: .regularExpression)
         .replacingOccurrences(of: #"([\w\s])'(\w)"#, with: "$1’$2", options: .regularExpression)
-        .replacingOccurrences(of: #""(.+?)""#, with: "“$1”", options: .regularExpression)
+        .replacingOccurrences(of: #""([^"><]+)"(?![^<]*>)"#, with: "“$1”", options: .regularExpression)
         // Punctuation
         .replacingOccurrences(of: "...", with: "…")
         .replacingOccurrences(of: "---", with: "—")

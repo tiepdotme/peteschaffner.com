@@ -6,7 +6,7 @@ date: 2020-02-23 01:13
 
 Ok, the site isn't new as in design or content, but the underlying tech is. I guess it is also a little late to be writing a new-year post. Oh well…
 
-<!-- excerpt -->
++++
 
 ## Hosting
 

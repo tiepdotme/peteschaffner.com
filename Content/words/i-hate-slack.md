@@ -6,7 +6,7 @@ date: 2020-02-25 20:40
 
 I just wrote about [why I hate Medium](/words/i-hate-medium), so while I’m all in a rage, let me rag on [Slack](https://slack.com).
 
-<!-- excerpt -->
++++
 
 I hate [Medium](https://medium.com) on principle: they are a walled garden (like Twitter or Facebook) that hoards our prose[^1]. But my reasons aren’t quite so righteous when it comes to Slack.
 
