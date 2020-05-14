@@ -29,11 +29,11 @@ try PeteSchaffner().publish(withTheme: .pete, additionalSteps: [
         // Remove the title for title-less posts since we handle setting a friendly date-based document title in the theme.
         item.title = item.path.string.contains(item.title) ? "" : item.title
     },
-    .step(named: "Convert quotes") { context in
+    .step(named: "Make smart substitutions") { context in
         // Posts
         for section in context.sections.ids {
             context.sections[section].mutateItems(matching: .any) { item in
-                item.body.convertQuotes()
+                item.body.makeSmartSubstitutions()
             }
         }
         
@@ -43,13 +43,13 @@ try PeteSchaffner().publish(withTheme: .pete, additionalSteps: [
                 at: path,
                 matching: .any,
                 using: { page in
-                    page.body.convertQuotes()
+                    page.body.makeSmartSubstitutions()
                 }
             )
         }
         
         // Index
-        context.index.body.convertQuotes()
+        context.index.body.makeSmartSubstitutions()
     },
     .step(named: "Add footnotes") { context in
         let c = context

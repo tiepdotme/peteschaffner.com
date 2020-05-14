@@ -119,11 +119,16 @@ extension Content.Body {
         ))
     }
     
-    mutating func convertQuotes() {
+    mutating func makeSmartSubstitutions() {
         html = html
-            .replacingOccurrences(of: #"'(\w*)'"#, with: "‘$1’", options: .regularExpression)
-            .replacingOccurrences(of: #"(\w)'(\w)"#, with: "$1’$2", options: .regularExpression)
-            .replacingOccurrences(of: #""(\w*)""#, with: "“$1”", options: .regularExpression)
+        // Quotes
+        .replacingOccurrences(of: #"'(.+?)'"#, with: "‘$1’", options: .regularExpression)
+        .replacingOccurrences(of: #"([\w\s])'(\w)"#, with: "$1’$2", options: .regularExpression)
+        .replacingOccurrences(of: #""(.+?)""#, with: "“$1”", options: .regularExpression)
+        // Punctuation
+        .replacingOccurrences(of: "...", with: "…")
+        .replacingOccurrences(of: "---", with: "—")
+        .replacingOccurrences(of: "--", with: "–")
     }
     
     mutating func addFootnotes(from source: String) {
