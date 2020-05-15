@@ -11,7 +11,7 @@
         --color-accent: 84, 199, 252;
         --color-text: 255, 255, 255;
         --color-background: 17, 17, 17;
-        --color-main-background: 42, 42, 42;
+        --color-main-background: 34, 34, 34;
         --opacity-link-underline: 0.2;
     }
 }
@@ -168,12 +168,21 @@ sup a, sup a:hover {
     background-image: none;
 }
 
+pre, code {
+    font-family: "Triplicate T4c", monospace;
+    font-size: 0.97em;
+}
+
 code {
-	font-family: monospace;
-	background: rgba(var(--color-text), 0.03);
-	padding: 2px 4px;
-	border: 1px solid rgba(var(--color-text), 0.1);
-	border-radius: 5px;
+    font-weight: bold;
+}
+
+pre code {
+    font-weight: normal;
+}
+
+pre {
+    margin-left: 40px;
 }
 
 strong {
@@ -206,8 +215,7 @@ hr {
 }
 
 hr:after {
-    content: "…";
-    vertical-align: super;
+    content: "⁂";
 }
 
 blockquote {

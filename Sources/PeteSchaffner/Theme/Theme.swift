@@ -135,6 +135,7 @@ extension Content.Body {
             .replacingOccurrences(of: #"'(.+?)'"#, with: "‘$1’", options: .regularExpression)
             .replacingOccurrences(of: #"([\w\s])'(\w)"#, with: "$1’$2", options: .regularExpression)
             .replacingOccurrences(of: #""([^"><]+)"(?![^<]*>)"#, with: "“$1”", options: .regularExpression)
+            .replacingOccurrences(of: #"([\w])"(\s)(?![^<]*>)"#, with: "$1”$2", options: .regularExpression)
             // Punctuation
             .replacingOccurrences(of: "...", with: "…")
             .replacingOccurrences(of: "---", with: "—")

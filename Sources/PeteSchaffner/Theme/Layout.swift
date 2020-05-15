@@ -47,6 +47,7 @@ func layout<T: Website>(for location: Location, site: T, body: Content.Body) -> 
             .rssFeedLink(Path.defaultForRSSFeed.absoluteString, title: "Pete Schaffner"),
             .link(.href("https://micro.blog/peteschaffner"), .attribute(named: "rel", value: "me")),
             .stylesheet("/css/fonts.css"),
+            .if(body.html.contains("<code>"), .stylesheet("/css/code-fonts.css")),
             .stylesheet("/css/styles.css"),
             .favicon("/favicon.png")
         ),
@@ -103,6 +104,11 @@ func layout<T: Website>(for location: Location, site: T, body: Content.Body) -> 
                 .a(
                     .href("/colophon"),
                     .text("Colophon")
+                ),
+                .text(" · "),
+                .a(
+                    .href("https://github.com/peteschaffner/peteschaffner.com"),
+                    .text("Source")
                 )
             )
         )
