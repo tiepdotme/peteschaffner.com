@@ -4,4 +4,4 @@ ErrorDocument 404 /404/
 Header add Cache-Control "max-age=1"
 
 # gzip
-AddOutputFilterByType DEFLATE text/html application/x-rss+xml text/css
+AddOutputFilterByType DEFLATE text/html application/x-rss+xml text/css image/svg+xml
