@@ -4,7 +4,7 @@ This site is hosted at [gandi.net](https://www.gandi.net/en/simple-hosting), set
 
 ---
 
-Concourse is a sans-serif typeface made by [Matthew Butterick](https://mbtype.com/bio.html). While inspired by geometric faces of the '30s, it has a more organic feel (especially its lowercase) than most in this category, which helps it hold up better as body copy. It also has true italics, as apposed to the more common sloped romans that traditionally are found in sans-serif faces. According to Butterick, it *"[...] doesn’t skimp on versatility, warmth, or personality"*. In order to really bring out that personality, I’ve enabled ligatures and kerning. There are other typographic features being controlled via CSS as well, so I encourage you to view the source and poke around.
+Concourse is a sans-serif typeface made by [Matthew Butterick](https://mbtype.com/bio.html). While inspired by geometric faces of the '30s, it has a more organic feel (especially its lowercase) than most in this category, which helps it hold up better as body copy. It also has true italics, as apposed to the more common sloped romans that traditionally are found in sans-serif faces. According to Butterick, *"[it] doesn’t skimp on versatility, warmth, or personality"*. In order to really bring out that personality, I’ve enabled ligatures and kerning. There are other typographic features being controlled via CSS as well, so I encourage you to view the source and poke around.
 
 As for content management, I’ve used many static site generators in the past, but decided to use Publish because it is written in Swift (I make iOS/macOS apps), and it is a joy to hack on in Xcode. I wrote [a post](/words/a-new-year-a-new-site) that talks in more detail about the technical bits and my motivations. 
 

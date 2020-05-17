@@ -132,10 +132,11 @@ extension Content.Body {
     func makingSmartSubstitutions() -> Self {
         Self(html: html
             // Quotes
-            .replacingOccurrences(of: #"'(.+?)'"#, with: "‘$1’", options: .regularExpression)
-            .replacingOccurrences(of: #"([\w\s])'(\w)"#, with: "$1’$2", options: .regularExpression)
-            .replacingOccurrences(of: #""([^"><]+)"(?![^<]*>)"#, with: "“$1”", options: .regularExpression)
-            .replacingOccurrences(of: #"([\w])"(\s)(?![^<]*>)"#, with: "$1”$2", options: .regularExpression)
+            .replacingOccurrences(of: #"\b'(\w?)"#, with: "’$1", options: .regularExpression) // e.g. 'Quotation(') | Pete(')s | you(')ve
+            .replacingOccurrences(of: #"'(\d{2}s)"#, with: "’$1", options: .regularExpression) // e.g. (')30s
+            .replacingOccurrences(of: #"'\b"#, with: "‘", options: .regularExpression) // e.g. (')Quotation'
+            .replacingOccurrences(of: #""([^"><]+)"(?![^<]*>)"#, with: "“$1”", options: .regularExpression) // e.g. <a href="/path">(")Quotation(")</a>
+            .replacingOccurrences(of: #"(\d)"(\s)(?![^<]*>)"#, with: "$1”$2", options: .regularExpression) // e.g. 13(") MacBook Pro
             // Punctuation
             .replacingOccurrences(of: "...", with: "…")
             .replacingOccurrences(of: "---", with: "—")
