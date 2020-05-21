@@ -119,7 +119,8 @@ nav img {
 
 main {
     flex: 1 0 auto; /* For a sticky footer */
-    /* Center content vertically */
+    
+    /* Center content vertically (assumes one root container element) */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -212,6 +213,7 @@ h2, h3, h4, h5, h6 {
 hr {
     text-align: center;
     border: none;
+    margin: 1.5em 0;
 }
 
 hr:after {
@@ -220,7 +222,7 @@ hr:after {
 
 blockquote {
     position: relative;
-    margin-left: 0;
+    margin: 2em 2em 2em 0;
     padding-left: 40px;
     font-style: italic;
 }
@@ -237,6 +239,10 @@ blockquote::before {
 
 blockquote em {
     font-weight: bold;
+}
+
+ul {
+    padding-left: 26px;
 }
 
 .constrained {
@@ -260,8 +266,9 @@ article img {
 time {
     font-size: 15px;
     font-family: "Concourse C4", sans-serif;
-    text-transform: uppercase;
+    text-transform: lowercase;
     color: rgba(var(--color-text), .5);
+    font-variant-numeric: oldstyle-nums;
 }
 
 time a, time a:hover, h1 > a, h1 > a:hover, h2 > a, h2 > a:hover {
@@ -365,9 +372,52 @@ footer a, footer a:hover {
    ====== */
 
 #resume h2 {
+    font-family: "Concourse C4", sans-serif;
+    font-weight: bold;
+    font-size: 0.9em;
+    text-transform: lowercase;
+    margin: 5em 0;
+    padding-top: 0.5em;
+    border-top: 1px solid rgba(var(--color-text), 0.1);
     text-align: center;
 }
 
+#resume h2 + h3 {
+    margin-top: 0;
+}
+
+#resume h3 {
+    margin-top: 2em;
+    margin-bottom: 0;
+    display: inline-block;
+    font-size: 1.3em;
+}
+
+#resume h3::after {
+    content: " ";
+}
+
+#resume h3 ~ p {
+    font-style: italic;
+    margin: 0;
+}
+
+#resume .timespan {
+    display: inline-block;
+    font-family: "Concourse C4", sans-serif;
+    text-transform: lowercase;
+    color: rgba(var(--color-text), .5);
+    font-variant-numeric: oldstyle-nums;
+    font-style: normal;
+}
+
+#resume p > a {
+    font-style: normal;
+}
+
+#resume main > div {
+    margin-bottom: 35px;
+}
 
 /* Work
    ==== */

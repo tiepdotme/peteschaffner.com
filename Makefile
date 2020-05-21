@@ -15,6 +15,7 @@ dev: /usr/local/bin/fswatch
 		-e "/\." \
 		-e "Output" \
 		-e "~" \
+		-e "Resources/resume-references" \
 		--event Updated . | xargs -0 -n 1 /bin/bash -c "swift run PeteSchaffner && osascript -e 'tell application \"Safari\"' -e 'tell window 1' -e 'if URL of current tab contains \"localhost:8000\" then do JavaScript \"window.location.reload(true)\" in current tab' -e 'end tell' -e 'end tell'" &
 	@cd Output && python -m SimpleHTTPServer 8000
 

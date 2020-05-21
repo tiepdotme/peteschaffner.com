@@ -18,11 +18,13 @@ extension Theme where Site == PeteSchaffner {
     
     private struct PeteHTMLFactory: HTMLFactory {
         func makeIndexHTML(for index: Index, context: PublishingContext<PeteSchaffner>) throws -> HTML {
-            layout(for: index, site: context.site, body: index.body.addingFootnotes(from: try! context.file(at: "Content/index.md")))
+            let body = Content.Body(node: .div(.contentBody(index.body.addingFootnotes(from: try! context.file(at: "Content/index.md")))))
+            
+            return layout(for: index, site: context.site, body: body)
         }
         
         func makeSectionHTML(for section: Section<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
-            let body = Content.Body(node: Node.forEach(section.items) { item in
+            let body = Content.Body(node: .forEach(section.items) { item in
                 .article(
                     .div(
                         .header(
@@ -69,7 +71,7 @@ extension Theme where Site == PeteSchaffner {
         }
         
         func makeItemHTML(for item: Item<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
-            let body = Content.Body(node: Node.article(
+            let body = Content.Body(node: .article(
                 .header(
                     .if(
                         !item.title.isEmpty,
@@ -105,7 +107,9 @@ extension Theme where Site == PeteSchaffner {
         }
         
         func makePageHTML(for page: Page, context: PublishingContext<PeteSchaffner>) throws -> HTML {
-            layout(for: page, site: context.site, body: page.body.addingFootnotes(from: try! context.file(at: "Content/\(page.path).md")))
+            let body = Content.Body(node: .div(.contentBody(page.body.addingFootnotes(from: try! context.file(at: "Content/\(page.path).md")))))
+            
+            return layout(for: page, site: context.site, body: body)
         }
         
         func makeTagListHTML(for page: TagListPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? { nil }
