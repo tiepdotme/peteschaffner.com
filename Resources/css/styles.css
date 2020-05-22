@@ -380,46 +380,42 @@ footer a, footer a:hover {
 
 #resume h2 {
     font-family: "Concourse C4", sans-serif;
-    font-weight: bold;
     font-size: 0.9em;
     text-transform: lowercase;
-    margin: 5em 0;
+    margin: 5em 0 2em;
     padding-top: 0.5em;
     border-top: 1px solid rgba(var(--color-text), 0.1);
     text-align: center;
 }
 
-#resume h2 + h3 {
-    margin-top: 0;
+#resume header {
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
 }
 
-#resume h3 {
-    margin-top: 2em;
+#resume header h3 {
     margin-bottom: 0;
-    display: inline-block;
     font-size: 1.3em;
 }
 
-#resume h3::after {
-    content: " ";
-}
-
-#resume h3 ~ p {
-    font-style: italic;
+#resume header h4 {
+    flex-basis: 100%;
     margin: 0;
+    font-weight: normal;
+    font-size: 1em;
+    font-style: italic;
+    line-height: inherit;
 }
 
-#resume .timespan {
-    display: inline-block;
-    font-family: "Concourse C4", sans-serif;
-    text-transform: lowercase;
-    color: rgba(var(--color-text), .5);
-    font-variant-numeric: oldstyle-nums;
-    font-style: normal;
+#resume header time {
+    font-size: 0.9em;
 }
 
-#resume p:not(.timespan) + p {
-    font-style: normal;
+#resume header + p {
+    margin: 0;
 }
 
 #resume main > div {
