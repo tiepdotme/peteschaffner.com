@@ -3,7 +3,7 @@
     --color-text: 0, 0, 0;
     --color-background: 238, 240, 241;
     --color-main-background: 255, 255, 255;
-    --opacity-link-underline: 0.15;
+    --opacity-link-underline: 0.2;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,7 +12,7 @@
         --color-text: 255, 255, 255;
         --color-background: 17, 17, 17;
         --color-main-background: 34, 34, 34;
-        --opacity-link-underline: 0.2;
+        --opacity-link-underline: 0.25;
     }
 }
 
@@ -66,7 +66,7 @@ body {
     }
 }
 
-a {
+a, nav:hover a:not(.current) {
     text-decoration: none;
     background-image: linear-gradient(to bottom, rgba(var(--color-text), var(--opacity-link-underline)) 50%, rgba(var(--color-text), var(--opacity-link-underline)) 50%);
     background-position: 0 90%;
@@ -103,6 +103,13 @@ nav a {
     position: relative;
 }
 
+@media (hover: hover) {
+    nav a {
+        background-image: none;
+        text-shadow: none;
+    }
+}
+
 nav .current {
     background-image: none;
     font-family: "Concourse T7", sans-serif;
@@ -131,14 +138,14 @@ main {
     hyphens: auto;
 }
 
-body:not(#words) main, #words main > article {
+body:not(#words):not(#work) main, #words main article, #work main section {
     padding: 62px 102px 68px 102px;
     background-color: rgba(var(--color-main-background));
     border-radius: 13px;
 }
 
 @media (max-width: 600px) {
-    body:not(#words) main, #words main > article {
+    body:not(#words):not(#work) main, #words main article, #work main section {
         padding-left: 32px;
         padding-right: 32px;
     }
@@ -300,7 +307,7 @@ time span {
     font-size: 1.5em;
 }
 
-#words article {
+#words article, #work section {
     margin-bottom: 20px;
 }
 
@@ -310,7 +317,7 @@ time span {
     }
 }
 
-#words article:last-child {
+#words article:last-child, #work section:last-child {
     margin-bottom: 0;
 }
 
@@ -411,7 +418,7 @@ footer a, footer a:hover {
     font-style: normal;
 }
 
-#resume p > a {
+#resume p:not(.timespan) + p {
     font-style: normal;
 }
 

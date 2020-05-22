@@ -6,7 +6,7 @@ title: Résumé
 
 ## Skills
 ### Design & art
-- Interface/icon/user experience design, animation
+- Interface/interaction/icon design, animation
 - Sketch, Pixelmator [Pro], PaintCode
 - Xcode Playgrounds, Xcode view debugging, Interface Builder, Origami Studio
 - Ceramics, typography
@@ -29,7 +29,7 @@ Chrome iOS design lead
 - Advocated for platform-first design and development
 - Worked closely with and sat amongst the engineering team
 - Prototyped new features natively
-- Implemented UI
+- Implemented my own designs
 - Contributed to and proofread design docs
 - Mentored new designers and engineers unfamiliar with iOS development
 - Designed an experimental, unreleased iOS app
@@ -75,12 +75,12 @@ Web lead, developer & designer
 <p class="timespan">2013–2014</p>
 Designer
 
-- Designed the user interface for [version 3 of Linkinus.app](/resume-references/linkinus3)
+- Designed [version 3 of Linkinus.app](/resume-references/linkinus3)
 - Created a new company logo and began a rebrand
 
 ### IronGate Creative
 <p class="timespan">2010–2013</p>
-Designer & web developer
+Designer & developer
 
 - Owned design and implementation of all web projects
 - Defined our workflow and standard for web projects
@@ -117,22 +117,22 @@ Bachelor of Fine Arts, Visual Communication
 - Graduated *magna cum laude* from the Honors College
 
 ## References
-### Mikey Pulaski
-Owner, engineer & designer at [Young Dynasty](https://www.youngdynasty.net)
+### AbdelKarim Mardini
+Senior product manager at Google
 
-[mikey@youngdynasty.net](mailto:mikey@youngdynasty.net)
+[mardini@google.com](mailto:mardini@google.com)
 
 ### Alex Ainslie
 Design director of Google Chrome
 
 [ainslie@google.com](mailto:ainslie@google.com)
 
-### Karim Mardini
-Senior product manager at Google
-
-[mardini@google.com](mailto:mardini@google.com)
-
 ### Jean-Baptiste Bégué
 Engineer at Apple
 
 [jb.begue@gmail.com](mailto:jb.begue@gmail.com)
+
+### Mikey Pulaski
+Owner, engineer & designer at [Young Dynasty](https://www.youngdynasty.net)
+
+[mikey@youngdynasty.net](mailto:mikey@youngdynasty.net)
