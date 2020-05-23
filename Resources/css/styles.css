@@ -115,6 +115,10 @@ nav .current {
     font-family: "Concourse T7", sans-serif;
 }
 
+nav .current:hover {
+    color: inherit;
+}
+
 nav img {
     position: relative;
     top: 33px;
@@ -386,6 +390,7 @@ footer a, footer a:hover {
     padding-top: 0.5em;
     border-top: 1px solid rgba(var(--color-text), 0.1);
     text-align: center;
+    color: rgba(var(--color-text), 0.5);
 }
 
 #resume header {

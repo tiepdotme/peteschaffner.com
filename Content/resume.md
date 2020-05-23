@@ -61,7 +61,7 @@ title: Résumé
 - Shipped a couple minor updates
 - Began work on a new major version
 - Created a multi-channel distribution build system
-- Created a licensing and transactional/marketing email infrastructure
+- Created a licensing and transactional/marketing email system
 
 <header>
 	<h3>Evergig</h3>
