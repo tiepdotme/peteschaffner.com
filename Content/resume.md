@@ -31,16 +31,16 @@ title: Résumé
 - Lead functional and aesthetic redesign of the entire app
 - Helped with migration to MVC and Auto Layout in order to facilitate design handoff
 - Pushed for adoption of new OS capabilities and APIs/frameworks
-- Advocated for platform-first design and development
-- Worked closely with and sat amongst the engineering team
 - Prototyped new features natively
 - Implemented my own designs
-- Contributed to and proofread design docs
 - Mentored new designers and engineers unfamiliar with iOS development
 - Designed an experimental, unreleased iOS app
 - Created a set of Origami and Sketch resource libraries
 - Created an internal Framer.js toolchain for easier sharing and code reuse
 - Created a set of internal Framer.js modules for rapid prototyping
+- Contributed to and proofread design docs
+- Advocated for platform-first design and development
+- Worked closely with and sat amongst the engineering team
 - Worked independently in France with my manager located in the US
 
 <header>

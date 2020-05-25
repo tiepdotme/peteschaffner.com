@@ -12,7 +12,7 @@ I mean, I get it. Who wants to set up a blog? Just write, right? But what about 
 
 Oh, and this fucking thing:
 
-![Medium annoyance popup](/images/medium-annoyance.png)
+![Medium annoyance popup](/images/words/medium-annoyance.png)
 
 I’d almost rather have ads—better the devil you know. At least that little disclosure line makes Medium’s business model quite obvious: harvest eyeballs and sell info about them to others (or maybe they’re just hoarding it and waiting for the big buyout). Either way, it stinks.
 
