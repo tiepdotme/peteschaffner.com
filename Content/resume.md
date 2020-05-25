@@ -109,7 +109,7 @@ title: Résumé
 	<h3 id="freelance">Freelance & open source</h3>
 	<time datetime="P10Y">2010–Present</time>
 </header>
-- Maintained a personal fork of TextMate.app [focused on improved UI/UX](/words/shades-of-grey)
+- Maintained a personal fork of TextMate.app [focused on improved UI/UX](/work/#textmate)
 - Contributed to [Vico.app](https://github.com/vicoapp/vico) design and product direction
 - Designed UI elements used in [Chocolat.app](http://chocolatapp.com/)
 - Contributed [settings icons](https://github.com/gnachman/iTerm2/pull/203) to [iTerm2](https://iterm2.com)
