@@ -514,7 +514,7 @@ footer a, footer a:hover {
     z-index: 1;
 }
 
-#work #radblock p {
+#work #radblock h1, #work #radblock p {
     position: relative;
     z-index: 3;
 }

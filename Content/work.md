@@ -5,7 +5,7 @@ title: Work
 <section id="icons">
     <h1>Icons</h1>
     
-    <p>A assortment of icons made for various apps over the years.</p>
+    <p>A assortment of icons made for various apps over the years. From the voluptuous gradients and modeling of OS X Leopard, to the subtle and blurry transparency of Yosemite, I've enjoyed drawing it all.</p>
 
     <figure>
         <picture>
@@ -111,7 +111,7 @@ title: Work
 <section id="textmate">
     <h1>TextMate</h1>
     
-    <p>I <a href="https://github.com/peteschaffner/textmate">forked TextMate</a> with the aim of making the bottom toolbars meld better with the text area and sidebar, then got carried away and drew new icons, made a dynamic dark theme that accounts for <a href="https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/dark-mode/">Desktop Tinting</a>, and <a href="https://github.com/peteschaffner/textmate/commits?author=peteschaffner">lots of other little things</a>.</p>
+    <p>I <a href="https://github.com/peteschaffner/textmate">forked TextMate</a> with the aim of making the bottom toolbars meld better with the text area and sidebar, then got carried away and drew new icons, made a dynamic dark theme that accounts for <a href="https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/dark-mode/">Desktop Tinting</a>, and did <a href="https://github.com/peteschaffner/textmate/commits?author=peteschaffner">lots of other little things</a>.</p>
     
     <figure>
         <picture>
