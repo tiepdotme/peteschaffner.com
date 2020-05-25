@@ -5,7 +5,7 @@ title: Work
 <section id="icons">
     <h1>Icons</h1>
     
-    <p>A assortment of icons made for various apps over the years. From the voluptuous gradients and modeling of OS X Leopard, to the subtle and blurry transparency of Yosemite, I've enjoyed drawing it all.</p>
+    <p>An assortment of icons made for various apps over the years. From the voluptuous gradients and modeling of OS X Leopard, to the subtle and blurry transparency of Yosemite, I've enjoyed drawing it all.</p>
 
     <figure>
         <picture>
