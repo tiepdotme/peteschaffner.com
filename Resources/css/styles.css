@@ -514,6 +514,11 @@ footer a, footer a:hover {
     z-index: 1;
 }
 
+#work #radblock p {
+    position: relative;
+    z-index: 3;
+}
+
 #work #radblock figure + figure::before, #work #radblock figure + figure::after, #work #radblock figure + figure > picture::after {
     content: "";
     display: block;

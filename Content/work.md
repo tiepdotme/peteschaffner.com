@@ -5,7 +5,7 @@ title: Work
 <section id="icons">
     <h1>Icons</h1>
     
-    <p>A collection of icons made for various apps over the years.</p>
+    <p>A assortment of icons made for various apps over the years.</p>
 
     <figure>
         <picture>
