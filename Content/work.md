@@ -3,7 +3,7 @@ title: Work
 ---
 
 <section id="icons">
-    <h1>Icons</h1>
+    <h1><a href="#icons">Icons</a></h1>
     
     <p>An assortment of icons made for various apps over the years. From the voluptuous gradients and modeling of OS X Leopard, to the subtle and blurry transparency of Yosemite, I've enjoyed drawing it all.</p>
 
@@ -88,7 +88,7 @@ title: Work
 <section id="radblock">
     <img src="/images/work/radblock-icon.png" loading="lazy" alt="RadBlock.app app icon">
         
-    <h1>RadBlock</h1>
+    <h1><a href="#radblock">RadBlock</a></h1>
     
     <p><a href="https://radblock.app">RadBlock</a> is a Safari extension that efficiently gets rid of advertisements, trackers, and other annoyances. I had the great honor to design and make the logo, icons, website and some of the UI.</p>
     
@@ -109,7 +109,7 @@ title: Work
 </section>
 
 <section id="textmate">
-    <h1>TextMate</h1>
+    <h1><a href="#textmate">TextMate</a></h1>
     
     <p>I <a href="https://github.com/peteschaffner/textmate">forked TextMate</a> with the aim of making the bottom toolbars meld better with the text area and sidebar, then got carried away and drew new icons, made a dynamic dark theme that accounts for <a href="https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/dark-mode/">Desktop Tinting</a>, and did <a href="https://github.com/peteschaffner/textmate/commits?author=peteschaffner">lots of other little things</a>.</p>
     
@@ -131,7 +131,7 @@ title: Work
 <section id="linkinus">
     <img src="/images/work/linkinus-icon.png" loading="lazy" alt="Linkinus.app version 3 app icon">
         
-    <h1>Linkinus</h1>
+    <h1><a href="#linkinus">Linkinus</a></h1>
     
     <p>As an avid user of <a href="https://www.macstories.net/reviews/linkinus/">Linkinus</a>, I started working with the developers in late 2012 to design the next major version. Sadly it never came to pass, but it sure was fun dreaming...</p>
     
@@ -169,7 +169,7 @@ title: Work
 <section id="sourceiconpreview">
     <img src="/images/work/sourceiconpreview-icon.png" loading="lazy" alt="SourceIcon Preview.app app icon">
         
-    <h1>SourceIcon Preview</h1>
+    <h1><a href="#sourceiconpreview">SourceIcon Preview</a></h1>
     
     <p>While working on version 3 of Linkinus, I found myself constantly wondering how my <a href="https://developer.apple.com/design/human-interface-guidelines/macos/windows-and-views/sidebars/">source list</a> template icons would look when rendered by the system (circa <a href="https://en.wikipedia.org/wiki/OS_X_Mountain_Lion">OS X 10.8</a>), so I designed a simple app that would show me.</p>
     
@@ -187,7 +187,7 @@ title: Work
 </section>
 
 <section id="vico">
-    <h1>Vico</h1>
+    <h1><a href="#vico">Vico</a></h1>
     
     <p>I love Vim, and I love native text editors, so when <a href="https://github.com/vicoapp/vico">Vico</a> came on my radar, I jumped in and started contributing designs. Of particular interest to me were the completions and command bar interfaces.</p>
     
@@ -214,7 +214,7 @@ title: Work
 </section>
 
 <section id="pottery">
-    <h1>Pottery</h1>
+    <h1><a href="#pottery">Pottery</a></h1>
     
     <p>What follows are wares I threw during my time in university. I considered changing majors during this time and dreamed of one day being a studio potter. I guess there is still time...</p>
     
