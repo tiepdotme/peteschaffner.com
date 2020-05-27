@@ -5,16 +5,16 @@ title: Résumé
 > I’m a technical and self-driven software designer with 10 years of experience building beautiful and usable interfaces for the Mac, iPhone and iPad. I give a damn.
 
 ## Skills
-<header>
-	<h3>Design & art</h3>
+<header id="design-and-art">
+	<h3><a href="#design-and-art">Design & art</a></h3>
 </header>
 - Interface/interaction/icon design, animation
 - Sketch, Pixelmator [Pro], PaintCode
 - Xcode Playgrounds, Xcode view debugging, Interface Builder, Origami Studio
 - Ceramics, typography
 
-<header>
-	<h3>Programming & technical</h3>
+<header id="programming-and-technical">
+	<h3><a href="#programming-and-technical">Programming & technical</a></h3>
 </header>
 - Swift, Objective-C
 - UIKit, AppKit, Core Animation, Auto Layout
@@ -23,8 +23,8 @@ title: Résumé
 - macOS, iOS, iPadOS, Unix
 
 ## Experience
-<header>
-	<h3>Google</h3>
+<header id="google">
+    <h3><a href="#google">Google</a></h3>
 	<time datetime="P6Y">2014–Present</time>
 	<h4>Chrome iOS design lead</h4>
 </header>
@@ -43,8 +43,8 @@ title: Résumé
 - Worked closely with and sat amongst the engineering team
 - Worked independently in France with my manager located in the US
 
-<header>
-	<h3>RadBlock</h3>
+<header id="radblock">
+	<h3><a href="#radblock">RadBlock</a></h3>
 	<time datetime="P1Y">2020–Present</time>
 	<h4>Designer & developer</h4>
 </header>
@@ -52,8 +52,8 @@ title: Résumé
 - Designed and developed [website](https://radblock.app)
 - Helped develop extension popover and settings window
 
-<header>
-	<h3>Warewolf</h3>
+<header id="warewolf">
+	<h3><a href="#warewolf">Warewolf</a></h3>
 	<time datetime="P1Y">2018–2019</time>
 	<h4>Owner, designer & developer</h4>
 </header>
@@ -63,8 +63,8 @@ title: Résumé
 - Created a multi-channel distribution build system
 - Created a licensing and transactional/marketing email system
 
-<header>
-	<h3>Evergig</h3>
+<header id="evergig">
+	<h3><a href="#evergig">Evergig</a></h3>
 	<time datetime="P1Y">2013–2014</time>
 	<h4>Web lead, developer & designer</h4>
 </header>
@@ -79,16 +79,16 @@ title: Résumé
 - Managed owner expectations and acted as a designer/developer proxy
 - Wrote and proofread marketing copy
 
-<header>
-	<h3>Conceited Software</h3>
+<header id="conceited">
+	<h3><a href="#conceited">Conceited Software</a></h3>
 	<time datetime="P1Y">2013–2014</time>
 	<h4>Designer</h4>
 </header>
 - Designed [version 3 of Linkinus.app](/resume-references/linkinus3)
 - Created a new company logo and began a rebrand
 
-<header>
-	<h3>IronGate Creative</h3>
+<header id="irongate-creative">
+	<h3><a href="#irongate-creative">IronGate Creative</a></h3>
 	<time datetime="P3Y">2010–2013</time>
 	<h4>Designer & developer</h4>
 </header>
@@ -105,8 +105,8 @@ title: Résumé
 - Provided IT support to clients
 - Adopted company IT and networking responsibilities
 
-<header>
-	<h3 id="freelance">Freelance & open source</h3>
+<header id="freelance">
+	<h3><a href="#freelance">Freelance & open source</a></h3>
 	<time datetime="P10Y">2010–Present</time>
 </header>
 - Maintained a personal fork of TextMate.app [focused on improved UI/UX](/work/#textmate)
@@ -118,8 +118,8 @@ title: Résumé
 - Created diagrams and illustrations for the [Explore Theatre](https://www.pearson.com/us/higher-education/product/O-Hara-Explore-Theatre-Standalone-Access-Card/9780205028726.html) interactive textbook
 
 ## Education
-<header>
-	<h3>College of Fine Arts, Ball State University</h3>
+<header id="ball-state">
+	<h3><a href="#ball-state">College of Fine Arts, Ball State University</a></h3>
 	<time datetime="P4Y">2006–2010</time>
 	<h4>Bachelor of Fine Arts, Visual Communication</h4>
 </header>

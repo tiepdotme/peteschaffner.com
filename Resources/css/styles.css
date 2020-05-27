@@ -225,6 +225,18 @@ h2, h3, h4, h5, h6 {
     margin-top: 2em;
 }
 
+h1 a[href^="#"], h1 a[href^="#"]:hover, h2 a[href^="#"], h2 a[href^="#"]:hover, h3 a[href^="#"], h3 a[href^="#"]:hover {
+    color: inherit;
+    background-image: none;
+}
+
+h1 a[href^="#"]:hover::before, h2 a[href^="#"]:hover::before, h3 a[href^="#"]:hover::before {
+    content: "#";
+    position: absolute;
+    margin-left: -0.75em;
+    opacity: 0.2;
+}
+
 hr {
     text-align: center;
     border: none;
@@ -441,17 +453,6 @@ footer a, footer a:hover {
 
 /* Work
    ==== */
-
-#work h1 a {
-    color: inherit;
-}
-
-#work h1 a:hover::before {
-    content: "#";
-    position: absolute;
-    margin-left: -0.75em;
-    opacity: 0.2;
-}
 
 #work figure {
     margin: 2em 0;
