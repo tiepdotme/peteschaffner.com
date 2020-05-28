@@ -9,84 +9,84 @@ title: Work
 
     <figure>
         <picture>
-            <img src="/images/work/radblock-icon.png" loading="lazy" alt="RadBlock.app app icon">
+            <img src="/images/work/radblock-icon.png" alt="RadBlock.app app icon">
         </picture>
         <figcaption>RadBlock (more on that <a href="#radblock">below</a>)</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/chrome.png" loading="lazy" alt="A Chrome for Mac icon replacement that looks at home on macOS 10.10+">
+            <img src="/images/work/chrome.png" alt="A Chrome for Mac icon replacement that looks at home on macOS 10.10+">
         </picture>
         <figcaption>A Chrome for Mac icon replacement that looks at home on macOS 10.10+</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/emporter-icon.png" loading="lazy" alt="Emporter.app alternate app icon">
+            <img src="/images/work/emporter-icon.png" alt="Emporter.app alternate app icon">
         </picture>
         <figcaption><a href="https://emporter.app">Emporter</a> alternate icon</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/watchlist.png" loading="lazy" alt="App icon for Watchlist—a mythical TMDb client for iOS">
+            <img src="/images/work/watchlist.png" alt="App icon for Watchlist—a mythical TMDb client for iOS">
         </picture>
         <figcaption>Watchlist—a mythical <a href="https://www.themoviedb.org">TMDb</a> client for iOS</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/cloudy1.png" loading="lazy" alt="App icon for Cloudy—an Android CloudApp client">
+            <img src="/images/work/cloudy1.png" alt="App icon for Cloudy—an Android CloudApp client">
         </picture>
         <figcaption>Cloudy—an Android CloudApp client</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/cloudy2.png" loading="lazy" alt="Cloudy alternate icon">
+            <img src="/images/work/cloudy2.png" alt="Cloudy alternate icon">
         </picture>
         <figcaption>Cloudy alternate icon</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/chocolat.png" loading="lazy" alt="Chocolat.app alternate app icon">
+            <img src="/images/work/chocolat.png" alt="Chocolat.app alternate app icon">
         </picture>
         <figcaption><a href="https://chocolatapp.com">Chocolat</a> alternate app icon</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/sourceiconpreview-icon.png" loading="lazy" alt="SourceIcon Preview.app app icon">
+            <img src="/images/work/sourceiconpreview-icon.png" alt="SourceIcon Preview.app app icon">
         </picture>
         <figcaption>SourceIcon Preview (more on that <a href="#sourceiconpreview">below</a>)</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/linkinus-icon.png" loading="lazy" alt="Linkinus.app version 3 app icon">
+            <img src="/images/work/linkinus-icon.png" alt="Linkinus.app version 3 app icon">
         </picture>
         <figcaption>Linkinus (more on that <a href="#linkinus">below</a>)</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/emporter-radblock-prefs-icons.png" loading="lazy" alt="RadBlock.app and Emporter.app preference window icons">
+            <img src="/images/work/emporter-radblock-prefs-icons.png" alt="RadBlock.app and Emporter.app preference window icons">
         </picture>
         <figcaption>RadBlock and Emporter preference window icons</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/iterm2.png" loading="lazy" alt="iTerm2.app preference window icons">
+            <img src="/images/work/iterm2.png" alt="iTerm2.app preference window icons">
         </picture>
         <figcaption><a href="https://iterm2.com">iTerm2</a> preference window icons</figcaption>
     </figure>
 </section>
 
 <section id="radblock">
-    <img src="/images/work/radblock-icon.png" loading="lazy" alt="RadBlock.app app icon">
+    <img src="/images/work/radblock-icon.png" alt="RadBlock.app app icon">
         
     <h1><a href="#radblock">RadBlock</a></h1>
     
@@ -96,14 +96,14 @@ title: Work
     <figure>
         <picture>
             <source srcset="/images/work/radblock-popover-dark.png" media="(prefers-color-scheme: dark)">
-            <img src="/images/work/radblock-popover.png" width="332" loading="lazy" alt="RadBlock.app extension popover">
+            <img src="/images/work/radblock-popover.png" width="332" alt="RadBlock.app extension popover">
         </picture>
     </figure>
     
     <figure>
         <picture>
             <source srcset="/images/work/radblock-settings-dark.png" media="(prefers-color-scheme: dark)">
-            <img src="/images/work/radblock-settings.png" width="572" loading="lazy" alt="RadBlock.app preferences window">
+            <img src="/images/work/radblock-settings.png" width="572" alt="RadBlock.app preferences window">
         </picture>
     </figure>
 </section>
@@ -115,21 +115,21 @@ title: Work
     
     <figure>
         <picture>
-            <img src="/images/work/textmate-1.jpg" loading="lazy" alt="TextMate.app light theme">
+            <img src="/images/work/textmate-1.jpg" alt="TextMate.app light theme">
         </picture>
         <figcaption>Light theme</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/textmate-2.jpg" loading="lazy" alt="TextMate.app dynamic dark theme">
+            <img src="/images/work/textmate-2.jpg" alt="TextMate.app dynamic dark theme">
         </picture>
         <figcaption>Dynamic dark theme</figcaption>
     </figure>
 </section>
 
 <section id="linkinus">
-    <img src="/images/work/linkinus-icon.png" loading="lazy" alt="Linkinus.app version 3 app icon">
+    <img src="/images/work/linkinus-icon.png" alt="Linkinus.app version 3 app icon">
         
     <h1><a href="#linkinus">Linkinus</a></h1>
     
@@ -137,37 +137,37 @@ title: Work
     
     <figure>
         <picture>
-            <img src="/images/work/linkinus-1.jpg" loading="lazy" alt="Linkinus.app onboarding step 1">
+            <img src="/images/work/linkinus-1.jpg" alt="Linkinus.app onboarding step 1">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/linkinus-2.jpg" loading="lazy" alt="Linkinus.app onboarding step 2">
+            <img src="/images/work/linkinus-2.jpg" alt="Linkinus.app onboarding step 2">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/linkinus-3.jpg" loading="lazy" alt="Linkinus.app onboarding step 3">
+            <img src="/images/work/linkinus-3.jpg" alt="Linkinus.app onboarding step 3">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/linkinus-4.jpg" loading="lazy" alt="Linkinus.app main window">
+            <img src="/images/work/linkinus-4.jpg" alt="Linkinus.app main window">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/linkinus-5.jpg" loading="lazy" alt="Linkinus.app connection manager window">
+            <img src="/images/work/linkinus-5.jpg" alt="Linkinus.app connection manager window">
         </picture>
     </figure>
 </section>
 
 <section id="sourceiconpreview">
-    <img src="/images/work/sourceiconpreview-icon.png" loading="lazy" alt="SourceIcon Preview.app app icon">
+    <img src="/images/work/sourceiconpreview-icon.png" alt="SourceIcon Preview.app app icon">
         
     <h1><a href="#sourceiconpreview">SourceIcon Preview</a></h1>
     
@@ -175,13 +175,13 @@ title: Work
     
     <figure>
         <picture>
-            <img src="/images/work/sourceiconpreview-1.jpg" loading="lazy" alt="SourceIcon Preview.app drag-and-drop window">
+            <img src="/images/work/sourceiconpreview-1.jpg" alt="SourceIcon Preview.app drag-and-drop window">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/sourceiconpreview-2.jpg" loading="lazy" alt="SourceIcon Preview.app source list renderer window">
+            <img src="/images/work/sourceiconpreview-2.jpg" alt="SourceIcon Preview.app source list renderer window">
         </picture>
     </figure>
 </section>
@@ -193,21 +193,21 @@ title: Work
     
     <figure>
         <picture>
-            <img src="/images/work/vico-1.jpg" loading="lazy" alt="Vico.app completions">
+            <img src="/images/work/vico-1.jpg" alt="Vico.app completions">
         </picture>
         <figcaption>Code completions with extra info popover</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/vico-2.jpg" loading="lazy" alt="Vico.app command bar help popover">
+            <img src="/images/work/vico-2.jpg" alt="Vico.app command bar help popover">
         </picture>
         <figcaption>Command bar with syntax placeholders and inline + popover help</figcaption>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/vico-3.jpg" loading="lazy" alt="Vico.app command bar completions">
+            <img src="/images/work/vico-3.jpg" alt="Vico.app command bar completions">
         </picture>
         <figcaption>Command bar with completions</figcaption>
     </figure>
@@ -220,55 +220,55 @@ title: Work
     
     <figure>
         <picture>
-            <img src="/images/work/pottery-teapot.jpg" loading="lazy" alt="Teapot">
+            <img src="/images/work/pottery-teapot.jpg" alt="Teapot">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/pottery-bamboo-teapot.jpg" loading="lazy" alt="Teapot with bamboo handle">
+            <img src="/images/work/pottery-bamboo-teapot.jpg" alt="Teapot with bamboo handle">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/pottery-teabowl.jpg" loading="lazy" alt="Raku teabowl">
+            <img src="/images/work/pottery-teabowl.jpg" alt="Raku teabowl">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/pottery-casserole.jpg" loading="lazy" alt="Casserole">
+            <img src="/images/work/pottery-casserole.jpg" alt="Casserole">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/pottery-cruets.jpg" loading="lazy" alt="Two cruets">
+            <img src="/images/work/pottery-cruets.jpg" alt="Two cruets">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/pottery-jar.jpg" loading="lazy" alt="Jar">
+            <img src="/images/work/pottery-jar.jpg" alt="Jar">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/pottery-mugs.jpg" loading="lazy" alt="Two mugs">
+            <img src="/images/work/pottery-mugs.jpg" alt="Two mugs">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/pottery-pitcher.jpg" loading="lazy" alt="Pitcher">
+            <img src="/images/work/pottery-pitcher.jpg" alt="Pitcher">
         </picture>
     </figure>
     
     <figure>
         <picture>
-            <img src="/images/work/pottery-vase.jpg" loading="lazy" alt="Flower vase">
+            <img src="/images/work/pottery-vase.jpg" alt="Flower vase">
         </picture>
     </figure>
 </section>

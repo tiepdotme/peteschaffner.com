@@ -1,0 +1,20 @@
+let images = document.querySelectorAll("figure img");
+let observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting ) {
+            entry.target.style.filter = "grayscale(0)";
+        } else {
+            entry.target.style.filter = "grayscale(1)";
+        }
+    });
+}, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.75
+});
+
+// Make appropriate images grayscale
+images.forEach(image => {
+    image.style.filter = "grayscale(1)";
+    observer.observe(image);
+});

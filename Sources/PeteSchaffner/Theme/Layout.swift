@@ -110,7 +110,8 @@ func layout<T: Website>(for location: Location, site: T, body: Content.Body) -> 
                     .href("https://github.com/peteschaffner/peteschaffner.com"),
                     .text("Source")
                 )
-            )
+            ),
+            .if(location.path.absoluteString == "/work", .script(.src("/js/work.js")))
         )
     )
 }
