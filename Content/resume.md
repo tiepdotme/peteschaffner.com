@@ -29,7 +29,7 @@ title: Résumé
 	<h4>Chrome iOS design lead</h4>
 </header>
 - Lead functional and aesthetic redesign of the entire app
-- Helped with migration to MVC and Auto Layout in order to facilitate design handoff
+- Initiated migration to MVC and Auto Layout in order to facilitate design handoff
 - Pushed for adoption of new OS capabilities and APIs/frameworks
 - Prototyped new features natively
 - Implemented my own designs
@@ -38,19 +38,9 @@ title: Résumé
 - Created a set of Origami and Sketch resource libraries
 - Created an internal Framer.js toolchain for easier sharing and code reuse
 - Created a set of internal Framer.js modules for rapid prototyping
-- Contributed to and proofread design docs
 - Advocated for platform-first design and development
 - Worked closely with and sat amongst the engineering team
 - Worked independently in France with my manager located in the US
-
-<header id="radblock">
-	<h3><a href="#radblock">RadBlock</a></h3>
-	<time datetime="P1Y">2020–Present</time>
-	<h4>Designer & developer</h4>
-</header>
-- Designed logo, app/toolbar/settings icons, extension popover and some settings UI
-- Designed and developed [website](https://radblock.app)
-- Helped develop extension popover and settings window
 
 <header id="warewolf">
 	<h3><a href="#warewolf">Warewolf</a></h3>
@@ -71,21 +61,12 @@ title: Résumé
 - Managed and lead the web app team (remotely at first, then in person)
 - Was the sole front-end developer
 - Lead visual and architectural redesign of the 2.0 web app
-- Created and documented a Git workflow for the web team
 - Worked with Angular and authored multiple directives
 - Split up our Angular architecture into a series of CommonJS modules
 - Improved our test coverage
 - Interviewed prospective web employees
 - Managed owner expectations and acted as a designer/developer proxy
 - Wrote and proofread marketing copy
-
-<header id="conceited">
-	<h3><a href="#conceited">Conceited Software</a></h3>
-	<time datetime="P1Y">2013–2014</time>
-	<h4>Designer</h4>
-</header>
-- Designed [version 3 of Linkinus.app](/resume-references/linkinus3)
-- Created a new company logo and began a rebrand
 
 <header id="irongate-creative">
 	<h3><a href="#irongate-creative">IronGate Creative</a></h3>
@@ -109,8 +90,10 @@ title: Résumé
 	<h3><a href="#freelance">Freelance & open source</a></h3>
 	<time datetime="P10Y">2010–Present</time>
 </header>
+- Designed and made the [RadBlock](/work/#radblock) logo, icons, website and some of the UI
 - Maintained a personal fork of TextMate.app [focused on improved UI/UX](/work/#textmate)
-- Contributed to [Vico.app](https://github.com/vicoapp/vico) design and product direction
+- Designed [version 3 of Linkinus.app](/work/#linkinus)
+- Contributed to [Vico.app](/work/#vico) design and product direction
 - Designed UI elements used in [Chocolat.app](http://chocolatapp.com/)
 - Contributed [settings icons](https://github.com/gnachman/iTerm2/pull/203) to [iTerm2](https://iterm2.com)
 - Authored [multiple Framer.js modules](https://github.com/search?q=user%3Apeteschaffner+framer), contributed to the library, and actively talked with the devs about how to improve the tool
