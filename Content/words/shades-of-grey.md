@@ -9,9 +9,11 @@ I’m maintaining [a fork of TextMate](https://github.com/peteschaffner/textmate
 
 +++
 
-Dark mode on macOS is not so simple. Thanks to a technology Apple calls “[Desktop Tinting](https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/dark-mode/),” windows, bars and other UI elements take on a different dark tone based on what background wallpaper is set. For example, a blueish wallpaper will result in a cool grey, while a reddish produces a warm grey:
+Dark mode on macOS is not so simple. Thanks to a technology Apple calls “[Desktop Tinting](https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/dark-mode/),” windows, bars and other UI elements take on a different dark tone based on what background wallpaper is set. For example, a blueish wallpaper will result in a cool grey, while a reddish produces a warm one.
 
-Maybe you can see where I’m going with this? I don’t want a static, dark theme—I want a dynamic one. That way, my text area feels at home next to the sidebar and titlebar. A picture says it better:
+Maybe you can see where I’m going with this? I don’t want a static, dark theme—I want a dynamic one. That way, my text area feels at home next to the sidebar and titlebar. Here is what it looks like:
+
+![](/images/work/textmate-2.jpg)
 
 ---
 
