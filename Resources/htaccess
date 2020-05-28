@@ -1,3 +1,4 @@
+# 404
 ErrorDocument 404 /404/
 
 # Don't cache for long while under active development
@@ -5,3 +6,7 @@ Header add Cache-Control "max-age=1"
 
 # gzip
 AddOutputFilterByType DEFLATE text/html application/x-rss+xml text/css image/svg+xml
+
+# Fix for links with encoded hashes (%23 -> #)
+RewriteEngine on
+RewriteRule ^(.*#.*) /$1 [R,NE]
