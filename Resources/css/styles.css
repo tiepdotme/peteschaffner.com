@@ -3,8 +3,9 @@
     --color-text: 0, 0, 0;
     --color-background: 238, 240, 241;
     --color-main-background: 255, 255, 255;
-    --color-blue-dark: #0094FF;
-    --color-blue-light: #00C8FF;
+    --color-blue-dark: 0, 148, 255;
+    --color-blue-light: 0, 200, 255;
+    --color-quote-background: 244, 245, 246;
     --opacity-link-underline: 0.2;
 }
 
@@ -14,8 +15,9 @@
         --color-text: 255, 255, 255;
         --color-background: 17, 17, 17;
         --color-main-background: 34, 34, 34;
-        --color-blue-dark: #00345D;
-        --color-blue-light: #006A8B;
+        --color-blue-dark: 0, 52, 93;
+        --color-blue-light: 0, 106, 139;
+        --color-quote-background: 51, 51, 51;
         --opacity-link-underline: 0.25;
     }
 }
@@ -249,19 +251,51 @@ hr:after {
 
 blockquote {
     position: relative;
-    margin: 2em 2em 2em 0;
-    padding-left: 40px;
+    margin: 2.5em 0 3.5em;
+    padding: 0 4vw;
     font-style: italic;
+    font-size: 0.8em;
+    color: rgba(var(--color-text), 0.8);
+    perspective: 300px;
+    perspective-origin: right bottom;
+    transform: translateZ(-1000px); /* Hack for Safari to not clip inner content */
+}
+
+@media (max-width: 600px) {
+    blockquote {
+        font-size: inherit;
+    }
+}
+
+blockquote a {
+    text-shadow: -1px -1px rgb(var(--color-quote-background)), -1px 1px rgb(var(--color-quote-background)), 1px -1px rgb(var(--color-quote-background)), 1px 1px rgb(var(--color-quote-background));
 }
 
 blockquote::before {
-    content: "“";
+    content: "";
+    display: block;
     position: absolute;
-    left: 0;
-    top: -23px;
-    font-size: 60px;
-    font-weight: 500;
-    opacity: 0.3;
+    top: -1.5em;
+    right: -2%;
+    bottom: -1.5em;
+    left: -1em;
+    background-color: rgb(var(--color-quote-background));
+    transform: rotateX(-3deg) skewX(-2deg) translateY(2%);
+    border-radius: 30px;
+    z-index: -1;
+}
+
+blockquote::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    bottom: calc(-50px - 1.1vw);
+    background-color: rgb(var(--color-quote-background));
+    -webkit-mask-image: url("/images/quote.tail.svg");
+    mask-image: url("/images/quote.tail.svg");
+    z-index: -1;
 }
 
 blockquote em {
@@ -417,6 +451,10 @@ footer a, footer a:hover {
     color: rgba(var(--color-text), 0.5);
 }
 
+#resume h2:first-of-type {
+    border: none;
+}
+
 #resume header {
     text-align: left;
     display: flex;
@@ -546,14 +584,14 @@ footer a, footer a:hover {
 }
 
 #work #radblock figure + figure::before {
-    background-color: var(--color-blue-light);
+    background-color: rgb(var(--color-blue-light));
     z-index: -1;
     -webkit-mask-image: url("/images/work/waves.1.svg");
     mask-image: url("/images/work/waves.1.svg");
 }
 
 #work #radblock figure + figure::after {
-    background-color: var(--color-blue-dark);
+    background-color: rgb(var(--color-blue-dark));
     z-index: -2;
     -webkit-mask-image: url("/images/work/waves.2.svg");
     mask-image: url("/images/work/waves.2.svg");
@@ -574,7 +612,7 @@ footer a, footer a:hover {
 }
 
 #work #radblock figure + figure > picture::after {
-    background: var(--color-blue-light);
+    background: rgb(var(--color-blue-light));
     top: 0;
     height: 200%;
     z-index: -1;
