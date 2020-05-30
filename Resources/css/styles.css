@@ -254,10 +254,9 @@ blockquote {
     margin: 2.5em 0 3.5em;
     padding: 0 4vw;
     font-style: italic;
-    font-size: 0.8em;
+    font-size: 0.89em;
     color: rgba(var(--color-text), 0.8);
     perspective: 300px;
-    perspective-origin: right bottom;
     transform: translateZ(-1000px); /* Hack for Safari to not clip inner content */
 }
 
@@ -271,31 +270,29 @@ blockquote a {
     text-shadow: -1px -1px rgb(var(--color-quote-background)), -1px 1px rgb(var(--color-quote-background)), 1px -1px rgb(var(--color-quote-background)), 1px 1px rgb(var(--color-quote-background));
 }
 
-blockquote::before {
+blockquote::before, blockquote::after {
     content: "";
     display: block;
     position: absolute;
-    top: -1.5em;
-    right: -2%;
+    top: -1.2em;
+    right: -0.5em;
     bottom: -1.5em;
-    left: -1em;
+    left: -0.5em;
     background-color: rgb(var(--color-quote-background));
-    transform: rotateX(-3deg) skewX(-2deg) translateY(2%);
+    transform: rotateX(-2deg);
     border-radius: 30px;
     z-index: -1;
 }
 
 blockquote::after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 38px;
-    height: 38px;
-    bottom: calc(-50px - 1.1vw);
-    background-color: rgb(var(--color-quote-background));
+    border-radius: 0;
+    margin-bottom: -27px;
     -webkit-mask-image: url("/images/quote.tail.svg");
     mask-image: url("/images/quote.tail.svg");
-    z-index: -1;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: 12% bottom;
+    mask-position: 12% bottom;
 }
 
 blockquote em {
