@@ -29,7 +29,6 @@
 
 ::selection {
     background-color: rgba(var(--color-accent), 0.2);
-    text-shadow: none;
 }
 
 html {
@@ -73,18 +72,16 @@ body {
 }
 
 a, nav:hover a:not(.current) {
-    text-decoration: none;
-    background-image: linear-gradient(to bottom, rgba(var(--color-text), var(--opacity-link-underline)) 50%, rgba(var(--color-text), var(--opacity-link-underline)) 50%);
-    background-position: 0 90%;
-    background-repeat: repeat-x;
-    background-size: 1px 1px;
-    text-shadow: -1px -1px rgb(var(--color-background)), -1px 1px rgb(var(--color-background)), 1px -1px rgb(var(--color-background)), 1px 1px rgb(var(--color-background)); /* Skip descenders when underlining */
+    text-decoration: underline;
+    text-decoration-color: rgba(var(--color-text), var(--opacity-link-underline));
+    text-decoration-thickness: 0.07em;
+    text-underline-offset: 0.1em;
     color: inherit;
 }
 
 a:hover {
     color: rgb(var(--color-accent));
-    background-image: linear-gradient(to bottom, rgba(var(--color-accent), var(--opacity-link-underline)) 50%, rgba(var(--color-accent), var(--opacity-link-underline)) 50%);
+    text-decoration-color: rgba(var(--color-accent), var(--opacity-link-underline));
 }
 
 
@@ -111,13 +108,11 @@ nav a {
 
 @media (hover: hover) {
     nav a {
-        background-image: none;
-        text-shadow: none;
+        text-decoration: none;
     }
 }
 
 nav .current {
-    background-image: none;
     font-family: "Concourse T7", sans-serif;
 }
 
@@ -161,10 +156,6 @@ body:not(#words):not(#work) main, #words main article, #work main section {
     }
 }
 
-main a {
-    text-shadow: -1px -1px rgb(var(--color-main-background)), -1px 1px rgb(var(--color-main-background)), 1px -1px rgb(var(--color-main-background)), 1px 1px rgb(var(--color-main-background)); /* Skip descenders when underlining */
-}
-
 header > time:first-child {
     display: block;
     margin-top: -0.5em;
@@ -182,8 +173,7 @@ sup {
 }
 
 sup a, sup a:hover {
-    text-shadow: none;
-    background-image: none;
+    text-decoration: none;
 }
 
 pre, code {
@@ -229,7 +219,7 @@ h2, h3, h4, h5, h6 {
 
 h1 a[href^="#"], h1 a[href^="#"]:hover, h2 a[href^="#"], h2 a[href^="#"]:hover, h3 a[href^="#"], h3 a[href^="#"]:hover {
     color: inherit;
-    background-image: none;
+    text-decoration: none;
 }
 
 h1 a[href^="#"]:hover::before, h2 a[href^="#"]:hover::before, h3 a[href^="#"]:hover::before {
@@ -264,10 +254,6 @@ blockquote {
     blockquote {
         font-size: inherit;
     }
-}
-
-blockquote a {
-    text-shadow: -1px -1px rgb(var(--color-quote-background)), -1px 1px rgb(var(--color-quote-background)), 1px -1px rgb(var(--color-quote-background)), 1px 1px rgb(var(--color-quote-background));
 }
 
 blockquote::before, blockquote::after {
@@ -338,7 +324,7 @@ time {
 }
 
 time a, time a:hover, h1 > a, h1 > a:hover, h2 > a, h2 > a:hover {
-    background-image: none;
+    text-decoration: none;
 }
 
 time span {
@@ -392,11 +378,11 @@ time span {
 }
 
 .read-more, .read-more:hover {
-    background-image: none;
+    text-decoration: none;
 }
 
 .reversefootnote, .reversefootnote:hover {
-    background-image: none;
+    text-decoration: none;
     margin-left: 3px;
 }
 
@@ -414,7 +400,7 @@ footer {
 }
 
 footer a, footer a:hover {
-    background-image: none;
+    text-decoration: none;
 }
 
 
