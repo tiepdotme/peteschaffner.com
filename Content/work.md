@@ -216,7 +216,7 @@ title: Work
 <section id="pottery">
     <h1><a href="#pottery">Pottery</a></h1>
     
-    <p>What follows are wares I threw during my time in university. I considered changing majors during this time and dreamed of one day being a studio potter. I guess there is still time...</p>
+    <p>What follows are wares I threw during my time in university. I considered changing majors and dreamed of one day being a studio potter. I guess there is still time...</p>
     
     <figure>
         <picture>
