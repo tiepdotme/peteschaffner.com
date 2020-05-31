@@ -114,6 +114,7 @@ nav a {
 
 nav .current {
     font-family: "Concourse T7", sans-serif;
+    text-decoration: none;
 }
 
 nav .current:hover {
