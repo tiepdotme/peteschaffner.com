@@ -162,8 +162,11 @@ header > time:first-child {
     margin-top: -0.5em;
 }
 
-body:not(#words) article {
-    margin: 0 auto;
+body article p:only-of-type:last-child {
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 sup {
@@ -365,12 +368,6 @@ time span {
 
 #words article:last-child, #work section:last-child {
     margin-bottom: 0;
-}
-
-#words article > div {
-    width: -moz-fit-content;
-    width: fit-content;
-    margin:  0 auto;
 }
 
 .read-more {
