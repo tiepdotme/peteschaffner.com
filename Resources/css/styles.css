@@ -519,7 +519,7 @@ footer a, footer a:hover {
     max-width: 100%;
 }
 
-#work #radblock > img:first-child, #work #linkinus > img:first-child, #work #sourceiconpreview > img:first-child {
+#work #radblock > img:first-child, #work #linkinus > img:first-child, #work #sourceiconpreview > img:first-child, #work #chrome > img:first-child {
     display: block;
     margin: 0 auto;
     width: 70%;

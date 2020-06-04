@@ -26,7 +26,7 @@ title: Résumé
 <header id="google">
     <h3><a href="#google">Google</a></h3>
 	<time datetime="P6Y">2014–Present</time>
-	<h4>Chrome iOS design lead</h4>
+	<h4>Design lead of <a href="/work/#chrome">Chrome for iOS/iPadOS</a></h4>
 </header>
 - Lead functional and aesthetic redesign of the entire app
 - Initiated migration to MVC and Auto Layout in order to facilitate design handoff
