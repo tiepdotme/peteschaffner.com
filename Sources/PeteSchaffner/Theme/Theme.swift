@@ -49,7 +49,7 @@ extension Theme where Site == PeteSchaffner {
                             .a(
                                 .href(item.path),
                                 .text(friendlyDate(item.date)),
-                                .span(.text(" ∞"))
+                                .span(.text("∞"))
                             )
                         )
                     ),

@@ -320,6 +320,8 @@ article img, #work section img:not([width]) {
 }
 
 time {
+    display: block;
+    margin-top: 1em;
     font-size: 15px;
     font-family: "Concourse C4", sans-serif;
     text-transform: lowercase;
@@ -331,8 +333,19 @@ time a, time a:hover, h1 > a, h1 > a:hover, h2 > a, h2 > a:hover {
     text-decoration: none;
 }
 
+time a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 auto;
+}
+
 time span {
     color: rgb(var(--color-accent));
+    font-size: 20px;
+    margin-left: 5px;
 }
 
 .footnotes {
