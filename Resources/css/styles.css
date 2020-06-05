@@ -306,8 +306,15 @@ picture {
     width: 100%;
 }
 
-article img, #work section img:not([width]) {
+article img:not([width]), #work section img:not([width]) {
 	width: 100%;
+}
+
+article > img {
+    display: block;
+    margin: 1em auto;
+    border-radius: 10px;
+    max-width: 100%;
 }
 
 .external-link-arrow {
@@ -346,6 +353,7 @@ time span {
     color: rgb(var(--color-accent));
     font-size: 20px;
     margin-left: 5px;
+    line-height: 0;
 }
 
 .footnotes {
