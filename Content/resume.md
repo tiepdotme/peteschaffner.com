@@ -4,6 +4,14 @@ title: Résumé
 
 > I’m a technical and self-driven software designer with 10 years of experience building beautiful and usable interfaces for the Mac, iPhone and iPad. I give a damn.
 
+## Personal Info
+<p id="personal-info">
+<img src="/images/resume.work.svg" alt="Portfolio icon"><a href="/work">peteschaffner.com/work</a><br>
+<img src="/images/resume.email.svg" alt="Email icon"><a href="mailto:peteschaffner@icloud.com">peteschaffner@icloud.com</a><br>
+<img src="/images/resume.phone.svg" alt="Phone icon"><a href="tel:+33642731805">+33 (0)6 42 73 18 05</a><br>
+<img src="/images/resume.address.svg" alt="Address icon">11 TER rue Lecoq<br>78860 Saint Nom La Bretèche<br>France
+</p>
+
 ## Skills
 <header id="design-and-art">
 	<h3><a href="#design-and-art">Design & art</a></h3>

@@ -481,6 +481,7 @@ footer a, footer a:hover {
 
 #resume header time {
     font-size: 0.9em;
+    margin-top: 0;
 }
 
 #resume header + p {
@@ -490,6 +491,24 @@ footer a, footer a:hover {
 #resume main > div {
     margin-bottom: 35px;
 }
+
+#resume #personal-info {
+    text-align: center;
+}
+
+#resume #personal-info img {
+    opacity: 0.5;
+    position: relative;
+    top: 5px;
+    margin-right: 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+    #resume #personal-info img {
+        filter: invert();
+    }
+}
+
 
 /* Work
    ==== */
