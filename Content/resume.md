@@ -5,12 +5,10 @@ title: Résumé
 > I’m a technical and self-driven software designer with 10 years of experience building beautiful and usable interfaces for the Mac, iPhone and iPad. I give a damn.
 
 ## Personal Info
-<p id="personal-info">
-<img src="/images/resume.work.svg" alt="Portfolio icon"><a href="/work">peteschaffner.com/work</a><br>
-<img src="/images/resume.email.svg" alt="Email icon"><a href="mailto:peteschaffner@icloud.com">peteschaffner@icloud.com</a><br>
-<img src="/images/resume.phone.svg" alt="Phone icon"><a href="tel:+33642731805">+33 (0)6 42 73 18 05</a><br>
-<img src="/images/resume.address.svg" alt="Address icon">11 TER rue Lecoq<br>78860 Saint Nom La Bretèche<br>France
-</p>
+- ![Portfolio icon](/images/resume.work.svg) [peteschaffner.com/work](/work)
+- ![Email icon](/images/resume.email.svg) [peteschaffner@icloud.com](mailto:peteschaffner@icloud.com)
+- ![Phone icon](/images/resume.phone.svg) [+33 (0)6 42 73 18 05](tel:+33642731805)
+- ![Address icon](/images/resume.address.svg) [St. Nom La Bretèche, France](https://maps.apple.com/?address=11%20Rue%20Lecoq,%2078860%20Saint-Nom-la-Bret%C3%A8che,%20France&ll=48.863828,2.028852&q=11%20Rue%20Lecoq&_ext=EiYp7/1qaPxtSEAxTiX0M5MtAEA5bdOQxCJvSEBBNjYdgYpJAEBQBA%3D%3D)
 
 ## Skills
 <header id="design-and-art">
