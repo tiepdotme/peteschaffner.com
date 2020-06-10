@@ -455,6 +455,7 @@ footer a, footer a:hover {
 
 #resume h2:first-of-type {
     border: none;
+    margin-top: 6.5em;
 }
 
 #resume header {
