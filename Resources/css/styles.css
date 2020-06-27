@@ -1,6 +1,6 @@
 :root {
     --color-accent: 0, 118, 255;
-    --color-text: 0, 0, 0;
+    --color-text: 58, 58, 59;
     --color-background: 238, 240, 241;
     --color-main-background: 255, 255, 255;
     --color-blue-dark: 0, 148, 255;
@@ -71,7 +71,7 @@ body {
     }
 }
 
-a, nav:hover a:not(.current) {
+a, nav:hover a:not(.current), footer:hover a {
     text-decoration: underline;
     text-decoration-color: rgba(var(--color-text), var(--opacity-link-underline));
     text-decoration-thickness: 0.07em;
@@ -93,7 +93,14 @@ nav {
     font-size: 15px;
     text-align: center;
     font-family: "Concourse T4", sans-serif;
-    opacity: 0.7;
+}
+
+nav, footer {
+    opacity: 0.8;
+}
+
+nav picture {
+    opacity: 0.75;
 }
 
 @media (max-width: 600px) {
@@ -107,7 +114,7 @@ nav a {
 }
 
 @media (hover: hover) {
-    nav a {
+    nav a, footer a {
         text-decoration: none;
     }
 }
@@ -415,11 +422,6 @@ footer {
     font-weight: 500;
     text-align: center;
     font-family: "Concourse T4", sans-serif;
-    opacity: 0.7;
-}
-
-footer a, footer a:hover {
-    text-decoration: none;
 }
 
 
