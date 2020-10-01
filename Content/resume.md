@@ -6,7 +6,7 @@ title: Résumé
 
 ## Personal Info
 - ![Portfolio icon](/images/resume.work.svg) [peteschaffner.com/work](/work)
-- ![Email icon](/images/resume.email.svg) [peteschaffner@icloud.com](mailto:peteschaffner@icloud.com)
+- ![Email icon](/images/resume.email.svg) [hello@peteschaffner.com](mailto:hello@peteschaffner.com)
 - ![Phone icon](/images/resume.phone.svg) [+33 (0)6 42 73 18 05](tel:+33642731805)
 - ![Address icon](/images/resume.address.svg) [St. Nom La Bretèche, France](https://maps.apple.com/?address=11%20Rue%20Lecoq,%2078860%20Saint-Nom-la-Bret%C3%A8che,%20France&ll=48.863828,2.028852&q=11%20Rue%20Lecoq&_ext=EiYp7/1qaPxtSEAxTiX0M5MtAEA5bdOQxCJvSEBBNjYdgYpJAEBQBA%3D%3D)
 
@@ -31,7 +31,7 @@ title: Résumé
 ## Experience
 <header id="google">
     <h3><a href="#google">Google</a></h3>
-	<time datetime="P6Y">2014–Present</time>
+	<time datetime="P6Y">2014–2020</time>
 	<h4>Design lead of <a href="/work/#chrome">Chrome for iOS/iPadOS</a></h4>
 </header>
 - Lead functional and aesthetic redesign of the entire app
