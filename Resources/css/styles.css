@@ -34,7 +34,6 @@
 html {
     height: 100%; /* For a sticky footer */
     font-size: 1.5em;
-    background-color: rgb(var(--color-background));
 }
 
 @media (max-width: 600px) {
@@ -56,6 +55,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility; /* Enables kerning and optional ligatures */
     color: rgb(var(--color-text));
+    background-color: rgb(var(--color-background)); /* Safari uses the background color on body for overscroll   */
 }
 
 @media (max-width: 600px) {

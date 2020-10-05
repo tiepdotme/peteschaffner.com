@@ -1,6 +1,6 @@
 # Colophon
 
-This site is hosted at [gandi.net](https://www.gandi.net/en/simple-hosting), set in [Concourse](https://mbtype.com/fonts/concourse/) and [Triplicate](https://mbtype.com/fonts/triplicate/) (for code), and built with [Publish](https://github.com/JohnSundell/Publish) using Xcode and [iA Writer](https://ia.net/writer) on a 13" MacBook Pro. For local development I use a `SimpleHTTPServer` (with [a little reloading magic](https://github.com/peteschaffner/peteschaffner.com/blob/master/Makefile#L18)), while good ol’ Apache httpd handles the live site. You can check out the source [here](https://github.com/peteschaffner/peteschaffner.com).
+This site is hosted at [gandi.net](https://www.gandi.net/en/simple-hosting), set in [Concourse](https://mbtype.com/fonts/concourse/) and [Triplicate](https://mbtype.com/fonts/triplicate/) (for code), and built with [Publish](https://github.com/JohnSundell/Publish) using Xcode and [Bear](https://bear.app) on a 13" MacBook Pro. For local development I use a `SimpleHTTPServer` (with [a little reloading magic](https://github.com/peteschaffner/peteschaffner.com/blob/master/Makefile#L18)), while good ol’ Apache httpd handles the live site. You can check out the source [here](https://github.com/peteschaffner/peteschaffner.com).
 
 ---
 

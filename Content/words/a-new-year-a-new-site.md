@@ -38,7 +38,7 @@ Whenever I feel like getting an extra pair of eyes before publishing, I use [Emp
 
 ## Final touches
 
-When I want to work on the core (templates, publishing steps, etc.), I fire up Xcode. For writing Swift, it’s hard to beat. When it comes time to write prose, I turn to [iA Writer](https://ia.net/writer). It has been a loyal companion over the years.
+When I want to work on the core (templates, publishing steps, etc.), I fire up Xcode. For writing Swift, it’s hard to beat. When it comes time to write prose, I turn to [Bear](https://bear.app). It has been a loyal companion over the years.
 
 As I write, [entr](https://github.com/eradman/entr) watches for changes and rebuilds everything. Site.js then refreshes my browser. I also use Site.js to publish everything. Take a look at [the Makefile](https://github.com/peteschaffner/peteschaffner.com/blob/master/Makefile) if you are interested in the details.
 
