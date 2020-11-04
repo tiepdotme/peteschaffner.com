@@ -56,7 +56,6 @@ extension Theme where Site == PeteSchaffner {
                     .contentBody(
                         item.body
                             .deletingOccurrences(of: #"\+\+\+((.|\n)*)"#)
-                            .deletingOccurrences(of: "<h1>.*</h1>")
                     ),
                     .if(
                         item.body.html.contains("+++"),
@@ -96,7 +95,6 @@ extension Theme where Site == PeteSchaffner {
                 .contentBody(
                     item.body
                         .deletingOccurrences(of: #"<p>\+\+\+<\/p>"#)
-                        .deletingOccurrences(of: "<h1>.*</h1>")
                         .addingFootnotes(from: try! context.file(at: "Content/\(item.path).md"))
                 )
             ))

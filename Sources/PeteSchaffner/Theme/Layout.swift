@@ -17,6 +17,9 @@ func layout<T: Website>(for location: Location, site: T, body: Content.Body) -> 
     case "/words":
         pageID = "words"
         avatarName = ".words"
+    case "/readlater":
+        pageID = "words"
+        avatarName = ""
     case let str where str.contains("/words"):
         pageID = ""
         avatarName = ".words"
