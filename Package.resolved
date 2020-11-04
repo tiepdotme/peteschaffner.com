@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/johnsundell/files.git",
         "state": {
           "branch": null,
-          "revision": "22fe84797d499ffca911ccd896b34efaf06a50b9",
-          "version": "4.1.1"
+          "revision": "d273b5b7025d386feef79ef6bad7de762e106eaf",
+          "version": "4.2.0"
         }
       },
       {
@@ -42,7 +42,7 @@
         "repositoryURL": "https://github.com/JohnSundell/Publish",
         "state": {
           "branch": "master",
-          "revision": "4de05831504ed7b411a179109c0c0ebd5c602453",
+          "revision": "81859a8ff1c500e297530df34cd18d4406aecd39",
           "version": null
         }
       },
