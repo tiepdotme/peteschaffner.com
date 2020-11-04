@@ -56,5 +56,17 @@ try PeteSchaffner().publish(using: [
         } catch {
             print("No feed file found")
         }
+    },
+    .step(named: "Sanitize Read Later Feed") { context in
+        do {
+            let feedFile = try context.outputFile(at: "readlater.rss")
+            try feedFile.write(
+                feedFile.readAsString()
+                                .replacingOccurrences(of: "<title>Pete Schaffner</title>", with: "<title>Read Later</title>")
+                                .replacingOccurrences(of: "<description>The personal site of Pete Schaffner</description>", with: "<description>Pete Schaffner's Reading List</description>")
+            )
+        } catch {
+            print("No feed file found")
+        }
     }
 ])
