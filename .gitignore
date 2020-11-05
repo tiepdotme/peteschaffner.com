@@ -7,6 +7,3 @@
 Output
 .tmp
 .*Ulysses*
-
-# Ignore (and don't delete) the FreshRSS install
-/p
