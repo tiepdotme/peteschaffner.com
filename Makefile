@@ -25,7 +25,6 @@ publish:
 	@swift run PeteSchaffner --removeDrafts
 	@mkdir tmp
 	@cp -r Output tmp/htdocs
-	@ln -s /srv/data/home/FreshRSS/p tmp/htdocs
 	@cd tmp && \
 		git init && \
 		git remote add gandi git+ssh://3643620@git.sd3.gpaas.net/peteschaffner.com.git && \
