@@ -71,7 +71,7 @@ body {
     }
 }
 
-a, nav:hover a:not(.current), footer:hover a {
+a, nav:hover a:not(.current), footer:hover a, .letter-links::after {
     text-decoration: underline;
     text-decoration-color: rgba(var(--color-text), var(--opacity-link-underline));
     text-decoration-thickness: 0.07em;
@@ -81,7 +81,7 @@ a, nav:hover a:not(.current), footer:hover a {
 
 a:hover {
     color: rgb(var(--color-accent));
-    text-decoration-color: rgba(var(--color-accent), var(--opacity-link-underline));
+    text-decoration-color: rgb(var(--color-accent));
 }
 
 
@@ -643,4 +643,40 @@ footer {
     top: 0;
     height: 200%;
     z-index: -1;
+}
+
+
+/* Home
+   ==== */
+
+.letter-links {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.letter-links a:not(:hover) {
+    text-decoration: none;
+}
+
+.letter-links::after {
+    content: "";
+    color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: max-content;
+    z-index: -1;
+}
+
+.letter-links#type::after {
+    content: "type";
+}
+
+.letter-links#software::after {
+    content: "software";
+}
+
+.letter-links#pottery::after {
+    content: "pottery";
 }
