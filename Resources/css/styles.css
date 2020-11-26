@@ -89,10 +89,14 @@ a:hover {
    ========== */
    
 nav {
-    padding: 70px 0 7px 0;
+    padding: 70px 0 50px 0;
     font-size: 15px;
     text-align: center;
     font-family: "Concourse T4", sans-serif;
+}
+
+nav p {
+    margin: 0;
 }
 
 nav, footer {
@@ -100,12 +104,19 @@ nav, footer {
 }
 
 nav picture {
+    display: inline-block;
+    position: relative;
+    bottom: -1.1em;
     opacity: 0.75;
+}
+
+nav img {
+    display: block;
 }
 
 @media (max-width: 600px) {
     nav {
-        padding-top: 0px;
+        padding-top: 40px;
     }
 }
 
@@ -126,11 +137,6 @@ nav .current {
 
 nav .current:hover {
     color: inherit;
-}
-
-nav img {
-    position: relative;
-    top: 33px;
 }
 
 
@@ -154,7 +160,7 @@ main {
 body:not(#words):not(#work) main, #words main article, #work main section {
     padding: 62px 102px 68px 102px;
     background-color: rgba(var(--color-main-background));
-    border-radius: 13px;
+    border-radius: 23px;
 }
 
 @media (max-width: 600px) {
