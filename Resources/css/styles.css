@@ -175,7 +175,8 @@ main {
     -ms-hyphens: auto;
     hyphens: auto;
     
-    filter: drop-shadow(0 0 30px rgba(0,0,0,var(--opacity-content-shadow)));
+    /* On all pages other than /words, this is creating weird artifacts when scrolling and moving the cursor in/out of <main> */
+/*    filter: drop-shadow(0 0 30px rgba(0,0,0,var(--opacity-content-shadow)));*/
 }
 
 body:not(#words):not(#work) main, #words main article, #work main section {
@@ -678,6 +679,8 @@ footer {
     top: 0;
     height: 200%;
     z-index: -1;
+    /* A fix for the contents not clipping to the parent, which was caused by the shadow filter on the parent that is now disabled */
+/*    filter: blur(0);*/
 }
 
 
