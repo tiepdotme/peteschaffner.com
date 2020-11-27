@@ -106,6 +106,12 @@ nav, footer {
     transition: opacity 0.4s ease-in-out;
 }
 
+@media (prefers-color-scheme: dark) {
+    nav, footer {
+        opacity: 0.5;
+    }
+}
+
 nav:hover, footer:hover {
     opacity: 0.8;
 }
