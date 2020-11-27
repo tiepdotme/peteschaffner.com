@@ -20,7 +20,7 @@ extension Theme where Site == PeteSchaffner {
         func makeIndexHTML(for index: Index, context: PublishingContext<PeteSchaffner>) throws -> HTML {
             let body = Content.Body(node: .div(.contentBody(index.body.addingFootnotes(from: try! context.file(at: "Content/index.md")))))
             
-            return layout(for: index, site: context.site, body: body)
+            return layout(for: index, context: context, body: body)
         }
         
         func makeSectionHTML(for section: Section<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
@@ -64,7 +64,7 @@ extension Theme where Site == PeteSchaffner {
                 )
             })
             
-            return layout(for: section, site: context.site, body: body)
+            return layout(for: section, context: context, body: body)
         }
         
         func makeItemHTML(for item: Item<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
@@ -99,13 +99,13 @@ extension Theme where Site == PeteSchaffner {
                 )
             ))
             
-            return layout(for: item, site: context.site, body: body)
+            return layout(for: item, context: context, body: body)
         }
         
         func makePageHTML(for page: Page, context: PublishingContext<PeteSchaffner>) throws -> HTML {
             let body = Content.Body(node: .div(.contentBody(page.body.addingFootnotes(from: try! context.file(at: "Content/\(page.path).md")))))
             
-            return layout(for: page, site: context.site, body: body)
+            return layout(for: page, context: context, body: body)
         }
         
         func makeTagListHTML(for page: TagListPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? { nil }

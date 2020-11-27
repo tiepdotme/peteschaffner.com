@@ -9,7 +9,7 @@ import Foundation
 import Publish
 import Plot
 
-func layout<T: Website>(for location: Location, site: T, body: Content.Body) -> HTML {
+func layout(for location: Location, context: PublishingContext<PeteSchaffner>, body: Content.Body) -> HTML {
     var pageID: String
     var avatarName: String
 
@@ -40,12 +40,12 @@ func layout<T: Website>(for location: Location, site: T, body: Content.Body) -> 
     }
 
     return HTML(
-        .lang(site.language),
+        .lang(context.site.language),
         .head(
             .encoding(.utf8),
-            .title((location.path.absoluteString == "/" ? "" : (location.title.isEmpty ? friendlyDate(location.date) : location.title) + " · ") + site.name),
+            .title((location.path.absoluteString == "/" ? "" : (location.title.isEmpty ? friendlyDate(location.date) : location.title) + " · ") + context.site.name),
             .viewport(.accordingToDevice),
-            .description(site.description),
+            .description(context.site.description),
             .meta(.name("author"), .content("Pete Schaffner")),
             .rssFeedLink(Path.defaultForRSSFeed.absoluteString, title: "Pete Schaffner"),
             .link(.href("https://micro.blog/peteschaffner"), .attribute(named: "rel", value: "me")),
@@ -58,13 +58,8 @@ func layout<T: Website>(for location: Location, site: T, body: Content.Body) -> 
             .id(pageID),
             .nav(
                 .class("constrained"),
-                .element(named: "picture", nodes: [
-                    .element(named: "source", attributes: [
-                        .attribute(named: "srcset", value: "/images/avatar\(avatarName).dark.svg"),
-                        .attribute(named: "media", value: "(prefers-color-scheme: dark)")
-                    ]),
-                    .img(.src("/images/avatar\(avatarName).svg"), .alt("My avatar"))
-                ]),
+                .div(.raw(try! context.file(at: "Resources/images/avatar\(avatarName).svg").readAsString())),
+                .div(.raw(try! context.file(at: "Resources/images/avatar\(avatarName).dark.svg").readAsString())),
                 .p(
                     .text("The "),
                     .if(

@@ -1,6 +1,6 @@
 :root {
     --color-accent: 0, 118, 255;
-    --color-text: 58, 58, 59;
+    --color-text: 44, 53, 71;
     --color-background: 238, 240, 241;
     --color-main-background: 255, 255, 255;
     --color-blue-dark: 0, 148, 255;
@@ -103,22 +103,34 @@ nav p {
 
 nav, footer {
     opacity: 0.6;
-    transition: all 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
 }
 
 nav:hover, footer:hover {
     opacity: 0.8;
 }
 
-nav picture {
-    display: inline-block;
+#avatar {
     position: relative;
     bottom: -1.1em;
-    opacity: 0.75;
 }
 
-nav img {
-    display: block;
+#avatar.avatar-dark {
+    display: none;
+}
+
+#avatar path {
+    fill: rgb(var(--color-text));
+}
+
+@media (prefers-color-scheme: dark) {
+    #avatar {
+        display: none;
+    }
+
+    #avatar.avatar-dark {
+        display: inline;
+    }
 }
 
 @media (max-width: 600px) {
