@@ -10,3 +10,11 @@ AddOutputFilterByType DEFLATE text/html application/x-rss+xml text/css image/svg
 # Fix for links with encoded hashes (%23 -> #)
 RewriteEngine on
 RewriteRule ^(.*#.*) /$1 [R,NE]
+
+# Redirects
+Redirect 301 /words/hello-world /words/2019-05-21-2235-hello-world
+Redirect 301 /words/the-view-source-web /words/2019-05-24-1457-the-view-source-web
+Redirect 301 /words/a-new-year-a-new-site /words/2020-02-23-0113-a-new-year-a-new-site
+Redirect 301 /words/i-hate-medium /words/2020-02-25-2039-i-hate-medium
+Redirect 301 /words/i-hate-slack /words/2020-02-25-2040-i-hate-slack
+Redirect 301 /words/blogroll /words/2020-06-03-2339-blogroll
