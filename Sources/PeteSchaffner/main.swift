@@ -1,6 +1,7 @@
 import Foundation
 import Publish
 import Plot
+import Files
 
 struct PeteSchaffner: Website {
     enum SectionID: String, WebsiteSectionID {
@@ -10,10 +11,9 @@ struct PeteSchaffner: Website {
 
     struct ItemMetadata: WebsiteItemMetadata {
         var link: String?
-        var draft: Bool?
+        var slug: String?
     }
 
-    // Update these properties to configure your website:
     var url = URL(string: "https://peteschaffner.com")!
     var name = "Pete Schaffner"
     var description = "The personal site of Pete Schaffner"
@@ -25,8 +25,41 @@ struct PeteSchaffner: Website {
 try PeteSchaffner().publish(using: [
     .copyResources(),
     .addMarkdownFiles(),
+    .if(CommandLine.arguments.contains("--compile-drafts"), .step(named: "Import blog drafts") { context in
+        if let folder = try? context.folder(at: Path("Content/words/drafts")) {
+            for file in folder.files {
+                let posts = context.sections[.words].items
+                let postIndex = posts.firstIndex(where: { file.path.contains($0.path.string) })!
+                
+                // File name
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd-HHmm"
+                var fileName = formatter.string(from: file.modificationDate!)
+                if let slug = posts[postIndex].metadata.slug {
+                    fileName += "-\(slug)"
+                }
+                
+                // Frontmatter
+                formatter.dateFormat = "yyyy-MM-dd HH:mm"
+                var frontMatter = "---\ndate: \(formatter.string(from: file.modificationDate!))"
+                if let link = posts[postIndex].metadata.link {
+                    frontMatter += "\nlink: \(link)\n---"
+                } else {
+                    frontMatter += "\n---"
+                }
+                
+                var content = try! file.readAsString()
+                content = frontMatter + content.replacingOccurrences(of: "(?s)---.*---", with: "", options: .regularExpression)
+                
+                try! folder.createFile(at: "../\(fileName).md", contents: content.data(using: .utf8))
+                try! file.delete()
+            }
+        }
+    }),
+    .removeAllItems(in: .words, matching: .init { (item) -> Bool in
+        item.path.string.contains("drafts/")
+    }),
     .sortItems(by: \.date, order: .descending),
-    .if(CommandLine.arguments.contains("--removeDrafts"), .removeAllItems(matching: \.metadata.draft == true)),
     .mutateAllItems { item in
         // Remove the title for title-less posts since we handle setting a friendly date-based document title in the theme.
         item.title = item.path.string.contains(item.title) ? "" : item.title
@@ -49,7 +82,7 @@ try PeteSchaffner().publish(using: [
     .step(named: "Rename .htaccess") { context in
         try context.outputFile(at: "htaccess").rename(to: ".htaccess")
     },
-    .step(named: "Sanitize Feed") { context in
+    .step(named: "Sanitize feed") { context in
         do {
             let feedFile = try context.outputFile(at: "feed.rss")
             try feedFile.write(feedFile.readAsString().replacingOccurrences(of: "<p>+++</p>", with: ""))
@@ -57,7 +90,7 @@ try PeteSchaffner().publish(using: [
             print("No feed file found")
         }
     },
-    .step(named: "Sanitize Read Later Feed") { context in
+    .step(named: "Sanitize read later feed") { context in
         do {
             let feedFile = try context.outputFile(at: "readlater.rss")
             try feedFile.write(
