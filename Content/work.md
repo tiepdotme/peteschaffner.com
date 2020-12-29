@@ -133,7 +133,7 @@ title: Work
         
     <h1><a href="#chrome">Chrome for iOS & iPadOS</a></h1>
     
-    <p>For the past 6 years, I've led the design of <a href="https://itunes.apple.com/us/app/google-chrome/id535886823?mt=8">Chrome for iOS/iPadOS</a>, striving to make it a great browser and a respectable platform citizen. There is still much to be done, but it's come a long way...</p>
+    <p>For 6 years, I led the design of <a href="https://itunes.apple.com/us/app/google-chrome/id535886823?mt=8">Chrome for iOS/iPadOS</a>, where I strove to make it a great browser and a respectable platform citizen.</p>
     
     <figure>
         <picture>
@@ -230,7 +230,7 @@ title: Work
 <section id="pottery">
     <h1><a href="#pottery">Pottery</a></h1>
     
-    <p>What follows are wares I threw during my time in university. I considered changing majors and dreamed of one day being a studio potter. I guess there is still time...</p>
+    <p>What follows are wares I threw during my time in university. I considered changing majors and dreamt of one day being a studio potter. I guess there is still time...</p>
     
     <figure>
         <picture>
