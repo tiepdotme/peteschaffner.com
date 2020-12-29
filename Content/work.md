@@ -133,7 +133,7 @@ title: Work
         
     <h1><a href="#chrome">Chrome for iOS & iPadOS</a></h1>
     
-    <p>For 6 years, I led the design of <a href="https://itunes.apple.com/us/app/google-chrome/id535886823?mt=8">Chrome for iOS/iPadOS</a>, where I strove to make it a great browser and a respectable platform citizen.</p>
+    <p>For six years I led the design of <a href="https://itunes.apple.com/us/app/google-chrome/id535886823?mt=8">Chrome for iOS/iPadOS</a>, where I strove to make it a great browser and a respectable platform citizen.</p>
     
     <figure>
         <picture>
