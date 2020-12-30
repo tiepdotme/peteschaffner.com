@@ -237,11 +237,14 @@ sup a, sup a:hover {
 
 pre, code {
     font-family: "Triplicate T4c", monospace;
-    font-size: 0.97em;
+    font-size: 0.9em;
 }
 
 code {
     font-weight: bold;
+    background: rgba(var(--color-text), 0.07);
+    border-radius: 5px;
+    padding: 2px 9px;
 }
 
 pre code {
@@ -303,7 +306,6 @@ blockquote {
     position: relative;
     margin: 2.5em 0 3.5em;
     padding: 0 4vw;
-    font-style: italic;
     font-size: 0.89em;
     color: rgba(var(--color-text), 0.8);
     perspective: 300px;
@@ -339,10 +341,6 @@ blockquote::after {
     mask-repeat: no-repeat;
     -webkit-mask-position: 12% bottom;
     mask-position: 12% bottom;
-}
-
-blockquote em {
-    font-weight: bold;
 }
 
 ul {
