@@ -16,14 +16,14 @@ title: Résumé
 </header>
 - Interface/interaction design, prototyping, animation
 - Sketch, Pixelmator [Pro], PaintCode
-- Xcode Playgrounds, Xcode view debugging, Interface Builder, Origami Studio
+- Xcode (Interface Builder, Playgrounds, SwiftUI Previews, LLDB, etc.), Origami Studio
 - Ceramics, typography
 
 <header id="programming-and-technical">
 	<h3><a href="#programming-and-technical">Programming & technical</a></h3>
 </header>
 - Swift, Objective-C
-- UIKit, AppKit, Core Animation, Auto Layout
+- UIKit, AppKit, Auto Layout, Core Animation, SwiftUI
 - HTML, CSS, JavaScript
 - Git, Vim, Zsh, Xcode
 - macOS, iOS, iPadOS, Unix
