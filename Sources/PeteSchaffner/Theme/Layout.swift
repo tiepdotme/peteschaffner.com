@@ -11,6 +11,7 @@ import Plot
 
 func layout(for location: Location, context: PublishingContext<PeteSchaffner>, body: Content.Body) -> HTML {
     var pageID: String
+    var pageClass: String
     var avatarName: String
 
     switch location.path.absoluteString {
@@ -38,6 +39,13 @@ func layout(for location: Location, context: PublishingContext<PeteSchaffner>, b
         pageID = "four-oh-four"
         avatarName = ".404"
     }
+    
+    switch pageID {
+    case "words", "work":
+        pageClass = "list"
+    default:
+        pageClass = ""
+    }
 
     return HTML(
         .lang(context.site.language),
@@ -56,6 +64,7 @@ func layout(for location: Location, context: PublishingContext<PeteSchaffner>, b
         ),
         .body(
             .id(pageID),
+            .class(pageClass),
             .nav(
                 .class("constrained"),
                 .div(.raw(try! context.file(at: "Resources/images/avatar\(avatarName).svg").readAsString())),
@@ -63,7 +72,7 @@ func layout(for location: Location, context: PublishingContext<PeteSchaffner>, b
                 .p(
                     .text("The "),
                     .if(
-                        location.path.absoluteString == "/resume",
+                        pageID == "resume",
                         .a(.class("current"), .href("/resume"), .text("résumé")),
                         else: .group([
                             .a(
@@ -73,7 +82,7 @@ func layout(for location: Location, context: PublishingContext<PeteSchaffner>, b
                             ),
                             .text(" & "),
                             .a(
-                                .class(location.path.absoluteString == "/work" ? "current" : ""),
+                                .class(pageID == "work" ? "current" : ""),
                                 .href("/work"),
                                 .text("work")
                             )])
