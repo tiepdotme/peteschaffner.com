@@ -4,79 +4,73 @@ title: Work
 
 <section id="icons">
     <h1><a href="#icons">Icons</a></h1>
-    
-    <p>An assortment of icons made for various apps over the years. From the voluptuous gradients and modeling of OS X Leopard, to the subtle and blurry transparency of Yosemite, I've enjoyed drawing it all.</p>
-
+    <p>An assortment of icons made for various apps over the years. From the freeform shapes of Cheetah, to the subtle gradients and transparency of Yosemite, to the standardized squares and modeling of Big Sur, I've enjoyed drawing it all.</p>
+    <figure>
+        <picture>
+            <img src="/images/work/bear-icons.png" alt="Bear.app macOS app icons">
+        </picture>
+        <figcaption><a href="https://bear.app">Bear</a></figcaption>
+    </figure>
     <figure>
         <picture>
             <img src="/images/work/radblock-icon.png" alt="RadBlock.app app icon">
         </picture>
         <figcaption>RadBlock (more on that <a href="#radblock">below</a>)</figcaption>
     </figure>
-    
     <figure>
         <picture>
             <img src="/images/work/chrome.png" alt="A Chrome for Mac icon replacement that looks at home on macOS 10.10+">
         </picture>
         <figcaption>A Chrome for Mac icon replacement that looks at home on macOS 10.10+</figcaption>
     </figure>
-    
     <figure>
         <picture>
             <img src="/images/work/emporter-icon.png" alt="Emporter.app alternate app icon">
         </picture>
         <figcaption><a href="https://emporter.app">Emporter</a> alternate icon</figcaption>
     </figure>
-    
     <figure>
         <picture>
             <img src="/images/work/watchlist.png" alt="App icon for Watchlist—a mythical TMDb client for iOS">
         </picture>
         <figcaption>Watchlist—a mythical <a href="https://www.themoviedb.org">TMDb</a> client for iOS</figcaption>
     </figure>
-    
     <figure>
         <picture>
             <img src="/images/work/cloudy1.png" alt="App icon for Cloudy—an Android CloudApp client">
         </picture>
         <figcaption>Cloudy—an Android CloudApp client</figcaption>
     </figure>
-    
     <figure>
         <picture>
             <img src="/images/work/cloudy2.png" alt="Cloudy alternate icon">
         </picture>
         <figcaption>Cloudy alternate icon</figcaption>
     </figure>
-    
     <figure>
         <picture>
             <img src="/images/work/chocolat.png" alt="Chocolat.app alternate app icon">
         </picture>
         <figcaption><a href="https://chocolatapp.com">Chocolat</a> alternate app icon</figcaption>
     </figure>
-    
     <figure>
         <picture>
             <img src="/images/work/sourceiconpreview-icon.png" alt="SourceIcon Preview.app app icon">
         </picture>
         <figcaption>SourceIcon Preview (more on that <a href="#sourceiconpreview">below</a>)</figcaption>
     </figure>
-    
     <figure>
         <picture>
             <img src="/images/work/linkinus-icon.png" alt="Linkinus.app version 3 app icon">
         </picture>
         <figcaption>Linkinus (more on that <a href="#linkinus">below</a>)</figcaption>
     </figure>
-    
     <figure>
         <picture>
             <img src="/images/work/emporter-radblock-prefs-icons.png" alt="RadBlock.app and Emporter.app preference window icons">
         </picture>
         <figcaption>RadBlock and Emporter preference window icons</figcaption>
     </figure>
-    
     <figure>
         <picture>
             <img src="/images/work/iterm2.png" alt="iTerm2.app preference window icons">
