@@ -97,7 +97,9 @@ nav {
 }
 
 nav p {
+    position: relative;
     margin: 0;
+    z-index: 1;
 }
 
 nav, footer {
@@ -118,24 +120,38 @@ nav:hover, footer:hover {
 #avatar {
     position: relative;
     bottom: -1.5em;
+    z-index: 0;
 }
 
-#avatar.avatar-dark {
+.avatar-dark {
     display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .avatar-light {
+        display: none;
+    }
+    
+    .avatar-dark {
+        display: inline;
+    }
+}
+
+body:not(#home) nav > a:hover .avatar-dark,
+body:not(#home) nav > a:hover .avatar-light {
+    visibility: hidden;
+}
+
+body:not(#home) .avatar-home {
+    visibility: hidden;
+}
+
+body:not(#home) nav > a:hover .avatar-home {
+    visibility: visible;
 }
 
 #avatar path {
     fill: rgb(var(--color-text));
-}
-
-@media (prefers-color-scheme: dark) {
-    #avatar {
-        display: none;
-    }
-
-    #avatar.avatar-dark {
-        display: inline;
-    }
 }
 
 @media (max-width: 600px) {

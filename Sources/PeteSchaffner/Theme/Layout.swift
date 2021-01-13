@@ -31,7 +31,7 @@ func layout(for location: Location, context: PublishingContext<PeteSchaffner>, b
         pageID = "resume"
         avatarName = ".resume"
     default:
-        pageID = ""
+        pageID = "home"
         avatarName = ""
     }
     
@@ -67,8 +67,26 @@ func layout(for location: Location, context: PublishingContext<PeteSchaffner>, b
             .class(pageClass),
             .nav(
                 .class("constrained"),
-                .div(.raw(try! context.file(at: "Resources/images/avatar\(avatarName).svg").readAsString())),
-                .div(.raw(try! context.file(at: "Resources/images/avatar\(avatarName).dark.svg").readAsString())),
+                .a(
+                    .href("/"),
+                    .element(
+                        named: "svg",
+                        nodes: [
+                            .id("avatar"),
+                            .attribute(named: "width", value: "90px"),
+                            .attribute(named: "height", value: "90px"),
+                            .attribute(named: "viewBox", value: "0 0 90 90"),
+                            .attribute(named: "version", value: "1.1"),
+                            .attribute(named: "xmlns", value: "http://www.w3.org/2000/svg"),
+                            .attribute(named: "xmlns:xlink", value: "http://www.w3.org/1999/xlink"),
+                            .raw(try! context.file(at: "Resources/images/avatar.svg").readAsString()),
+                            .if(
+                                pageID != "home",
+                                .raw(try! context.file(at: "Resources/images/avatar\(avatarName).svg").readAsString())
+                            )
+                        ]
+                    )
+                ),
                 .p(
                     .text("The "),
                     .if(
