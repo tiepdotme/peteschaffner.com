@@ -3,13 +3,13 @@ POST_META_TIME := $(shell date +%H:%M)
 POST_TIME_STAMP := $(shell date +%H%M)
 POST_FILE := Content/words/$(POST_DATE)-$(POST_TIME_STAMP).md
 
-/usr/local/bin/fswatch:
+/opt/homebrew/bin/fswatch:
 	@if [ -z "$(shell which brew)" ]; then echo "homebrew is required to install fswatch: https://brew.sh"; exit 1; fi
 	@echo "fswatch is required. Installing..."
 	@brew install fswatch
 
 .PHONY: dev
-dev: /usr/local/bin/fswatch
+dev: /opt/homebrew/bin/fswatch
 	@swift run PeteSchaffner
 	@fswatch -m kqueue_monitor -0ro \
 		-e "/\." \
