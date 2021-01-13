@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="38px" height="38px" viewBox="0 0 38 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Rectangle</title>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Tablet-Copy-9" transform="translate(-187.000000, -548.000000)" fill="#000000">
             <path d="M187,548 L225,548 C225,558.845137 213.02206,587.276294 206.122946,585.955492 C199.16991,584.624366 213.02206,565.737792 187,548 Z" id="Rectangle"></path>
