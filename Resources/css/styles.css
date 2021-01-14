@@ -90,10 +90,18 @@ a:hover {
    ========== */
    
 nav {
-    padding: 70px 0 50px 0;
+    position: relative;
+    margin-top: 70px;
+    padding-bottom: 30px;
     font-size: 16px;
     text-align: center;
     font-family: "Concourse T4", sans-serif;
+    z-index: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+nav svg {
+    cursor: pointer;
 }
 
 nav p {
@@ -102,9 +110,12 @@ nav p {
     z-index: 1;
 }
 
+nav.collapsed p {
+    opacity: 0;
+}
+
 nav, footer {
     opacity: 0.6;
-    transition: opacity 0.4s ease-in-out;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -113,8 +124,23 @@ nav, footer {
     }
 }
 
-nav:hover, footer:hover {
-    opacity: 0.8;
+nav.collapsed {
+    transform: translateY(86px);
+    cursor: pointer;
+}
+
+nav.collapsed::before {
+    content: "Menu";
+    display: block;
+    position: absolute;
+    font-size: 9pt;
+    font-family: "Concourse C4", sans-serif;
+    text-transform: lowercase;
+    font-weight: bold;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 12px;
+    opacity: 0.6;
 }
 
 #avatar {
@@ -137,26 +163,13 @@ nav:hover, footer:hover {
     }
 }
 
-body:not(#home) nav > a:hover .avatar-dark,
-body:not(#home) nav > a:hover .avatar-light {
-    visibility: hidden;
-}
-
-body:not(#home) .avatar-home {
-    visibility: hidden;
-}
-
-body:not(#home) nav > a:hover .avatar-home {
-    visibility: visible;
-}
-
 #avatar path {
     fill: rgb(var(--color-text));
 }
 
 @media (max-width: 600px) {
     nav {
-        padding-top: 40px;
+        margin-top: 40px;
     }
 }
 
@@ -184,6 +197,8 @@ nav .current:hover {
    ======= */
 
 main {
+    position: relative;
+    z-index: 1;
     flex: 1 0 auto; /* For a sticky footer */
     
     /* Center content vertically (assumes one root container element) */
@@ -202,23 +217,25 @@ main {
 
 body:not(#words):not(.list) main, #words main article, .list main section {
     padding: 62px 102px 68px 102px;
-    background-color: rgba(var(--color-main-background));
-    border-radius: 23px;
+/*    background-color: rgba(var(--color-main-background));*/
+    background: linear-gradient(to bottom, rgb(var(--color-main-background)) 0%, rgb(var(--color-main-background)) 50%, rgb(var(--color-background)) 100%);
+    border-top-left-radius: 23px;
+    border-top-right-radius: 23px;
 }
 
-#words main article:not(:last-child):nth-child(n+2), .list main section:not(:last-child):nth-child(n+2) {
-    border-radius: 5px;
-}
-
-#words main article:first-child, .list main section:first-child {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-#words main article:last-child, .list main section:last-child {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
+/*#words main article:not(:last-child):nth-child(n+2), .list main section:not(:last-child):nth-child(n+2) {*/
+/*    border-radius: 5px;*/
+/*}*/
+/**/
+/*#words main article:first-child, .list main section:first-child {*/
+/*    border-bottom-left-radius: 5px;*/
+/*    border-bottom-right-radius: 5px;*/
+/*}*/
+/**/
+/*#words main article:last-child, .list main section:last-child {*/
+/*    border-top-left-radius: 5px;*/
+/*    border-top-right-radius: 5px;*/
+/*}*/
 
 @media (max-width: 600px) {
     body:not(#words):not(.list) main, #words main article, .list main section {
@@ -324,43 +341,15 @@ hr:after {
 
 blockquote {
     position: relative;
-    margin: 2.5em 0 3.5em;
-    padding: 0 4vw;
-    font-size: 0.89em;
-    color: rgba(var(--color-text), 0.8);
-    perspective: 300px;
-    transform: translateZ(-1000px); /* Hack for Safari to not clip inner content */
+    margin: 0 2.5em;
+    font-size: 0.8em;
+    color: rgba(var(--color-text), 0.6);
 }
 
 @media (max-width: 600px) {
     blockquote {
-        font-size: inherit;
+        font-size: 0.9em;
     }
-}
-
-blockquote::before, blockquote::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: -1.2em;
-    right: -0.5em;
-    bottom: -1.5em;
-    left: -0.5em;
-    background-color: rgb(var(--color-quote-background));
-    transform: rotateX(-2deg) translateY(0.5%);
-    border-radius: 30px;
-    z-index: -1;
-}
-
-blockquote::after {
-    border-radius: 0;
-    margin-bottom: -27px;
-    -webkit-mask-image: url("/images/quote.tail.svg");
-    mask-image: url("/images/quote.tail.svg");
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: 12% bottom;
-    mask-position: 12% bottom;
 }
 
 ul {
@@ -477,7 +466,7 @@ time span {
 /* Footer
    ====== */
 footer {
-    padding: 52px 0 calc(52px + env(safe-area-inset-bottom));
+    padding: 200px 0 calc(50px + env(safe-area-inset-bottom));
     flex-shrink: 0; /* For a sticky footer */
     font-size: 15px;
     font-weight: 500;

@@ -67,25 +67,18 @@ func layout(for location: Location, context: PublishingContext<PeteSchaffner>, b
             .class(pageClass),
             .nav(
                 .class("constrained"),
-                .a(
-                    .href("/"),
-                    .element(
-                        named: "svg",
-                        nodes: [
-                            .id("avatar"),
-                            .attribute(named: "width", value: "90px"),
-                            .attribute(named: "height", value: "90px"),
-                            .attribute(named: "viewBox", value: "0 0 90 90"),
-                            .attribute(named: "version", value: "1.1"),
-                            .attribute(named: "xmlns", value: "http://www.w3.org/2000/svg"),
-                            .attribute(named: "xmlns:xlink", value: "http://www.w3.org/1999/xlink"),
-                            .raw(try! context.file(at: "Resources/images/avatar.svg").readAsString()),
-                            .if(
-                                pageID != "home",
-                                .raw(try! context.file(at: "Resources/images/avatar\(avatarName).svg").readAsString())
-                            )
-                        ]
-                    )
+                .element(
+                    named: "svg",
+                    nodes: [
+                        .id("avatar"),
+                        .attribute(named: "width", value: "90px"),
+                        .attribute(named: "height", value: "90px"),
+                        .attribute(named: "viewBox", value: "0 0 90 90"),
+                        .attribute(named: "version", value: "1.1"),
+                        .attribute(named: "xmlns", value: "http://www.w3.org/2000/svg"),
+                        .attribute(named: "xmlns:xlink", value: "http://www.w3.org/1999/xlink"),
+                        .raw(try! context.file(at: "Resources/images/avatar\(avatarName).svg").readAsString())
+                    ]
                 ),
                 .p(
                     .text("The "),
@@ -135,8 +128,10 @@ func layout(for location: Location, context: PublishingContext<PeteSchaffner>, b
                     .href("https://github.com/peteschaffner/peteschaffner.com"),
                     .text("Source")
                 )
+//                .raw(try! context.file(at: "Resources/images/appearance.svg").readAsString())
             ),
-            .if(location.path.absoluteString == "/work", .script(.src("/js/work.js")))
+            .script(.raw(try! context.file(at: "Resources/js/nav.js").readAsString())),
+            .if(location.path.absoluteString == "/work", .script(.raw(try! context.file(at: "Resources/js/work.js").readAsString())))
         )
     )
 }
