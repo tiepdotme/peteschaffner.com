@@ -1,5 +1,4 @@
 let nav = document.querySelector("nav");
-let avatar = document.querySelector("nav svg");
 
 nav.classList.add("collapsed");
 
