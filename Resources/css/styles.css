@@ -213,9 +213,8 @@ main {
 body:not(#words):not(.list) main, #words main article, .list main section {
     padding: 62px 102px 68px 102px;
 /*    background-color: rgba(var(--color-main-background));*/
-    background: linear-gradient(to bottom, rgb(var(--color-main-background)) 0%, rgb(var(--color-main-background)) 50%, rgb(var(--color-background)) 100%);
-    border-top-left-radius: 23px;
-    border-top-right-radius: 23px;
+    background: linear-gradient(to bottom, rgb(var(--color-main-background)) 0%, rgb(var(--color-main-background)) 50%, rgb(var(--color-background)) 95%);
+    border-radius: 23px;
 }
 
 /*#words main article:not(:last-child):nth-child(n+2), .list main section:not(:last-child):nth-child(n+2) {*/
@@ -500,9 +499,8 @@ footer {
     color: rgba(var(--color-text), 0.5);
 }
 
-#resume h2:first-of-type {
-    border: none;
-    margin-top: 6.5em;
+#resume blockquote {
+    margin-top: 3em;
 }
 
 #resume header {
