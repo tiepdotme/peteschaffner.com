@@ -1,11 +1,8 @@
 .DS_Store
-/build
 /.build
 /.swiftpm
 /*.xcodeproj
-.publish
-Output
-.tmp
-.*Ulysses*
+/.publish
+/Output
 /Content/words/drafts/**
 !/Content/words/drafts/.gitkeep
