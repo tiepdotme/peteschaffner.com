@@ -1,0 +1,14 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\nmake build"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\nmake serve"
+    }
+  },
+  "identifier" : "864AFF56-6660-4A6B-9677-BE43409CD437",
+  "persistent" : true
+}

@@ -3,30 +3,20 @@ POST_META_TIME := $(shell date +%H:%M)
 POST_TIME_STAMP := $(shell date +%H%M)
 POST_FILE := Content/words/$(POST_DATE)-$(POST_TIME_STAMP).md
 
-/opt/homebrew/bin/fswatch:
-	@if [ -z "$(shell which brew)" ]; then echo "homebrew is required to install fswatch: https://brew.sh"; exit 1; fi
-	@echo "fswatch is required. Installing..."
-	@brew install fswatch
-
-.PHONY: dev
-dev: /opt/homebrew/bin/fswatch
+.PHONY: build
+build:
 	@swift run PeteSchaffner
-	@fswatch -m kqueue_monitor -0ro \
-		-e "/\." \
-		-e "Output" \
-		-e "~" \
-		-e "Resources/resume-references" \
-		--event Updated . | xargs -0 -n 1 /bin/bash -c "swift run PeteSchaffner && osascript -e 'tell application \"Safari\"' -e 'tell window 1' -e 'if URL of current tab contains \"localhost:8000\" then do JavaScript \"window.location.reload(true)\" in current tab' -e 'end tell' -e 'end tell'" &
-	@cd Output && python -m SimpleHTTPServer 8000
 
-.PHONY: compile-drafts
-compile-drafts:
-	swift run PeteSchaffner --compile-drafts
+.PHONY: serve
+serve:
+	@pip3 install websocket-server
+	@pip3 install watchgod
+	@python3 server.py
 
 .PHONY: publish
 publish:
 	@rm -rf .publish/Caches
-	@swift run PeteSchaffner --removeDrafts
+	@swift run PeteSchaffner
 	@mkdir tmp
 	@cp -r Output tmp/htdocs
 	@cd tmp && \

@@ -1,0 +1,6 @@
+{
+  "editor.default_syntax" : "markdown",
+  "index.enabled" : true,
+  "workspace.preview_type" : "custom",
+  "workspace.preview_url" : "localhost:8000"
+}
