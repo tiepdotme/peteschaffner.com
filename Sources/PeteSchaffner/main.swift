@@ -21,9 +21,6 @@ struct PeteSchaffner: Website {
     var language: Language { .english }
     var imagePath: Path? { nil }
     var tagHTMLConfig: TagHTMLConfiguration? { nil }
-    // Used for putting in the live reload script
-    // TODO: move this to the server
-    var hostName: String = try! shellOut(to: "hostname")
 }
 
 try PeteSchaffner().publish(using: [

@@ -1,10 +1,12 @@
 from threading import Thread
 from watchgod import watch, RegExpWatcher
 from websocket_server import WebsocketServer
+from pathlib import Path
 import http.server
 import socketserver
 import os
 import signal
+import subprocess
 
 # WebSocket Server
 wsServer = WebsocketServer(8080, host="0.0.0.0")
@@ -13,7 +15,24 @@ def runWebSockServer():
 	wsServer.run_forever()
 
 # HTTP server
-handler = http.server.SimpleHTTPRequestHandler
+class HTTPHandler(http.server.SimpleHTTPRequestHandler):
+	def do_GET(self):
+		if "html" in self.headers["accept"]:
+			self.send_response(200)
+			self.send_header("Content-type", "text/html")
+			self.end_headers()
+			
+			hostname = subprocess.run("hostname", stdout=subprocess.PIPE).stdout.decode('utf-8').rstrip()
+			path = self.path + ("/index.html" if ".html" not in self.path else "")
+			html = Path("." + path).read_text()
+			html = html.replace("</body></html>", "<script>let ws = new WebSocket('ws://" + hostname + ".local:8080/'); ws.onmessage = function(e) {window.location.reload(true)}</script></body></html>")
+			self.wfile.write(bytes(html, "utf8"))
+			return
+		http.server.SimpleHTTPRequestHandler.do_GET(self)
+		
+		
+socketserver.TCPServer.allow_reuse_address = True
+handler = HTTPHandler
 httpServer = socketserver.TCPServer(("", 8000), handler)
 def runHttpServer():
 	print("HTTP server started at localhost:8000")
