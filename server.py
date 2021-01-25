@@ -18,19 +18,26 @@ def runWebSockServer():
 class HTTPHandler(http.server.SimpleHTTPRequestHandler):
 	def do_GET(self):
 		if "html" in self.headers["accept"]:
+			# Set headers
 			self.send_response(200)
 			self.send_header("Content-type", "text/html")
 			self.end_headers()
 			
+			# Get computer's hostname
 			hostname = subprocess.run("hostname", stdout=subprocess.PIPE).stdout.decode('utf-8').rstrip()
+			
+			# Construct response body
 			path = self.path + ("/index.html" if ".html" not in self.path else "")
 			html = Path("." + path).read_text()
 			html = html.replace("</body></html>", "<script>let ws = new WebSocket('ws://" + hostname + ".local:8080/'); ws.onmessage = function(e) {window.location.reload(true)}</script></body></html>")
+			
+			# Send the new HTML with injected live reload script
 			self.wfile.write(bytes(html, "utf8"))
 			return
+			
 		http.server.SimpleHTTPRequestHandler.do_GET(self)
 		
-		
+# This fixes a "port already bound" issue that occurred sometimes when stopping and starting the servers
 socketserver.TCPServer.allow_reuse_address = True
 handler = HTTPHandler
 httpServer = socketserver.TCPServer(("", 8000), handler)
@@ -41,6 +48,9 @@ def runHttpServer():
 
 
 if __name__ == '__main__':
+	# Build
+	os.system("swift run PeteSchaffner --livereload")
+	
 	# Start up servers
 	webSockServerThread = Thread(target=runWebSockServer)
 	httpServerThread = Thread(target=runHttpServer)
@@ -58,7 +68,7 @@ if __name__ == '__main__':
 	
 	# NOTE: watchgod matches against file paths that start with the relative root characters (e.g. "../")️
 	# NOTE: I'm only using watchgod because watchdog was triggering too many change events (also why I was using kqueue instead of NSEvents with fswatch)
-	for changes in watch('..', watcher_cls=RegExpWatcher, watcher_kwargs=dict(re_files=r'^\.\.\/(?!\.|Output).*$')):
+	for changes in watch('..', watcher_cls=RegExpWatcher, watcher_kwargs=dict(re_files=r'^\.\.\/(?!\.|Output).*\/.*$')):
 		# Build
 		os.system("swift run PeteSchaffner --livereload")
 		# Reload browsers
