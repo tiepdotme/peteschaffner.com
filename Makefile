@@ -13,6 +13,15 @@ serve:
 	@pip3 install watchgod
 	@python3 server.py
 
+.PHONY: readlater
+readlater:
+	@sh bin/readlater.sh
+
+.PHONY: blog
+blog:
+	@touch $(POST_FILE)
+	@echo "---\ndate: $(POST_DATE) $(POST_META_TIME)\n---\n" >> $(POST_FILE)
+
 .PHONY: publish
 publish:
 	@rm -rf .publish/Caches
@@ -29,8 +38,3 @@ publish:
 		ssh 3643620@git.sd3.gpaas.net clean peteschaffner.com.git && \
 		cd .. && \
 		rm -rf tmp
-
-.PHONY: blog
-blog:
-	@touch $(POST_FILE)
-	@echo "---\ndate: $(POST_DATE) $(POST_META_TIME)\n---\n" >> $(POST_FILE)

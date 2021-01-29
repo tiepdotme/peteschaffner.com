@@ -49,7 +49,7 @@ def runHttpServer():
 
 if __name__ == '__main__':
 	# Build
-	os.system("swift run PeteSchaffner --livereload")
+	os.system("swift run PeteSchaffner")
 	
 	# Start up servers
 	webSockServerThread = Thread(target=runWebSockServer)
@@ -70,7 +70,7 @@ if __name__ == '__main__':
 	# NOTE: I'm only using watchgod because watchdog was triggering too many change events (also why I was using kqueue instead of NSEvents with fswatch)
 	for changes in watch('..', watcher_cls=RegExpWatcher, watcher_kwargs=dict(re_files=r'^\.\.\/(?!\.|Output).*\/.*$')):
 		# Build
-		os.system("swift run PeteSchaffner --livereload")
+		os.system("swift run PeteSchaffner")
 		# Reload browsers
 		wsServer.send_message_to_all("reload")
 		
