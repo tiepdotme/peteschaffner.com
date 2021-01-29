@@ -11,7 +11,7 @@ build:
 serve:
 	@pip3 install websocket-server
 	@pip3 install watchgod
-	@python3 server.py
+	@python3 bin/server.py
 
 .PHONY: readlater
 readlater:
