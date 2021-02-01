@@ -21,6 +21,10 @@ readlater:
 blog:
 	@touch $(POST_FILE)
 	@echo "---\ndate: $(POST_DATE) $(POST_META_TIME)\n---\n" >> $(POST_FILE)
+	
+.PHONY: compile-drafts
+compile-drafts:
+	swift run PeteSchaffner --compile-drafts
 
 .PHONY: publish
 publish:

@@ -50,7 +50,7 @@ try PeteSchaffner().publish(using: [
                 }
                 
                 var content = try! file.readAsString()
-                content = frontMatter + content.replacingOccurrences(of: "(?s)---.*---", with: "", options: .regularExpression)
+                content = frontMatter + "\n\n" + content.replacingOccurrences(of: "(?s)---.*---", with: "", options: .regularExpression)
                 
                 try! folder.createFile(at: "../\(fileName).md", contents: content.data(using: .utf8))
                 try! file.delete()
