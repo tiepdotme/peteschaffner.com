@@ -29,7 +29,7 @@ class HTTPHandler(http.server.SimpleHTTPRequestHandler):
 			# Construct response body
 			path = self.path + ("/index.html" if ".html" not in self.path else "")
 			html = Path("." + path).read_text()
-			html = html.replace("</body></html>", "<script>let ws = new WebSocket('ws://" + hostname + ".local:8080/'); ws.onmessage = function(e) {window.location.reload(true)}</script></body></html>")
+			html = html.replace("</body></html>", "<script>let ws = new WebSocket('ws://" + hostname + ":8080/'); ws.onmessage = function(e) {window.location.reload(true)}</script></body></html>")
 			
 			# Send the new HTML with injected live reload script
 			self.wfile.write(bytes(html, "utf8"))
