@@ -55,7 +55,7 @@ body {
     -webkit-font-smoothing: antialiased; /* Make the text look a little less chunky */
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility; /* Enables kerning and optional ligatures */
-    color: rgb(var(--color-text));
+    color: rgba(var(--color-text), 0.9);
     background-color: rgb(var(--color-background)); /* Safari uses the background color on body for overscroll   */
 }
 
@@ -68,7 +68,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
     body {
-        color: rgba(var(--color-text), 0.8);
+        color: rgba(var(--color-text), 0.6);
     }
 }
 
@@ -116,7 +116,7 @@ nav, footer {
 
 @media (prefers-color-scheme: dark) {
     nav, footer {
-        opacity: 0.5;
+        opacity: 0.3;
     }
 }
 
@@ -211,7 +211,7 @@ main {
 }
 
 body:not(#words):not(.list) main, #words main article, .list main section {
-    padding: 62px 102px 68px 102px;
+    padding: 62px 102px 122px 102px;
 /*    background-color: rgba(var(--color-main-background));*/
     background: linear-gradient(to bottom, rgb(var(--color-main-background)) 0%, rgb(var(--color-main-background)) 50%, rgb(var(--color-background)) 95%);
     border-radius: 23px;
@@ -240,7 +240,7 @@ body:not(#words):not(.list) main, #words main article, .list main section {
 
 header > time:first-child {
     display: block;
-    margin-top: -0.5em;
+    margin-top: 3em;
 }
 
 body article p:only-of-type:last-child {
@@ -326,7 +326,7 @@ hr {
     text-align: center;
     border: none;
     margin: 1.5em 0;
-    opacity: 0.25;
+    opacity: 0.2;
 }
 
 hr:after {
@@ -389,7 +389,7 @@ time {
     font-size: 15px;
     font-family: "Concourse C4", sans-serif;
     text-transform: lowercase;
-    color: rgba(var(--color-text), .5);
+    color: rgba(var(--color-text), 0.3);
     font-variant-numeric: oldstyle-nums;
 }
 
@@ -460,7 +460,7 @@ time span {
 /* Footer
    ====== */
 footer {
-    padding: 200px 0 calc(50px + env(safe-area-inset-bottom));
+    padding: 100px 0 calc(50px + env(safe-area-inset-bottom));
     flex-shrink: 0; /* For a sticky footer */
     font-size: 15px;
     font-weight: 500;
@@ -496,7 +496,7 @@ footer {
     padding-top: 0.5em;
     border-top: 1px solid rgba(var(--color-text), 0.1);
     text-align: center;
-    color: rgba(var(--color-text), 0.5);
+    color: rgba(var(--color-text), 0.3);
 }
 
 #resume blockquote {
@@ -545,17 +545,15 @@ footer {
     list-style: none;
 }
 
-#resume ul:first-of-type img {
-    opacity: 0.5;
+#resume ul:first-of-type svg {
+    opacity: 0.4;
     position: relative;
     top: 5px;
     margin-right: 3px;
 }
 
-@media (prefers-color-scheme: dark) {
-    #resume ul:first-of-type img {
-        filter: invert();
-    }
+#resume ul:first-of-type path {
+   fill: rgb(var(--color-text));
 }
 
 
@@ -586,7 +584,7 @@ footer {
 
 #work figcaption {
     font-size: 15px;
-    opacity: 0.5;
+    opacity: 0.3;
     font-style: italic;
     margin-top: 1em;
 }
