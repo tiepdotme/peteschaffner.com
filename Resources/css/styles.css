@@ -50,8 +50,8 @@ body {
     height: 100%; /* For a sticky footer */
     align-items: center;
     margin: 0 20px;
-    font-family: "Concourse T3", sans-serif;
-    line-height: 1.5;
+    font-family: "Ingeborg", serif;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased; /* Make the text look a little less chunky */
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility; /* Enables kerning and optional ligatures */
@@ -238,11 +238,6 @@ body:not(#words):not(.list) main, #words main article, .list main section {
     }
 }
 
-header > time:first-child {
-    display: block;
-    margin-top: 3em;
-}
-
 body article p:only-of-type:last-child {
     width: -moz-fit-content;
     width: fit-content;
@@ -298,11 +293,14 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.15;
 }
 
-h1 {
+h1, h2, h3 {
     font-family: "Concourse T7", sans-serif;
+}
+
+h1 {
     font-size: 2em;
     text-align: center;
-    margin: 0.67em 0 0.2em;
+    margin: 1em 0 0.9em;
 }
 
 h2, h3, h4, h5, h6 {
@@ -384,13 +382,17 @@ article > img {
 }
 
 time {
-    display: block;
-    margin-top: 1em;
+   display: block;
+   margin-top: 3em;
     font-size: 15px;
     font-family: "Concourse C4", sans-serif;
     text-transform: lowercase;
     color: rgba(var(--color-text), 0.3);
     font-variant-numeric: oldstyle-nums;
+}
+
+h1 + time {
+   margin-top: -2em;
 }
 
 time a, time a:hover, h1 > a, h1 > a:hover, h2 > a, h2 > a:hover {
@@ -430,10 +432,6 @@ time span {
 /* Words
    ======= */
    
-#words h1 {
-    font-size: 1.5em;
-}
-
 #words article, .list section {
     margin-bottom: 5px;
 }
@@ -443,6 +441,7 @@ time span {
 }
 
 .read-more {
+   font-family: "Concourse T4", sans-serif;
     font-size: 17px;
     color: rgb(var(--color-accent));
 }
@@ -477,7 +476,7 @@ footer {
 }
 
 #four-oh-four h1 {
-    margin-bottom: 0;
+    margin-bottom: 0.1em;
 }
 
 #four-oh-four main p {
@@ -548,7 +547,7 @@ footer {
 #resume ul:first-of-type svg {
     opacity: 0.4;
     position: relative;
-    top: 5px;
+    top: 8px;
     margin-right: 3px;
 }
 
@@ -583,9 +582,9 @@ footer {
 }
 
 #work figcaption {
+   font-family: "Concourse T4", sans-serif;
     font-size: 15px;
     opacity: 0.3;
-    font-style: italic;
     margin-top: 1em;
 }
 
