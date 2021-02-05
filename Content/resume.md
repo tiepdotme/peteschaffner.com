@@ -39,7 +39,7 @@ title: Résumé
 <header id="design-and-art">
 	<h3><a href="#design-and-art">Design & art</a></h3>
 </header>
-- Interface/interaction design, prototyping, animation
+- Interface/interaction/icon design, prototyping, animation
 - Sketch, Pixelmator [Pro], PaintCode
 - Xcode (Interface Builder, Playgrounds, SwiftUI Previews, LLDB, etc.), Origami Studio
 - Ceramics, typography
