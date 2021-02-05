@@ -7,6 +7,12 @@ title: Work
     <p>An assortment of icons made for various apps over the years. From the freeform shapes of Cheetah, to the subtle gradients and transparency of Yosemite, to the standardized squares and modeling of Big Sur, I've enjoyed drawing it all.</p>
     <figure>
         <picture>
+            <img src="/images/work/image2icon-icon.png" alt="Image2icon.app app icon">
+        </picture>
+        <figcaption><a href="https://img2icnsapp.com">Image2icon</a></figcaption>
+    </figure>
+    <figure>
+        <picture>
             <img src="/images/work/bear-icons.png" alt="Bear.app macOS app icons">
         </picture>
         <figcaption><a href="https://bear.app">Bear</a></figcaption>
@@ -19,7 +25,7 @@ title: Work
     </figure>
     <figure>
         <picture>
-            <img src="/images/work/chrome.png" alt="A Chrome for Mac icon replacement that looks at home on macOS 10.10+">
+            <img class="lazy" data-src="/images/work/chrome.png" alt="A Chrome for Mac icon replacement that looks at home on macOS 10.10+">
         </picture>
         <figcaption>A Chrome for Mac icon replacement that looks at home on macOS 10.10+</figcaption>
     </figure>
