@@ -369,6 +369,7 @@ hr {
 
 hr:after {
 	content: "⁂";
+	font-family: "Concourse T4";
 }
 
 blockquote {
