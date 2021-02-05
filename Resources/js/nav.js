@@ -7,10 +7,10 @@ setTimeout(function () {
 
 nav.onmouseover = function () {
 	if (!cancelAutoHide) cancelAutoHide = true;
-	
-	nav.classList.remove("collapsed");
-}
 
-nav.onmouseout = function ()  {
+	nav.classList.remove("collapsed");
+};
+
+nav.onmouseout = function () {
 	nav.classList.add("collapsed");
-}
+};
