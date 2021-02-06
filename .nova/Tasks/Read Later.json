@@ -6,5 +6,5 @@
     }
   },
   "identifier" : "6558FB47-1CC4-46E5-B8A8-4F07EADED3EA",
-  "openLogOnRun" : "finish"
+  "openLogOnRun" : "fail"
 }
