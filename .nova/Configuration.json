@@ -1,6 +1,9 @@
 {
   "editor.default_syntax" : "markdown",
   "index.enabled" : true,
+  "index.ignored_file_patterns" : [
+    "Resources\/resume-references"
+  ],
   "workspace.preview_type" : "custom",
   "workspace.preview_url" : "localhost:8000"
 }
