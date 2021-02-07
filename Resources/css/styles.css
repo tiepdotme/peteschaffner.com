@@ -127,7 +127,7 @@ footer {
 @media (prefers-color-scheme: dark) {
 	nav,
 	footer {
-		opacity: 0.3;
+		opacity: 0.4;
 	}
 }
 
