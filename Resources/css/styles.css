@@ -463,6 +463,7 @@ time span {
 }
 
 .footnotes {
+	font-family: "Concourse T4", sans-serif;
 	font-size: 15px;
 	color: rgba(var(--color-text), 0.5);
 	margin-top: 48px;
