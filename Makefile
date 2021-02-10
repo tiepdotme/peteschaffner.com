@@ -30,15 +30,4 @@ compile-drafts:
 publish:
 	@rm -rf .publish/Caches
 	@swift run PeteSchaffner
-	@mkdir tmp
-	@cp -r Output tmp/htdocs
-	@cd tmp && \
-		git init && \
-		git remote add gandi git+ssh://3643620@git.sd3.gpaas.net/peteschaffner.com.git && \
-		git add . && \
-		git commit -m 'build' && \
-		git push gandi master --force && \
-		ssh 3643620@git.sd3.gpaas.net deploy peteschaffner.com.git && \
-		ssh 3643620@git.sd3.gpaas.net clean peteschaffner.com.git && \
-		cd .. && \
-		rm -rf tmp
+	@[ -d "/home/pete" ] && rsync -avz --delete Output/ /home/pete/www/peteschaffner.com || rsync -avz --delete Output/ pete@155.133.130.170:~/www/peteschaffner.com/
