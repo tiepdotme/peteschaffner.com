@@ -2,7 +2,7 @@
   "actions" : {
     "build" : {
       "enabled" : true,
-      "script" : "make blog"
+      "script" : "#!\/bin\/sh\nmake blog"
     }
   },
   "identifier" : "ADE443BC-25FE-4015-9F8E-3A3DBFD8CA43",

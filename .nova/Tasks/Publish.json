@@ -1,0 +1,10 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\nmake publish"
+    }
+  },
+  "identifier" : "C22FCAE9-B3C0-487A-85AB-F560A447253C",
+  "openLogOnRun" : "fail"
+}
