@@ -9,9 +9,9 @@ import signal
 import subprocess
 
 # WebSocket Server
-wsServer = WebsocketServer(8080, host="0.0.0.0")
+wsServer = WebsocketServer(8001, host="0.0.0.0")
 def runWebSockServer():
-	print("WebSocket server started at localhost:8080")
+	print("WebSocket server started at localhost:8001")
 	wsServer.run_forever()
 
 # HTTP server
@@ -29,7 +29,7 @@ class HTTPHandler(http.server.SimpleHTTPRequestHandler):
 			# Construct response body
 			path = self.path + ("/index.html" if ".html" not in self.path else "")
 			html = Path("." + path).read_text()
-			html = html.replace("</body></html>", "<script>let ws = new WebSocket('ws://" + hostname + ":8080/'); ws.onmessage = function(e) {window.location.reload(true)}</script></body></html>")
+			html = html.replace("</body></html>", "<script>let ws = new WebSocket('ws://" + hostname + ":8001/'); ws.onmessage = function(e) {window.location.reload(true)}</script></body></html>")
 			
 			# Send the new HTML with injected live reload script
 			self.wfile.write(bytes(html, "utf8"))
