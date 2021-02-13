@@ -25,7 +25,7 @@ title: Work
     </figure>
     <figure>
         <picture>
-            <img class="lazy" data-src="/images/work/chrome.png" alt="A Chrome for Mac icon replacement that looks at home on macOS 10.10+">
+            <img src="/images/work/chrome.png" alt="A Chrome for Mac icon replacement that looks at home on macOS 10.10+">
         </picture>
         <figcaption>A Chrome for Mac icon replacement that looks at home on macOS 10.10+</figcaption>
     </figure>
