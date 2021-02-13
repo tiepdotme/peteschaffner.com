@@ -42,7 +42,7 @@ title: Résumé
 - Interface/interaction/icon design, prototyping, animation
 - Sketch, Pixelmator [Pro], PaintCode
 - Xcode (Interface Builder, Playgrounds, SwiftUI Previews, LLDB, etc.), Origami Studio
-- Ceramics, typography
+- Typography, ceramics
 
 <header id="programming-and-technical">
 	<h3><a href="#programming-and-technical">Programming & technical</a></h3>
