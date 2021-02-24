@@ -1,8 +1,8 @@
 {
   "identifier" : "0BA898AD-A26B-4659-B74C-8A649B311ACF",
   "localPath" : "Output",
-  "remotePath" : "\/home\/pete\/peteschaffner.com\/Output",
-  "remoteURL" : "https:\/\/test.peteschaffner.com",
+  "remotePath" : "\/home\/pete\/www\/peteschaffner.com",
+  "remoteURL" : "https:\/\/peteschaffner.com",
   "server" : "Warewolf",
-  "usesPublishing" : false
+  "usesPublishing" : true
 }
