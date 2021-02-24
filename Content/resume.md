@@ -54,15 +54,6 @@ title: Résumé
 - macOS, iOS, iPadOS, Unix
 
 ## Experience
-<header id="shinyfrog">
-<h3><a href="#shinyfrog">Shiny Frog</a></h3>
-<time datetime="P6Y">2020–Present</time>
-<h4>Designer & wannabe programmer</h4>
-</header>
-- [Bear](https://bear.app) interface
-- [Panda](https://bear.app/alpha) interface and website
-- [Image2icon](https://img2icnsapp.com) app icon
-
 <header id="google">
     <h3><a href="#google">Google</a></h3>
 	<time datetime="P6Y">2014–2020</time>
