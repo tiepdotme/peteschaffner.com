@@ -1,0 +1,17 @@
+name: Publish Website
+
+on:
+    push:
+        branches: [ master ]
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Start up SSH agent
+              run: eval "$(ssh-agent -s)"
+            - name: Add SSH key
+              run: ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
+            - name: Publish website
+              run: make publish
