@@ -15,7 +15,7 @@ jobs:
               run: |
                   mkdir -p ~/.ssh
                   ssh-keyscan 155.133.130.170 >> ~/.ssh/known_hosts
-                  eval "$(ssh-agent)"
+                  ssh-agent -a $SSH_AUTH_SOCK > /dev/null
                   ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
             - name: Publish website
               run: make publish
