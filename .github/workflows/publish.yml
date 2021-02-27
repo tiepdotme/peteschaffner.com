@@ -12,8 +12,6 @@ jobs:
             - name: Start up SSH agent
               run: eval "$(ssh-agent -s)"
             - name: Add SSH key
-              env:
-                  PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-              run: ssh-add - <<< "${PRIVATE_KEY}"
+              run: ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
             - name: Publish website
               run: make publish
