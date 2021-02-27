@@ -14,8 +14,8 @@ jobs:
             - name: Setup SSH key
               run: |
                   mkdir -p ~/.ssh
-                  ssh-keyscan github.com >> ~/.ssh/known_hosts
-                  ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+                  ssh-keyscan 155.133.130.170 >> ~/.ssh/known_hosts
+                  eval "$(ssh-agent)"
                   ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
             - name: Publish website
               run: make publish

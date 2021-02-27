@@ -28,7 +28,7 @@ compile-drafts:
 
 .PHONY: publish
 publish:
-	@ssh -o StrictHostKeyChecking=no pete@155.133.130.170 "cd ~/www/peteschaffner.com && \
+	@ssh pete@155.133.130.170 "cd ~/www/peteschaffner.com && \
 		rm -rf .publish/Caches && \
 		git pull --rebase && \
 		/opt/swift-5.3.3-RELEASE-ubuntu18.04/usr/bin/swift run PeteSchaffner"
