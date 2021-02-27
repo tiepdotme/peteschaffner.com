@@ -9,11 +9,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - name: Setup SSH key
+            - name: Publish website
               run: |
                   mkdir -p ~/.ssh
                   ssh-keyscan github.com >> ~/.ssh/known_hosts
                   eval "$(ssh-agent)"
                   ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
-            - name: Publish website
-              run: make publish
+                  make publish
