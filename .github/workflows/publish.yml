@@ -12,7 +12,7 @@ jobs:
             - name: Start up SSH agent
               run: eval "$(ssh-agent -s)"
             - name: Set shell
-              run: ssh-agent /bin/bash
+              run: exec ssh-agent bash
             - name: Add SSH key
               run: ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
             - name: Publish website
