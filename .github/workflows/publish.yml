@@ -7,17 +7,15 @@ on:
 jobs:
     publish:
         runs-on: ubuntu-latest
+        env:
+            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         steps:
             - uses: actions/checkout@v2
             - name: Setup SSH key
-              env:
-                  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
               run: |
                   mkdir -p ~/.ssh
                   ssh-keyscan github.com >> ~/.ssh/known_hosts
                   ssh-agent -a $SSH_AUTH_SOCK > /dev/null
                   ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
             - name: Publish website
-              env:
-                  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
               run: make publish
