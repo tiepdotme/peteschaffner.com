@@ -11,8 +11,8 @@ jobs:
             - uses: actions/checkout@v2
             - name: Start up SSH agent
               run: eval `ssh-agent -s`
-            # - name: Set shell
-            #   run: exec ssh-agent bash
+            - name: Set shell
+              run: ssh-agent bash
             - name: Add SSH key
               run: ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
             - name: Publish website
