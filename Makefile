@@ -9,9 +9,7 @@ build:
 
 .PHONY: serve
 serve:
-	@pip3 install websocket-server
-	@pip3 install watchgod
-	@python3 bin/server.py
+	@swift run PeteSchaffner --serve
 
 .PHONY: readlater
 readlater:

@@ -4,6 +4,63 @@ import Plot
 import Files
 import ShellOut
 
+final class Watcher {
+    private static let ignoredDirNames = ["Output"]
+
+    static var sources: [Path: DispatchSourceFileSystemObject] = [:]
+
+    private static var root: Path?
+
+    private static var watchCount = 0
+
+    static func watch(path: Path, isRoot: Bool = false, action: @escaping (() throws -> ())) throws {
+        if isRoot {
+            self.root = path
+            sources.removeAll()
+            watchCount += 1
+//            print("Watch count: \(watchCount)")
+        }
+        let pathURL = URL(fileURLWithPath: path.string)
+        guard !ignoredDirNames.contains(pathURL.lastPathComponent) else {
+            return
+        }
+        let fm = FileManager.default
+        if sources[path] == nil  {
+            let sourceDirDescrptr = open(path.string, O_EVTONLY)
+            guard sourceDirDescrptr != -1 else { return }
+            let eventSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: sourceDirDescrptr, eventMask: DispatchSource.FileSystemEvent.write, queue: nil)
+            eventSource.setEventHandler {
+                do {
+//                    print("Changed: \(pathURL.lastPathComponent)")
+                    try action()
+                    if let root = root {
+                        try watch(path: root, isRoot: true, action: action)
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+            eventSource.resume()
+            sources[path] = eventSource
+//            print("registered for \(path)")
+        }
+
+        let res = try pathURL.resourceValues(forKeys: [URLResourceKey.isDirectoryKey])
+        guard (res.isDirectory == true) else {
+            return
+        }
+
+        let contents = try fm.contentsOfDirectory(
+            at: URL(fileURLWithPath: path.string),
+            includingPropertiesForKeys: nil,
+            options: [.skipsHiddenFiles]
+        )
+        for item in contents {
+            try watch(path: Path(item.path), action: action)
+        }
+    }
+}
+
 struct PeteSchaffner: Website {
     enum SectionID: String, WebsiteSectionID {
         case words
@@ -21,17 +78,20 @@ struct PeteSchaffner: Website {
     var language: Language { .english }
     var imagePath: Path? { nil }
     var tagHTMLConfig: TagHTMLConfiguration? { nil }
+    // Used for putting in the live reload script
+    var hostname: String = try! shellOut(to: "hostname")
 }
 
 try PeteSchaffner().publish(using: [
     .copyResources(),
     .addMarkdownFiles(),
+    // Handle draft posts
     .if(CommandLine.arguments.contains("--compile-drafts"), .step(named: "Import blog drafts") { context in
         if let folder = try? context.folder(at: Path("Content/words/drafts")) {
             for file in folder.files {
                 let posts = context.sections[.words].items
                 let postIndex = posts.firstIndex(where: { file.path.contains($0.path.string) })!
-                
+
                 // File name
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd-HHmm"
@@ -39,7 +99,7 @@ try PeteSchaffner().publish(using: [
                 if let slug = posts[postIndex].metadata.slug {
                     fileName += "-\(slug)"
                 }
-                
+
                 // Frontmatter
                 formatter.dateFormat = "yyyy-MM-dd HH:mm"
                 var frontMatter = "---\ndate: \(formatter.string(from: file.modificationDate!))"
@@ -48,10 +108,10 @@ try PeteSchaffner().publish(using: [
                 } else {
                     frontMatter += "\n---"
                 }
-                
+
                 var content = try! file.readAsString()
                 content = frontMatter + "\n\n" + content.replacingOccurrences(of: "(?s)---.*---", with: "", options: .regularExpression)
-                
+
                 try! folder.createFile(at: "../\(fileName).md", contents: content.data(using: .utf8))
                 try! file.delete()
             }
@@ -72,17 +132,16 @@ try PeteSchaffner().publish(using: [
         }
     },
     .generateHTML(withTheme: .pete),
+    // Blog feed
     .generateRSSFeed(
         including: Set(arrayLiteral: PeteSchaffner.SectionID.words),
         config: .default
     ),
+    // Read later feed
     .generateRSSFeed(
         including: Set(arrayLiteral: PeteSchaffner.SectionID.readlater),
         config: .init(targetPath: .init("readlater.rss"))
     ),
-    .step(named: "Rename .htaccess") { context in
-        try context.outputFile(at: "htaccess").rename(to: ".htaccess")
-    },
     .step(named: "Sanitize feed") { context in
         do {
             let feedFile = try context.outputFile(at: "feed.rss")
@@ -96,11 +155,48 @@ try PeteSchaffner().publish(using: [
             let feedFile = try context.outputFile(at: "readlater.rss")
             try feedFile.write(
                 feedFile.readAsString()
-                                .replacingOccurrences(of: "<title>Pete Schaffner</title>", with: "<title>Read Later</title>")
-                                .replacingOccurrences(of: "<description>The personal site of Pete Schaffner</description>", with: "<description>Pete Schaffner's Reading List</description>")
+                    .replacingOccurrences(of: "<title>Pete Schaffner</title>", with: "<title>Read Later</title>")
+                    .replacingOccurrences(of: "<description>The personal site of Pete Schaffner</description>", with: "<description>Pete Schaffner's Reading List</description>")
             )
         } catch {
             print("No feed file found")
         }
     }
 ])
+
+if CommandLine.arguments.contains("--serve") {
+    signal(SIGINT, SIG_IGN)
+
+    let rootPath = Path(
+        URL(string: #file)!
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .absoluteString
+    )
+    let serverProcess = Process()
+    let sigintSource = DispatchSource.makeSignalSource(signal: SIGINT, queue: .main)
+    
+    sigintSource.setEventHandler {
+        serverProcess.terminate()
+        exit(0)
+    }
+    
+    sigintSource.resume()
+    
+    try Watcher.watch(path: rootPath, isRoot: true) {
+        try shellOut(
+            to: "swift run",
+            at: rootPath.string
+        )
+    }
+    
+    try shellOut(
+        to: "python -m SimpleHTTPServer 8000",
+        at: rootPath.appendingComponent("Output").string,
+        process: serverProcess
+    )
+    
+    dispatchMain()
+}
+
