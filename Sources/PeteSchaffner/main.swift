@@ -3,64 +3,9 @@ import Publish
 import Plot
 import Files
 import ShellOut
+
+#if !os(Linux)
 import Network
-
-final class Watcher {
-    private static let ignoredDirNames = ["Output", "resume-references"]
-
-    static var sources: [Path: DispatchSourceFileSystemObject] = [:]
-
-    private static var root: Path?
-
-    private static var watchCount = 0
-
-    static func watch(path: Path, isRoot: Bool = false, action: @escaping (() throws -> ())) throws {
-        if isRoot {
-            self.root = path
-            sources.removeAll()
-            watchCount += 1
-//            print("Watch count: \(watchCount)")
-        }
-        let pathURL = URL(fileURLWithPath: path.string)
-        guard !ignoredDirNames.contains(pathURL.lastPathComponent) else {
-            return
-        }
-        let fm = FileManager.default
-        if sources[path] == nil  {
-            let sourceDirDescrptr = open(path.string, O_EVTONLY)
-            guard sourceDirDescrptr != -1 else { return }
-            let eventSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: sourceDirDescrptr, eventMask: DispatchSource.FileSystemEvent.write, queue: nil)
-            eventSource.setEventHandler {
-                do {
-//                    print("Changed: \(pathURL.lastPathComponent)")
-                    try action()
-                    if let root = root {
-                        try watch(path: root, isRoot: true, action: action)
-                    }
-                } catch {
-                    print(error)
-                }
-            }
-            eventSource.resume()
-            sources[path] = eventSource
-//            print("registered for \(path)")
-        }
-
-        let res = try pathURL.resourceValues(forKeys: [URLResourceKey.isDirectoryKey])
-        guard (res.isDirectory == true) else {
-            return
-        }
-
-        let contents = try fm.contentsOfDirectory(
-            at: URL(fileURLWithPath: path.string),
-            includingPropertiesForKeys: nil,
-            options: [.skipsHiddenFiles]
-        )
-        for item in contents {
-            try watch(path: Path(item.path), action: action)
-        }
-    }
-}
 
 final class WebSocketServer {
     let port: NWEndpoint.Port
@@ -224,6 +169,64 @@ class WebSocketServerConnection {
     }
 }
 
+final class Watcher {
+    private static let ignoredDirNames = ["Output", "resume-references"]
+
+    static var sources: [Path: DispatchSourceFileSystemObject] = [:]
+
+    private static var root: Path?
+
+    private static var watchCount = 0
+
+    static func watch(path: Path, isRoot: Bool = false, action: @escaping (() throws -> ())) throws {
+        if isRoot {
+            self.root = path
+            sources.removeAll()
+            watchCount += 1
+//            print("Watch count: \(watchCount)")
+        }
+        let pathURL = URL(fileURLWithPath: path.string)
+        guard !ignoredDirNames.contains(pathURL.lastPathComponent) else {
+            return
+        }
+        let fm = FileManager.default
+        if sources[path] == nil  {
+            let sourceDirDescrptr = open(path.string, O_EVTONLY)
+            guard sourceDirDescrptr != -1 else { return }
+            let eventSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: sourceDirDescrptr, eventMask: DispatchSource.FileSystemEvent.write, queue: nil)
+            eventSource.setEventHandler {
+                do {
+//                    print("Changed: \(pathURL.lastPathComponent)")
+                    try action()
+                    if let root = root {
+                        try watch(path: root, isRoot: true, action: action)
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+            eventSource.resume()
+            sources[path] = eventSource
+//            print("registered for \(path)")
+        }
+
+        let res = try pathURL.resourceValues(forKeys: [URLResourceKey.isDirectoryKey])
+        guard (res.isDirectory == true) else {
+            return
+        }
+
+        let contents = try fm.contentsOfDirectory(
+            at: URL(fileURLWithPath: path.string),
+            includingPropertiesForKeys: nil,
+            options: [.skipsHiddenFiles]
+        )
+        for item in contents {
+            try watch(path: Path(item.path), action: action)
+        }
+    }
+}
+#endif
+
 struct PeteSchaffner: Website {
     enum SectionID: String, WebsiteSectionID {
         case words
@@ -327,6 +330,7 @@ try PeteSchaffner().publish(using: [
     }
 ])
 
+#if !os(Linux)
 if CommandLine.arguments.contains("--serve") {
     signal(SIGINT, SIG_IGN)
 
@@ -347,17 +351,21 @@ if CommandLine.arguments.contains("--serve") {
     
     sigintSource.resume()
     
+    #if !os(Linux)
     let wsServer = WebSocketServer(port: 8001)
     try! wsServer.start()
+    #endif
     
     try Watcher.watch(path: rootPath, isRoot: true) {
         try shellOut(
             to: "swift run",
             at: rootPath.string
         )
+        #if !os(Linux)
         for connection in wsServer.connectionsByID.values {
             connection.send(data: Data("reload".utf8))
         }
+        #endif
     }
     
     try shellOut(
@@ -369,4 +377,4 @@ if CommandLine.arguments.contains("--serve") {
     
     dispatchMain()
 }
-
+#endif
