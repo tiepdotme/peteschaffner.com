@@ -3,9 +3,10 @@ import Publish
 import Plot
 import Files
 import ShellOut
+import Network
 
 final class Watcher {
-    private static let ignoredDirNames = ["Output"]
+    private static let ignoredDirNames = ["Output", "resume-references"]
 
     static var sources: [Path: DispatchSourceFileSystemObject] = [:]
 
@@ -57,6 +58,168 @@ final class Watcher {
         )
         for item in contents {
             try watch(path: Path(item.path), action: action)
+        }
+    }
+}
+
+final class WebSocketServer {
+    let port: NWEndpoint.Port
+    let listener: NWListener
+    let parameters: NWParameters
+
+    var connectionsByID: [Int: WebSocketServerConnection] = [:]
+
+    init(port: UInt16) {
+        self.port = NWEndpoint.Port(rawValue: port)!
+        parameters = NWParameters(tls: nil)
+        parameters.allowLocalEndpointReuse = true
+        parameters.includePeerToPeer = true
+        let wsOptions = NWProtocolWebSocket.Options()
+        wsOptions.autoReplyPing = true
+        parameters.defaultProtocolStack.applicationProtocols.insert(wsOptions, at: 0)
+        listener = try! NWListener(using: parameters, on: self.port)
+    }
+
+    func start() throws {
+        print("Server starting...")
+        listener.stateUpdateHandler = self.stateDidChange(to:)
+        listener.newConnectionHandler = self.didAccept(nwConnection:)
+        listener.start(queue: .main)
+    }
+
+    func stateDidChange(to newState: NWListener.State) {
+        switch newState {
+        case .ready:
+            print("Server ready.")
+        case .failed(let error):
+            print("Server failure, error: \(error.localizedDescription)")
+            exit(EXIT_FAILURE)
+        default:
+            break
+        }
+    }
+
+    private func didAccept(nwConnection: NWConnection) {
+        let connection = WebSocketServerConnection(nwConnection: nwConnection)
+        connectionsByID[connection.id] = connection
+        
+        connection.start()
+        
+        connection.didStopCallback = { err in
+            if let err = err {
+                print(err)
+            }
+            self.connectionDidStop(connection)
+        }
+        
+        print("server did open connection \(connection.id)")
+    }
+
+    private func connectionDidStop(_ connection: WebSocketServerConnection) {
+        self.connectionsByID.removeValue(forKey: connection.id)
+        print("server did close connection \(connection.id)")
+    }
+
+    private func stop() {
+        self.listener.stateUpdateHandler = nil
+        self.listener.newConnectionHandler = nil
+        self.listener.cancel()
+        for connection in self.connectionsByID.values {
+            connection.didStopCallback = nil
+            connection.stop()
+        }
+        self.connectionsByID.removeAll()
+    }
+}
+
+class WebSocketServerConnection {
+    private static var nextID: Int = 0
+    let connection: NWConnection
+    let id: Int
+
+    init(nwConnection: NWConnection) {
+        connection = nwConnection
+        id = WebSocketServerConnection.nextID
+        WebSocketServerConnection.nextID += 1
+    }
+    
+    deinit {
+        print("deinit")
+    }
+
+    var didStopCallback: ((Error?) -> Void)? = nil
+    var didReceive: ((Data) -> ())? = nil
+
+    func start() {
+        print("connection \(id) will start")
+        connection.stateUpdateHandler = self.stateDidChange(to:)
+        setupReceive()
+        connection.start(queue: .main)
+    }
+
+    private func stateDidChange(to state: NWConnection.State) {
+        switch state {
+        case .waiting(let error):
+            connectionDidFail(error: error)
+        case .ready:
+            print("connection \(id) ready")
+        case .failed(let error):
+            connectionDidFail(error: error)
+        default:
+            break
+        }
+    }
+
+    private func setupReceive() {
+        connection.receiveMessage() { (data, context, isComplete, error) in
+            if let data = data, let context = context, !data.isEmpty {
+                self.handleMessage(data: data, context: context)
+            }
+            if let error = error {
+                self.connectionDidFail(error: error)
+            } else {
+                self.setupReceive()
+            }
+        }
+    }
+    
+    func handleMessage(data: Data, context: NWConnection.ContentContext) {
+        didReceive?(data)
+    }
+
+
+    func send(data: Data) {
+        let metaData = NWProtocolWebSocket.Metadata(opcode: .binary)
+        let context = NWConnection.ContentContext (identifier: "context", metadata: [metaData])
+        self.connection.send(content: data, contentContext: context, isComplete: true, completion: .contentProcessed( { error in
+            if let error = error {
+                self.connectionDidFail(error: error)
+                return
+            }
+            print("connection \(self.id) did send, data: \(data as NSData)")
+        }))
+    }
+
+    func stop() {
+        print("connection \(id) will stop")
+    }
+
+    private func connectionDidFail(error: Error) {
+        print("connection \(id) did fail, error: \(error)")
+        stop(error: error)
+    }
+
+    private func connectionDidEnd() {
+        print("connection \(id) did end")
+        stop(error: nil)
+    }
+
+    private func stop(error: Error?) {
+        connection.stateUpdateHandler = nil
+        connection.cancel()
+        if let didStopCallback = didStopCallback {
+            self.didStopCallback = nil
+            didStopCallback(error)
         }
     }
 }
@@ -184,18 +347,25 @@ if CommandLine.arguments.contains("--serve") {
     
     sigintSource.resume()
     
+    let wsServer = WebSocketServer(port: 8001)
+    try! wsServer.start()
+    
     try Watcher.watch(path: rootPath, isRoot: true) {
         try shellOut(
             to: "swift run",
             at: rootPath.string
         )
+        for connection in wsServer.connectionsByID.values {
+            connection.send(data: Data("reload".utf8))
+        }
     }
     
     try shellOut(
-        to: "python -m SimpleHTTPServer 8000",
-        at: rootPath.appendingComponent("Output").string,
+        to: "ruby -run -ehttpd Output -p8000",
+        at: rootPath.string,
         process: serverProcess
     )
+    
     
     dispatchMain()
 }

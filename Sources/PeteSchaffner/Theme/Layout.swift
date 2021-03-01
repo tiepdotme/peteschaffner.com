@@ -131,12 +131,9 @@ func layout(for location: Location, context: PublishingContext<PeteSchaffner>, b
 //                .raw(try! context.file(at: "Resources/images/appearance.svg").readAsString())
             ),
             .script(.raw(try! context.file(at: "Resources/js/nav.js").readAsString())),
-            .if(location.path.absoluteString == "/work", .script(.raw(try! context.file(at: "Resources/js/work.js").readAsString()))),
-            .if(
-                CommandLine.arguments.contains("--serve"),
-                .script(.raw("let ws = new WebSocket('ws://\(context.site.hostname).local:8080/'); ws.onmessage = function(e) { window.location.reload(true); };"
-                ))
-            )
+            .script(.raw("let ws = new WebSocket('ws://\(context.site.hostname).local:8001/'); ws.onmessage = function(e) { window.location.reload(true); };"
+            )),
+            .if(location.path.absoluteString == "/work", .script(.raw(try! context.file(at: "Resources/js/work.js").readAsString())))
         )
     )
 }
