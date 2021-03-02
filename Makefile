@@ -9,7 +9,7 @@ build:
 
 .PHONY: serve
 serve:
-	@swift run PeteSchaffner --serve --livereload
+	@swift run PeteSchaffner --serve
 
 .PHONY: readlater
 readlater:

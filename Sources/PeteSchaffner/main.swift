@@ -312,7 +312,7 @@ try PeteSchaffner().publish(using: [
         config: .init(targetPath: .init("readlater.rss"))
     ),
     .if(
-        CommandLine.arguments.contains("--livereload"),
+        CommandLine.arguments.contains("--livereload") || CommandLine.arguments.contains("--serve"),
         .step(named: "Inject live reload script") { context in
             let files = try context.outputFolder(at: "").files.recursive
             
