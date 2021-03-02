@@ -358,7 +358,7 @@ if CommandLine.arguments.contains("--serve") {
     
     try Watcher.watch(path: rootPath, isRoot: true) {
         try shellOut(
-            to: "swift run",
+            to: "swift run PeteSchaffner --livereload",
             at: rootPath.string
         )
         #if !os(Linux)
