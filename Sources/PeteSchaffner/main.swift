@@ -244,45 +244,48 @@ struct PeteSchaffner: Website {
     var language: Language { .english }
     var imagePath: Path? { nil }
     var tagHTMLConfig: TagHTMLConfiguration? { nil }
-    // Used for putting in the live reload script
-    var hostname: String = try! shellOut(to: "hostname")
 }
+
+fileprivate let hostname = try! shellOut(to: "hostname")
 
 try PeteSchaffner().publish(using: [
     .copyResources(),
     .addMarkdownFiles(),
     // Handle draft posts
-    .if(CommandLine.arguments.contains("--compile-drafts"), .step(named: "Import blog drafts") { context in
-        if let folder = try? context.folder(at: Path("Content/words/drafts")) {
-            for file in folder.files {
-                let posts = context.sections[.words].items
-                let postIndex = posts.firstIndex(where: { file.path.contains($0.path.string) })!
+    .if(
+        CommandLine.arguments.contains("--compile-drafts"),
+        .step(named: "Import blog drafts") { context in
+            if let folder = try? context.folder(at: Path("Content/words/drafts")) {
+                for file in folder.files {
+                    let posts = context.sections[.words].items
+                    let postIndex = posts.firstIndex(where: { file.path.contains($0.path.string) })!
 
-                // File name
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd-HHmm"
-                var fileName = formatter.string(from: file.modificationDate!)
-                if let slug = posts[postIndex].metadata.slug {
-                    fileName += "-\(slug)"
+                    // File name
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd-HHmm"
+                    var fileName = formatter.string(from: file.modificationDate!)
+                    if let slug = posts[postIndex].metadata.slug {
+                        fileName += "-\(slug)"
+                    }
+
+                    // Frontmatter
+                    formatter.dateFormat = "yyyy-MM-dd HH:mm"
+                    var frontMatter = "---\ndate: \(formatter.string(from: file.modificationDate!))"
+                    if let link = posts[postIndex].metadata.link {
+                        frontMatter += "\nlink: \(link)\n---"
+                    } else {
+                        frontMatter += "\n---"
+                    }
+
+                    var content = try! file.readAsString()
+                    content = frontMatter + "\n\n" + content.replacingOccurrences(of: "(?s)---.*---", with: "", options: .regularExpression)
+
+                    try! folder.createFile(at: "../\(fileName).md", contents: content.data(using: .utf8))
+                    try! file.delete()
                 }
-
-                // Frontmatter
-                formatter.dateFormat = "yyyy-MM-dd HH:mm"
-                var frontMatter = "---\ndate: \(formatter.string(from: file.modificationDate!))"
-                if let link = posts[postIndex].metadata.link {
-                    frontMatter += "\nlink: \(link)\n---"
-                } else {
-                    frontMatter += "\n---"
-                }
-
-                var content = try! file.readAsString()
-                content = frontMatter + "\n\n" + content.replacingOccurrences(of: "(?s)---.*---", with: "", options: .regularExpression)
-
-                try! folder.createFile(at: "../\(fileName).md", contents: content.data(using: .utf8))
-                try! file.delete()
             }
         }
-    }),
+    ),
     .removeAllItems(in: .words, matching: .init { (item) -> Bool in
         item.path.string.contains("drafts/")
     }),
@@ -307,6 +310,20 @@ try PeteSchaffner().publish(using: [
     .generateRSSFeed(
         including: Set(arrayLiteral: PeteSchaffner.SectionID.readlater),
         config: .init(targetPath: .init("readlater.rss"))
+    ),
+    .if(
+        CommandLine.arguments.contains("--livereload"),
+        .step(named: "Inject live reload script") { context in
+            let files = try context.outputFolder(at: "").files.recursive
+            
+            let htmlFiles = files.filter { file in
+                file.extension == "html" && !file.path.contains("resume-references")
+            }
+            
+            try htmlFiles.forEach { file in
+                try file.write(file.readAsString().replacingOccurrences(of: "</body></html>", with: "<script>let ws = new WebSocket('ws://" + hostname + ":8001/'); ws.onmessage = function(e) {window.location.reload(true)}</script></body></html>"))
+            }
+        }
     ),
     .step(named: "Sanitize feed") { context in
         do {
