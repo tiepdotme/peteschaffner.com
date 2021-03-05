@@ -368,21 +368,18 @@ if CommandLine.arguments.contains("--serve") {
     
     sigintSource.resume()
     
-    #if !os(Linux)
     let wsServer = WebSocketServer(port: 8001)
     try! wsServer.start()
-    #endif
     
     try Watcher.watch(path: rootPath, isRoot: true) {
         try shellOut(
             to: "swift run PeteSchaffner --livereload",
             at: rootPath.string
         )
-        #if !os(Linux)
+
         for connection in wsServer.connectionsByID.values {
             connection.send(data: Data("reload".utf8))
         }
-        #endif
     }
     
     try shellOut(
