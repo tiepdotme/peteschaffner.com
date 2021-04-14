@@ -28,44 +28,23 @@ fileprivate let hostname = try! shellOut(to: "hostname")
 try PeteSchaffner().publish(using: [
     .copyResources(),
     .addMarkdownFiles(),
-    // Handle draft posts
-    .if(
-        CommandLine.arguments.contains("--compile-drafts"),
-        .step(named: "Import blog drafts") { context in
-            if let folder = try? context.folder(at: Path("Content/words/drafts")) {
-                for file in folder.files {
-                    let posts = context.sections[.words].items
-                    let postIndex = posts.firstIndex(where: { file.path.contains($0.path.string) })!
-
-                    // File name
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "yyyy-MM-dd-HHmm"
-                    var fileName = formatter.string(from: file.modificationDate!)
-                    if let slug = posts[postIndex].metadata.slug {
-                        fileName += "-\(slug)"
-                    }
-
-                    // Frontmatter
-                    formatter.dateFormat = "yyyy-MM-dd HH:mm"
-                    var frontMatter = "---\ndate: \(formatter.string(from: file.modificationDate!))"
-                    if let link = posts[postIndex].metadata.link {
-                        frontMatter += "\nlink: \(link)\n---"
-                    } else {
-                        frontMatter += "\n---"
-                    }
-
-                    var content = try! file.readAsString()
-                    content = frontMatter + "\n\n" + content.replacingOccurrences(of: "(?s)---.*---", with: "", options: .regularExpression)
-
-                    try! folder.createFile(at: "../\(fileName).md", contents: content.data(using: .utf8))
-                    try! file.delete()
-                }
+    .step(named: "Fix blog post filenames") { context in
+        let items = context.sections[PeteSchaffner.SectionID.words].items
+        for item in items {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd-HHmm"
+            
+            // Create new filename based on item's date and optional slug metadata
+            var fileName = formatter.string(from: item.date)
+            if let slug = item.metadata.slug {
+                fileName += "-\(slug)"
             }
+            
+            // Rename file
+            try context.file(at: "Content/\(item.path).md").rename(to: fileName)
         }
-    ),
-    .removeAllItems(in: .words, matching: .init { (item) -> Bool in
-        item.path.string.contains("drafts/")
-    }),
+        
+    },
     .sortItems(by: \.date, order: .descending),
     .mutateAllItems { item in
         // Remove the title for title-less posts since we handle setting a friendly date-based document title in the theme.

@@ -1,5 +1,6 @@
 ---
 date: 2020-02-23 01:13
+slug: a-new-year-a-new-site
 ---
 
 # A New Year, a New Site

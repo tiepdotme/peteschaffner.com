@@ -1,6 +1,7 @@
 ---
 date: 2019-05-24 14:57
 link: https://inessential.com/2018/04/15/the_view_source_web
+slug: the-view-source-web
 ---
 
 # "The View-Source Web"
