@@ -43,8 +43,9 @@ try PeteSchaffner().publish(using: [
             // Rename file
             try context.file(at: "Content/\(item.path).md").rename(to: fileName)
         }
-        
     },
+    .removeAllItems(),
+    .addMarkdownFiles(),
     .sortItems(by: \.date, order: .descending),
     .mutateAllItems { item in
         // Remove the title for title-less posts since we handle setting a friendly date-based document title in the theme.
