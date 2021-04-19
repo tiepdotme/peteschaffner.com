@@ -2,7 +2,6 @@ import Foundation
 import Publish
 import Plot
 import ShellOut
-import Files
 
 struct PeteSchaffner: Website {
     enum SectionID: String, WebsiteSectionID {
@@ -23,7 +22,7 @@ struct PeteSchaffner: Website {
     var tagHTMLConfig: TagHTMLConfiguration? { nil }
 }
 
-fileprivate let hostname = try! shellOut(to: "hostname")
+private let hostname = try! shellOut(to: "hostname")
 
 try PeteSchaffner().publish(using: [
     .copyResources(),
@@ -47,22 +46,18 @@ try PeteSchaffner().publish(using: [
     .removeAllItems(),
     .addMarkdownFiles(),
     .sortItems(by: \.date, order: .descending),
-    .mutateAllItems { item in
-        // Remove the title for title-less posts since we handle setting a friendly date-based document title in the theme.
-        item.title = item.path.string.contains(item.title) ? "" : item.title
-        // Remove redundant title from content as that is handled in the theme and via the RSS generator
-        item.body = item.body.deletingOccurrences(of: "<h1>.*</h1>")
-        // Set RSS item link to
-        if let link = item.metadata.link {
-            item.rssProperties.link = URL(string: link)
-        }
-    },
     .generateHTML(withTheme: .pete),
     // Blog feed
     .generateRSSFeed(
         including: Set(arrayLiteral: PeteSchaffner.SectionID.words),
         config: .default
     ),
+    // Set read-later item links to external source
+    .mutateAllItems(in: PeteSchaffner.SectionID.readlater) { item in
+        if let link = item.metadata.link {
+            item.rssProperties.link = URL(string: link)
+        }
+    },
     // Read later feed
     .generateRSSFeed(
         including: Set(arrayLiteral: PeteSchaffner.SectionID.readlater),
