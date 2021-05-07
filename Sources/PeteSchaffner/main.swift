@@ -26,6 +26,10 @@ private let hostname = try! shellOut(to: "hostname")
 
 try PeteSchaffner().publish(using: [
     .copyResources(),
+    .step(named: "Add pages") { context in
+        context.addPage(PeteSchaffner.resumePage(context: context))
+        context.addPage(PeteSchaffner.workPage(context: context))
+    },
     .addMarkdownFiles(),
     .step(named: "Fix blog post filenames") { context in
         let items = context.sections[PeteSchaffner.SectionID.words].items

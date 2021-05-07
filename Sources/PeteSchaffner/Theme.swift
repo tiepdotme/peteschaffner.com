@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Peter Schaffner on 17/02/2020.
-//
-
 import Foundation
 import Publish
 import Plot
@@ -294,13 +287,13 @@ extension Theme where Site == PeteSchaffner {
     }
 }
 
-private extension Node where Context: HTML.BodyContext {
+extension Node where Context: HTML.BodyContext {
     static func time(_ nodes: Node<HTML.BodyContext>...) -> Node {
         .element(named: "time", nodes: nodes)
     }
 }
 
-extension Content.Body {
+private extension Content.Body {
     func deletingOccurrences(of string: String) -> Self {
         Self(html: html.replacingOccurrences(
             of: string,

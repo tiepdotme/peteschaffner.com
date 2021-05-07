@@ -616,6 +616,7 @@ footer {
 #resume ul:first-of-type {
 	width: fit-content;
 	margin: 0 auto;
+	margin-top: 4.5em;
 	padding: 0;
 	list-style: none;
 }
@@ -625,6 +626,12 @@ footer {
 	position: relative;
 	top: 5px;
 	margin-right: 3px;
+}
+
+@media (max-width: 600px) {
+	#resume ul:first-of-type svg {
+		top: 8px;
+	}
 }
 
 #resume ul:first-of-type path {
