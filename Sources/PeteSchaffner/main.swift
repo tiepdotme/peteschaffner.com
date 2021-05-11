@@ -2,6 +2,7 @@ import Foundation
 import Publish
 import Plot
 import ShellOut
+import Files
 
 struct PeteSchaffner: Website {
     enum SectionID: String, WebsiteSectionID {
@@ -24,6 +25,27 @@ struct PeteSchaffner: Website {
 
 private let hostname = try! shellOut(to: "hostname")
 
+// Copy resource files over without building for faster reloads
+if CommandLine.arguments.contains("--copyResources") {
+	if let root = URL(string: #file)?.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent() {
+		let outputFolder = try Folder(path: root.appendingPathComponent("Output", isDirectory: true).absoluteString)
+		let resourcesFolder = try Folder(path: root.appendingPathComponent("Resources", isDirectory: true).absoluteString)
+
+		for folder in resourcesFolder.subfolders {
+			try outputFolder.subfolder(named: folder.name).delete()
+			try folder.copy(to: outputFolder)
+		}
+
+		for file in resourcesFolder.files {
+			try outputFolder.file(named: file.name).delete()
+			try file.copy(to: outputFolder)
+		}
+	}
+
+	exit(EXIT_SUCCESS)
+}
+
+// Build whole site
 try PeteSchaffner().publish(using: [
     .copyResources(),
     .step(named: "Add pages") { context in
@@ -128,9 +150,14 @@ if CommandLine.arguments.contains("--serve") {
     let wsServer = WebSocketServer(port: 8001)
     try! wsServer.start()
     
-    try Watcher.watch(path: rootPath, isRoot: true) {
+    try Watcher.watch(path: rootPath, isRoot: true) { url in
+		var buildCommand = "swift run PeteSchaffner "
+
+		buildCommand += url.pathComponents.contains("Resources") ? "--copyResources" : "--livereload"
+		print(buildCommand)
+
         try shellOut(
-            to: "swift run PeteSchaffner --livereload",
+            to: buildCommand,
             at: rootPath.string
         )
 

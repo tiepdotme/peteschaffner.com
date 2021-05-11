@@ -11,7 +11,7 @@ final class Watcher {
 
     private static var watchCount = 0
 
-    static func watch(path: Path, isRoot: Bool = false, action: @escaping (() throws -> ())) throws {
+	static func watch(path: Path, isRoot: Bool = false, action: @escaping ((URL) throws -> ())) throws {
         if isRoot {
             self.root = path
             sources.removeAll()
@@ -30,7 +30,7 @@ final class Watcher {
             eventSource.setEventHandler {
                 do {
 //                    print("Changed: \(pathURL.lastPathComponent)")
-                    try action()
+                    try action(pathURL)
                     if let root = root {
                         try watch(path: root, isRoot: true, action: action)
                     }
