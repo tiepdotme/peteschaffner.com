@@ -157,22 +157,42 @@ nav.collapsed::before {
 	z-index: 0;
 }
 
-.avatar-dark {
-	display: none;
+#avatar path {
+	fill: rgb(var(--color-text));
+}
+
+#avatar-left {
+	opacity: 0.03;
+}
+
+#avatar-cheek {
+	opacity: 1;
+}
+
+#avatar-right, nav .collapsed #avatar-cheek {
+	opacity: 0;
 }
 
 @media (prefers-color-scheme: dark) {
-	.avatar-light {
-		display: none;
+	#avatar-outline {
+		opacity: 0;
 	}
 
-	.avatar-dark {
-		display: inline;
+	#avatar-left {
+		opacity: 0.7;
 	}
-}
 
-#avatar path {
-	fill: rgb(var(--color-text));
+	#avatar-right {
+		opacity: 0.9;
+	}
+
+	#avatar-accessory {
+		opacity: 0.4;
+	}
+
+	#avatar-cheek {
+		opacity: 0;
+	}
 }
 
 @media (max-width: 600px) {
