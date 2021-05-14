@@ -1,4 +1,4 @@
-# Hi, I'm Pete
+# Hello
 
 I hail from Indiana, but live in France with my [wife](https://lauraschaffner.com) and daughter, where I wrangle pixels at [Shiny Frog](http://shinyfrog.net). I love type, software, and pottery.
 
