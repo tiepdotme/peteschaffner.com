@@ -23,8 +23,7 @@ extension Theme where Site == PeteSchaffner {
                             !item.path.string.contains(item.title),
                             .h1(
                                 .a(
-                                    // `item.path.string` returns an extra root path fragment (/words/words/<post>), yet creating a `Path` from the same string fixes things 🤷‍♂️
-                                    .href(Path(item.metadata.link ?? item.path.string)),
+                                    .href(item.metadata.link ?? item.path.absoluteString),
                                     .text(item.title),
                                     .if(
                                         item.metadata.link != nil,
