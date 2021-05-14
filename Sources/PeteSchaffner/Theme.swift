@@ -116,7 +116,7 @@ extension Theme where Site == PeteSchaffner {
                 avatarName = ".words"
             case "/readlater":
                 pageID = "words"
-                avatarName = ".private"
+                avatarName = ""
             case let str where str.contains("/words"):
                 pageID = ""
                 avatarName = ".words"
