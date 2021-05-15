@@ -19,7 +19,7 @@ readlater:
 blog:
 	@touch $(POST_FILE)
 	@echo "---\ndate: $(POST_DATE) $(POST_META_TIME)\n---\n" >> $(POST_FILE)
-	
+
 .PHONY: compile-drafts
 compile-drafts:
 	swift run PeteSchaffner --compile-drafts
@@ -29,4 +29,4 @@ publish:
 	@ssh pete@155.133.130.170 "cd ~/www/peteschaffner.com && \
 		rm -rf .publish/Caches && \
 		git pull --rebase && \
-		/opt/swift-5.3.3-RELEASE-ubuntu18.04/usr/bin/swift run PeteSchaffner"
+		/opt/swift-5.4-RELEASE-ubuntu18.04/usr/bin/swift run PeteSchaffner"
