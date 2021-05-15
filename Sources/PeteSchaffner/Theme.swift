@@ -7,14 +7,14 @@ extension Theme where Site == PeteSchaffner {
     static var pete: Self {
         Theme(htmlFactory: PeteHTMLFactory())
     }
-    
+
     private struct PeteHTMLFactory: HTMLFactory {
         func makeIndexHTML(for index: Index, context: PublishingContext<PeteSchaffner>) throws -> HTML {
             let body = Content.Body(node: .div(.contentBody(index.body)))
-                        
+
             return layout(for: index, context: context, body: body)
         }
-        
+
         func makeSectionHTML(for section: Section<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
             let body = Content.Body(node: .forEach(section.items) { item in
                 .article(
@@ -55,10 +55,10 @@ extension Theme where Site == PeteSchaffner {
                     )
                 )
             })
-            
+
             return layout(for: section, context: context, body: body)
         }
-        
+
         func makeItemHTML(for item: Item<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
             let body = Content.Body(node: .article(
                 .header(
@@ -90,20 +90,20 @@ extension Theme where Site == PeteSchaffner {
                         .deletingOccurrences(of: "<h1>.*</h1>")
                 )
             ))
-            
+
             return layout(for: item, context: context, body: body)
         }
-        
+
         func makePageHTML(for page: Page, context: PublishingContext<PeteSchaffner>) throws -> HTML {
             let body = Content.Body(node: .div(.contentBody(page.body)))
-            
+
             return layout(for: page, context: context, body: body)
         }
-        
+
         func makeTagListHTML(for page: TagListPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? { nil }
-        
+
         func makeTagDetailsHTML(for page: TagDetailsPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? { nil }
-        
+
         private func layout(for location: Location, context: PublishingContext<PeteSchaffner>, body: Content.Body) -> HTML {
             var body = body
             var pageID: String
@@ -130,19 +130,19 @@ extension Theme where Site == PeteSchaffner {
                 pageID = "home"
                 avatarName = ""
             }
-            
+
             if location.title == "Four Oh Four!" {
                 pageID = "four-oh-four"
                 avatarName = ".404"
             }
-            
+
             switch pageID {
             case "words", "work":
                 pageClass = "list"
             default:
                 pageClass = ""
             }
-            
+
             // Process footnotes if they exist
             if let file = try? context.file(at: "Content/\(location.path).md") {
                 var totalOffset = 0
@@ -152,33 +152,33 @@ extension Theme where Site == PeteSchaffner {
                 let footnoteReferenceRegex = try! NSRegularExpression(pattern: #"(?<=\w)\[\^(.+?)\]"#)
                 let parser = MarkdownParser()
                 let footnoteReferenceMatches = footnoteReferenceRegex.matches(in: html, options: [], range: NSRange(html.startIndex..<html.endIndex, in: html))
-                
+
                 footnoteReferenceMatches.enumerated().forEach { index, match in
                     let footnoteNumber = String(index + 1)
                     let footnoteSuperscript = footnoteNumber.compactMap {
                         superscriptChars[$0.description]
                     }.joined()
                     let footnoteReference = Node.element(named: "sup", nodes: [Node.a(.href("#fn\(footnoteNumber)"), .id("fnr\(footnoteNumber)"), .attribute(named: "title", value: "See footnote"), .text(footnoteSuperscript))]).render()
-                    
+
                     totalOffset += index > 0 ? footnoteReferenceMatches[index - 1].range.length - footnoteReference.count : 0
                     let range = Range(NSRange(location: match.range.lowerBound - totalOffset, length: match.range.length), in: html)!
                     guard let footnoteSubstring = try! file.readAsString().firstSubstring(between: .init(stringLiteral: "\(html[range]):"), and: .init(unicodeScalarLiteral: "\n")) else {
                         fatalError("Missing footnote definition")
                     }
                     let footnoteMarkdown = String(footnoteSubstring).trimmingCharacters(in: .whitespaces)
-                    
+
                     html = html.replacingCharacters(in: range, with: footnoteReference)
-                    
+
                     footnotes += Node.li(.id("fn\(footnoteNumber)"), .raw(parser.html(from: footnoteMarkdown).replacingOccurrences(of: #"<\/?p>"#, with: "", options: .regularExpression)), .a(.href("#fnr\(footnoteNumber)"), .attribute(named: "title", value: "Return to article"), .class("reversefootnote"), .text("↑"))).render()
-                    
+
                     if match == footnoteReferenceMatches.last {
                         html += Node.ol(.class("footnotes"), .raw(footnotes)).render()
                     }
                 }
-                
+
                 body.html = html
             }
-            
+
             return HTML(
                 .lang(context.site.language),
                 .head(
@@ -300,7 +300,7 @@ private extension Content.Body {
             options: .regularExpression
         ))
     }
-    
+
     func makingSmartSubstitutions() -> Self {
         Self(html: html
             // Quotes

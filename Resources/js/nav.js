@@ -1,16 +1,6 @@
-let nav = document.querySelector("nav");
-let cancelAutoHide = false;
+let welcomeHeader = document.querySelector("#home h1");
+let day = new Date().toLocaleString(navigator.language, {  weekday: 'long' });
 
-setTimeout(function () {
-	if (!cancelAutoHide) nav.classList.add("collapsed");
-}, 2000);
-
-nav.onmouseover = function () {
-	if (!cancelAutoHide) cancelAutoHide = true;
-
-	nav.classList.remove("collapsed");
-};
-
-nav.onmouseout = function () {
-	nav.classList.add("collapsed");
-};
+if (welcomeHeader.textContent == "Welcome") {
+	welcomeHeader.textContent = "Happy " + day;
+}
