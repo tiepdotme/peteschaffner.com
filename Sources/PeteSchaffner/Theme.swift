@@ -262,6 +262,7 @@ extension Theme where Site == PeteSchaffner {
                         )
                     ),
                     .script(.raw(try! context.file(at: "Resources/js/nav.js").readAsString())),
+                    .script(.raw(try! context.file(at: "Resources/js/welcome.js").readAsString())),
                     .if(
                         location.path.absoluteString == "/work",
                         .script(
