@@ -756,7 +756,7 @@ footer {
 	height: 100%;
 	left: -103px;
 	right: -103px;
-	bottom: 99%;
+	bottom: 120%;
 	-webkit-mask-repeat: no-repeat;
 	mask-repeat: no-repeat;
 	-webkit-mask-size: 100%;
@@ -777,26 +777,13 @@ footer {
 	z-index: -2;
 	-webkit-mask-image: url("/images/work/waves.2.svg");
 	mask-image: url("/images/work/waves.2.svg");
-	bottom: 107%;
-}
-
-/* Sun */
-#work #radblock::before {
-	content: "";
-	display: block;
-	width: 50%;
-	padding-bottom: 70%;
-	background-color: #f7b500;
-	border-radius: 100%;
-	position: absolute;
-	top: 50%;
-	left: -120px;
+	bottom: 128%;
 }
 
 #work #radblock figure + figure > picture::after {
-	background: rgb(var(--color-blue-light));
-	top: 0;
-	height: 200%;
+	background: linear-gradient(rgb(var(--color-blue-light)), rgba(var(--color-blue-light), 0));
+	top: -21%;
+	height: 110%;
 	z-index: -1;
 	/* A fix for the contents not clipping to the parent, which was caused by the shadow filter on the parent that is now disabled */
 	/*    filter: blur(0);*/
