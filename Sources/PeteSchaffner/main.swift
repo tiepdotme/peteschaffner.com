@@ -2,7 +2,9 @@ import Foundation
 import Publish
 import Plot
 import ShellOut
+#if !os(Linux)
 import Files
+#endif
 
 struct PeteSchaffner: Website {
     enum SectionID: String, WebsiteSectionID {
