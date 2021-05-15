@@ -25,6 +25,7 @@ struct PeteSchaffner: Website {
 
 private let hostname = try! shellOut(to: "hostname")
 
+#if !os(Linux)
 // Copy resource files over without building for faster reloads
 if CommandLine.arguments.contains("--copyResources") {
 	if let root = URL(string: #file)?.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent() {
@@ -44,6 +45,7 @@ if CommandLine.arguments.contains("--copyResources") {
 
 	exit(EXIT_SUCCESS)
 }
+#endif
 
 // Build whole site
 try PeteSchaffner().publish(using: [
