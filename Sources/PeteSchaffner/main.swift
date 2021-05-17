@@ -153,7 +153,7 @@ if CommandLine.arguments.contains("--serve") {
     try Watcher.watch(path: rootPath, isRoot: true) { url in
 		var buildCommand = "swift run PeteSchaffner "
 
-		buildCommand += url.pathComponents.contains("Resources") ? "--copyResources" : "--livereload"
+		buildCommand += url.path.contains("Resources/css") ? "--copyResources" : "--livereload"
 		print(buildCommand)
 
         try shellOut(
