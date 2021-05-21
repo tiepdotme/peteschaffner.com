@@ -103,7 +103,7 @@ extension Theme where Site == PeteSchaffner {
     }
 }
 
-// MARK: Main Layout
+// MARK: - Main Layout
 
 private extension HTML {
 	init(for location: Location, with context: PublishingContext<PeteSchaffner>, @ComponentBuilder content: @escaping () -> ComponentGroup) {
@@ -116,7 +116,7 @@ private extension HTML {
 	}
 }
 
-// MARK: Components
+// MARK: - Components
 
 private struct SiteNav: Component {
 	var location: Location
@@ -222,7 +222,7 @@ private struct ArticleList<Articles: Sequence>: Component {
 	}
 }
 
-// MARK: Node Extensions
+// MARK: - Node Extensions
 
 private extension Node where Context == HTML.DocumentContext {
 	static func head(for location: Location, with context: PublishingContext<PeteSchaffner>) -> Node {
@@ -272,7 +272,7 @@ extension Node where Context: HTML.BodyContext {
 	}
 }
 
-// MARK: Content Body Extensions
+// MARK: - Content Body Extensions
 
 private extension Content.Body {
     func deletingOccurrences(of string: String) -> Self {
@@ -299,7 +299,7 @@ private extension Content.Body {
     }
 }
 
-// MARK: Helper functions
+// MARK: - Helper functions
 
 private func htmlWithFootnotes(for location: Location, with context: PublishingContext<PeteSchaffner>) -> String {
 	guard let file = try? context.file(at: "Content/\(location.path).md") else {

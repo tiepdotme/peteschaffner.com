@@ -49,7 +49,7 @@ if CommandLine.arguments.contains("--copyResources") {
 try PeteSchaffner().publish(using: [
     .copyResources(),
     .step(named: "Add pages") { context in
-        context.addPage(PeteSchaffner.resumePage(context: context))
+        context.addPage(PeteSchaffner.makeResumePage(context: context))
         context.addPage(PeteSchaffner.workPage(context: context))
     },
     .addMarkdownFiles(),
