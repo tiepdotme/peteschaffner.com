@@ -50,7 +50,7 @@ try PeteSchaffner().publish(using: [
     .copyResources(),
     .step(named: "Add pages") { context in
         context.addPage(PeteSchaffner.makeResumePage(context: context))
-        context.addPage(PeteSchaffner.workPage(context: context))
+        context.addPage(PeteSchaffner.makeWorkPage(context: context))
     },
     .addMarkdownFiles(),
     .step(named: "Fix blog post filenames") { context in
