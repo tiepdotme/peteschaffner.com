@@ -23,7 +23,7 @@ private struct Intro: Component {
 		ComponentGroup {
 			Node.blockquote(.text("I’m a technical and self-driven software designer with 10 years of experience building beautiful and usable interfaces for the Mac, iPhone and iPad. I give a damn."))
 
-			ResumeSection(named: "Personal info") {
+			ResumeSection(name: "Personal info") {
 				List {
 					ListItem {
 						inlineSVG(named: "work")
@@ -53,7 +53,7 @@ private struct Intro: Component {
 
 private struct SkillsAndToolsSection: Component {
 	var body: Component {
-		ResumeSection(named: "Skills & tools") {
+		ResumeSection(name: "Skills & tools") {
 			ResumeHeader(header: "Design", subHead: nil, time: nil, id: "design")
 			List {
 				ListItem("Interface/interaction/icon design, prototyping, animation")
@@ -76,7 +76,7 @@ private struct SkillsAndToolsSection: Component {
 
 private struct ExperienceSection: Component {
 	var body: Component {
-		ResumeSection(named: "Experience") {
+		ResumeSection(name: "Experience") {
 			ResumeHeader(header: "Shiny Frog", subHead: "Designer & wannabe programmer", time: DateRange(begin: 2020, end: nil), id: "shinyfrog")
 			List {
 				ListItem {
@@ -93,7 +93,7 @@ private struct ExperienceSection: Component {
 				}
 			}
 
-			ResumeHeader(header: "Google", subHead: ComponentGroup{
+			ResumeHeader(header: "Google", subHead: ComponentGroup {
 					Text("Design lead of ")
 					Link("Chrome for iOS/iPadOS", url: "/work/#chrome")
 				}, time: DateRange(begin: 2014, end: 2020), id: "google")
@@ -212,7 +212,7 @@ private struct ExperienceSection: Component {
 
 private struct EducationSection: Component {
 	var body: Component {
-		ResumeSection(named: "Education") {
+		ResumeSection(name: "Education") {
 			ResumeHeader(header: "College of Fine Arts, Ball State University", subHead: "Bachelor of Fine Arts, Visual Communication", time: DateRange(begin: 2006, end: 2010), id: "ball-state")
 			List {
 				ListItem("3.8 GPA")
@@ -229,7 +229,7 @@ private struct EducationSection: Component {
 
 private struct ReferencesSection: Component {
 	var body: Component {
-		ResumeSection(named: "References") {
+		ResumeSection(name: "References") {
 			ResumeHeader(header: "AbdelKarim Mardini", subHead: "Senior product manager at Google", time: nil, id: "mardini")
 			Paragraph(Link("mardini@google.com", url: "mailto:mardini@google.com"))
 
@@ -255,24 +255,13 @@ private struct ReferencesSection: Component {
 
 // MARK: - Components & Helpers
 
-private struct ResumeSection: ComponentContainer {
+private struct ResumeSection: Component {
+	var name: String
 	@ComponentBuilder var content: ContentProvider
-	var name: String?
-
-	init(@ComponentBuilder content: @escaping ContentProvider) {
-		self.content = content
-	}
-
-	init(named name: String, @ComponentBuilder content: @escaping ContentProvider) {
-		self.content = content
-		self.name = name
-	}
 
 	var body: Component {
 		ComponentGroup {
-			if let name = self.name {
-				H2(name)
-			}
+			H2(name)
 			content()
 		}
 	}
