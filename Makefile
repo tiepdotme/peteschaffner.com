@@ -12,7 +12,7 @@ readlater:
 
 .PHONY: publish
 publish:
-	@ssh pete@155.133.130.170 "cd ~/www/peteschaffner.com && \
+	@ssh ubuntu@46.226.107.32 "cd /var/www/peteschaffner.com && \
 		rm -rf .publish/Caches && \
 		git pull --rebase && \
-		/opt/swift-5.4-RELEASE-ubuntu18.04/usr/bin/swift run PeteSchaffner"
+		/opt/swift-5.4.1-RELEASE-ubuntu20.04/usr/bin/swift run PeteSchaffner"
