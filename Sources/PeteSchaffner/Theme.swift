@@ -180,7 +180,7 @@ private struct SiteFooter: Component {
 	var body: Component {
 		Footer {
 			Text("© \(Calendar.current.component(.year, from: Date())) · ")
-			Link("RSS", url: Path.defaultForRSSFeed.string)
+			Link("RSS", url: Path.defaultForRSSFeed.absoluteString)
 			Text(" · ")
 			Link("Colophon", url: "/colophon")
 			Text(" · ")
