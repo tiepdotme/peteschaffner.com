@@ -6,10 +6,6 @@ build:
 serve:
 	@swift run PeteSchaffner --serve
 
-.PHONY: readlater
-readlater:
-	@sh bin/readlater.sh
-
 .PHONY: publish
 publish:
 	@ssh ubuntu@46.226.107.32 "cd /var/www/peteschaffner.com && \
