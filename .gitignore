@@ -5,4 +5,4 @@
 .publish
 Output
 Content/words/drafts/**
-!Content/words/drafts/.gitkeep
+add-to-reading-list*
