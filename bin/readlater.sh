@@ -4,7 +4,7 @@ set -e
 basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
 url=$1
 post_date=$(date +%Y-%m-%d)
-title=$(curl -s $url | grep -o "<title>[^<]*" | head -1 | cut -d'>' -f2-)
+title=$(curl -L $url -so - | ruby -rnokogiri -e 'puts Nokogiri::HTML(readlines.join).xpath("//title").map { |e| e.content }')
 
 if [ -n "$title" ]; then
 	git pull --rebase
