@@ -176,19 +176,8 @@ private struct SiteFooter: Component {
 					Link("Source", url: "https://github.com/peteschaffner/peteschaffner.com")
 				}
 			}
-
-			inlineScript(at: "Resources/js/nav.js")
-			inlineScript(at: "Resources/js/welcome.js")
-
-			if location.path.absoluteString == "/work" {
-				inlineScript(at: "Resources/js/work.js")
-			}
 		}
 		.class("constrained")
-	}
-
-	private func inlineScript(at path: Path) -> Node<HTML.BodyContext> {
-		Node.script(.raw(try! context.file(at: path).readAsString()))
 	}
 }
 
@@ -239,6 +228,10 @@ private extension Node where Context == HTML.DocumentContext {
 private extension Node where Context == HTML.DocumentContext {
 	static func body(for location: Location, with context: PublishingContext<PeteSchaffner>, @ComponentBuilder content: @escaping () -> Component) -> Node {
 		let metaData = metadataFor(page: location)
+		
+		func inlineScript(at path: Path) -> Node<HTML.BodyContext> {
+			Node<HTML.BodyContext>.script(.raw(try! context.file(at: path).readAsString()))
+		}
 
 		return .body(
 			.id(metaData.id),
@@ -250,6 +243,16 @@ private extension Node where Context == HTML.DocumentContext {
 					.component(Content.Body(components: content).makingSmartSubstitutions())
 				)
 				SiteFooter(location: location, context: context)
+				
+				inlineScript(at: "Resources/js/nav.js")
+
+				if location.path.absoluteString == "/" {
+					inlineScript(at: "Resources/js/welcome.js")
+				}
+
+				if location.path.absoluteString == "/work" {
+					inlineScript(at: "Resources/js/work.js")
+				}
 			}
 		)
 	}
