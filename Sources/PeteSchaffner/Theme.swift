@@ -46,11 +46,9 @@ extension Theme where Site == PeteSchaffner {
 								)
 							)
 						}
-						item.body
-							.deletingOccurrences(of: #"\+\+\+((.|\n)*)"#)
-							.deletingOccurrences(of: "<h1>.*</h1>")
+						item.body.deletingOccurrences(of: #"\+\+\+((.|\n)*)"#)
 						if item.body.html.contains("+++") {
-							Link("Read more…", url: item.path.string).class("read-more")
+							Link("Read more…", url: item.path.absoluteString).class("read-more")
 						}
 					}
 				}
@@ -82,9 +80,7 @@ extension Theme where Site == PeteSchaffner {
 							.text(friendlyDate(item.date))
 						)
 					}
-					item.body
-						.deletingOccurrences(of: #"<p>\+\+\+<\/p>"#)
-						.deletingOccurrences(of: "<h1>.*</h1>")
+					item.body.deletingOccurrences(of: #"<p>\+\+\+<\/p>"#)
 				}
 			}
         }
@@ -162,29 +158,24 @@ private struct SiteNav: Component {
 	}
 }
 
-private struct MainContent: ComponentContainer {
-	@ComponentBuilder var content: ContentProvider
-
-	var body: Component {
-		Node.main(
-			.class("constrained"),
-			.component(Content.Body(components: content).makingSmartSubstitutions())
-		)
-	}
-}
-
 private struct SiteFooter: Component {
 	var location: Location
 	var context: PublishingContext<PeteSchaffner>
 
 	var body: Component {
 		Footer {
-			Text("© \(Calendar.current.component(.year, from: Date())) · ")
-			Link("RSS", url: Path.defaultForRSSFeed.absoluteString)
-			Text(" · ")
-			Link("Colophon", url: "/colophon")
-			Text(" · ")
-			Link("Source", url: "https://github.com/peteschaffner/peteschaffner.com")
+			List {
+				ListItem("© \(Calendar.current.component(.year, from: Date())) Pete Schaffner")
+				ListItem {
+					Link("RSS", url: Path.defaultForRSSFeed.absoluteString)
+				}
+				ListItem {
+					Link("Colophon", url: "/colophon")
+				}
+				ListItem {
+					Link("Source", url: "https://github.com/peteschaffner/peteschaffner.com")
+				}
+			}
 
 			inlineScript(at: "Resources/js/nav.js")
 			inlineScript(at: "Resources/js/welcome.js")
@@ -257,9 +248,10 @@ private extension Node where Context == HTML.DocumentContext {
 			.class(metaData.class),
 			.components {
 				SiteNav(location: location, context: context)
-				MainContent {
-					content()
-				}
+				Node<HTML.BodyContext>.main(
+					.class("constrained"),
+					.component(Content.Body(components: content).makingSmartSubstitutions())
+				)
 				SiteFooter(location: location, context: context)
 			}
 		)
