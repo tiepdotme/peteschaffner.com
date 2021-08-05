@@ -46,7 +46,7 @@ extension Theme where Site == PeteSchaffner {
 								)
 							)
 						}
-						item.body.deletingOccurrences(of: #"\+\+\+((.|\n)*)"#)
+						item.addingFootnotes().deletingOccurrences(of: #"\+\+\+((.|\n)*)"#)
 						if item.body.html.contains("+++") {
 							Link("Read more…", url: item.path.absoluteString).class("read-more")
 						}
@@ -80,7 +80,7 @@ extension Theme where Site == PeteSchaffner {
 							.text(friendlyDate(item.date))
 						)
 					}
-					item.body.deletingOccurrences(of: #"<p>\+\+\+<\/p>"#)
+					item.addingFootnotes().deletingOccurrences(of: #"<p>\+\+\+<\/p>"#)
 				}
 			}
         }
@@ -213,7 +213,7 @@ private struct ArticleList<Articles: Sequence>: Component {
 	}
 }
 
-// MARK: - Node Extensions
+// MARK: - Extensions
 
 private extension Node where Context == HTML.DocumentContext {
 	static func head(for location: Location, with context: PublishingContext<PeteSchaffner>) -> Node {
@@ -239,9 +239,6 @@ private extension Node where Context == HTML.DocumentContext {
 private extension Node where Context == HTML.DocumentContext {
 	static func body(for location: Location, with context: PublishingContext<PeteSchaffner>, @ComponentBuilder content: @escaping () -> Component) -> Node {
 		let metaData = metadataFor(page: location)
-		var location = location
-
-		location.body.html = htmlWithFootnotes(for: location, with: context)
 
 		return .body(
 			.id(metaData.id),
@@ -263,8 +260,6 @@ extension Node where Context: HTML.BodyContext {
 		.element(named: "time", nodes: nodes)
 	}
 }
-
-// MARK: - Content Body Extensions
 
 private extension Content.Body {
     func deletingOccurrences(of string: String) -> Self {
@@ -291,45 +286,43 @@ private extension Content.Body {
     }
 }
 
-// MARK: - Helper functions
+private extension Item where Site == PeteSchaffner {
+	func addingFootnotes() -> Content.Body {
+		var html = self.body.html
+		let superscriptChars = ["1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹"]
+		let numberWords = ["1": "one", "2": "two", "3": "three", "4": "four", "5": "five", "6": "six", "7": "seven", "8": "eight", "9": "nine"]
+		let footnoteReferenceRegex = try! NSRegularExpression(pattern: #"\[\^(\d)\]"#)
+		var definitions: [String: String] = [:]
 
-private func htmlWithFootnotes(for location: Location, with context: PublishingContext<PeteSchaffner>) -> String {
-	guard let file = try? context.file(at: "Content/\(location.path).md") else {
-		return location.body.html
-	}
-	var totalOffset = 0
-	var footnotes = ""
-	var html = location.body.html
-	let superscriptChars = ["0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹"]
-	let footnoteReferenceRegex = try! NSRegularExpression(pattern: #"(?<=\w)\[\^(.+?)\]"#)
-	let parser = MarkdownParser()
-	let footnoteReferenceMatches = footnoteReferenceRegex.matches(in: html, options: [], range: NSRange(html.startIndex..<html.endIndex, in: html))
+		while let match = footnoteReferenceRegex.matches(in: html, range: NSRange(html.startIndex..., in: html)).first {
+			let number = String(html[Range(match.range(at: 1), in: html)!])
+			let link = Link(superscriptChars[number]!, url: "#fn\(number)")
+				.id("fnr\(number)")
+				.attribute(named: "title", value: "See footnote")
 
-	footnoteReferenceMatches.enumerated().forEach { index, match in
-		let footnoteNumber = String(index + 1)
-		let footnoteSuperscript = footnoteNumber.compactMap {
-			superscriptChars[$0.description]
-		}.joined()
-		let footnoteReference = Node.element(named: "sup", nodes: [Node.a(.href("#fn\(footnoteNumber)"), .id("fnr\(footnoteNumber)"), .attribute(named: "title", value: "See footnote"), .text(footnoteSuperscript))]).render()
+			guard let definition = self.metadata.footnote?.valueByPropertyName(name: numberWords[number]!) else {
+				fatalError("Missing footnote definition for \"\(self.title)\" (\(self.path))")
+			}
 
-		totalOffset += index > 0 ? footnoteReferenceMatches[index - 1].range.length - footnoteReference.count : 0
-		let range = Range(NSRange(location: match.range.lowerBound - totalOffset, length: match.range.length), in: html)!
-		guard let footnoteSubstring = try! file.readAsString().firstSubstring(between: .init(stringLiteral: "\(html[range]):"), and: .init(unicodeScalarLiteral: "\n")) else {
-			fatalError("Missing footnote definition")
+			definitions[number] = definition
+			html = html.replacingCharacters(in: Range(match.range, in: html)!, with: link.render())
 		}
-		let footnoteMarkdown = String(footnoteSubstring).trimmingCharacters(in: .whitespaces)
 
-		html = html.replacingCharacters(in: range, with: footnoteReference)
-
-		footnotes += Node.li(.id("fn\(footnoteNumber)"), .raw(parser.html(from: footnoteMarkdown).replacingOccurrences(of: #"<\/?p>"#, with: "", options: .regularExpression)), .a(.href("#fnr\(footnoteNumber)"), .attribute(named: "title", value: "Return to article"), .class("reversefootnote"), .text("↑"))).render()
-
-		if match == footnoteReferenceMatches.last {
-			html += Node.ol(.class("footnotes"), .raw(footnotes)).render()
+		html += List(definitions.sorted(by: <)) { definition in
+			ListItem {
+				Node<HTML.BodyContext>.raw(MarkdownParser().parse(definition.value).html)
+				Link("↑", url: "#fnr\(definition.key)").attribute(named: "title", value: "Return to article")
+			}
+			.id("fn\(definition.key)")
 		}
-	}
+		.class("footnotes")
+		.render()
 
-	return html
+		return Content.Body(html: html)
+	}
 }
+
+// MARK: - Helper functions
 
 private func metadataFor(page: Location) -> (id: String, class: String, avatarSuffix: String) {
 	var pageID: String

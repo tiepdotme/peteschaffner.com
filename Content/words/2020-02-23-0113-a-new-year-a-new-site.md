@@ -2,6 +2,7 @@
 title: A New Year, a New Site
 date: 2020-02-23 01:13
 slug: a-new-year-a-new-site
+footnote.one: [Title-less posts](https://manton.micro.blog/2014/09/15/defining-a-microblog.html) have really helped keep me blogging more often, as I don’t have to stew over a title/theme/etc. They also work great with Micro.blog, which in turn helps me easily cross-post to Twitter.
 ---
 
 Ok, the site isn't new as in design or content, but the underlying tech is. I guess it is also a little late to be writing a new-year post. Oh well…
@@ -19,8 +20,6 @@ I was using Jekyll because of its deep integration with GitHub Pages, as I liked
 I make iOS/macOS apps, so I landed on a relatively new project called [Publish](https://github.com/JohnSundell/Publish). It is written in Swift and works with SPM, so hacking on it in Xcode is a joy. I also am wanting to improve my Swift, so it made perfect sense. Granted at first I thought some of its selling points, like type safety, were kinda overkill for making a website, but in the end I’ve come to really appreciate them.
 
 Publish makes it really easy to get up-and-running, as it supports all the things you typically need out of the box: pages, sections, posts, templates. Nonetheless, I hit a snag when trying to support title-less blog posts[^1]. In order to get that working, I had to use a [healthy](https://github.com/peteschaffner/peteschaffner.com/blob/master/Sources/PeteSchaffner/Theme/Layout.swift#L28) [dose](https://github.com/peteschaffner/peteschaffner.com/blob/master/Sources/PeteSchaffner/Theme/Theme.swift#L27) of [conditionals](https://github.com/peteschaffner/peteschaffner.com/blob/master/Sources/PeteSchaffner/Theme/Theme.swift#L67) in my templates.
-
-[^1]: [Title-less posts](https://manton.micro.blog/2014/09/15/defining-a-microblog.html) have really helped keep me blogging more often, as I don’t have to stew over a title/theme/etc. They also work great with Micro.blog, which in turn helps me easily cross-post to Twitter.
 
 Next, I wanted to keep my draft posts from being published until I was ready—I did like this feature of Jekyll. Getting that required a little more work, though. I needed to fork Publish and add a publishing step that could handle *removing* items. The actual feature was pretty easy to implement, but now I’m just hoping my changes get merged.
 

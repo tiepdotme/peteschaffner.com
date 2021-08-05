@@ -9,10 +9,38 @@ struct PeteSchaffner: Website {
         case words
         case readlater
     }
+	
+	struct Footnote: WebsiteItemMetadata {
+		var one: String?
+		var two: String?
+		var three: String?
+		var four: String?
+		var five: String?
+		var six: String?
+		var seven: String?
+		var eight: String?
+		var nine: String?
+
+		func valueByPropertyName(name: String) -> String? {
+			switch name {
+			case "one": return one
+			case "two": return two
+			case "three": return three
+			case "four": return four
+			case "five": return five
+			case "six": return six
+			case "seven": return seven
+			case "eight": return eight
+			case "nine": return nine
+			default: fatalError("Wrong property name")
+			}
+		}
+	}
 
     struct ItemMetadata: WebsiteItemMetadata {
         var link: String?
         var slug: String?
+		var footnote: Footnote?
     }
 
     var url = URL(string: "https://peteschaffner.com")!
