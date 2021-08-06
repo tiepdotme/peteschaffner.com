@@ -486,17 +486,22 @@ time span {
 }
 
 .footnotes {
-	font-family: "Concourse T4", sans-serif;
 	font-size: 15px;
 	color: rgba(var(--color-text), 0.5);
 	margin-top: 48px;
 	padding-top: 48px;
-	padding-left: 19px;
+	padding-left: 1.3em;
 	border-top: 1px solid rgba(var(--color-text), 0.05);
 }
 
-.footnotes li {
-	padding-bottom: 0.75em;
+.fn-return {
+	margin-left: 0.2em;
+}
+
+.fn-go, .fn-return {
+	font-family: "Concourse C4", sans-serif;
+	text-decoration: none;
+	opacity: 0.5;
 }
 
 /* Words

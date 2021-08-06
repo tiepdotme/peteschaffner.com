@@ -299,27 +299,33 @@ private extension Item where Site == PeteSchaffner {
 
 		while let match = footnoteReferenceRegex.matches(in: html, range: NSRange(html.startIndex..., in: html)).first {
 			let number = String(html[Range(match.range(at: 1), in: html)!])
-			let link = Link(superscriptChars[number]!, url: "#fn\(number)")
-				.id("fnr\(number)")
-				.attribute(named: "title", value: "See footnote")
+			let sup = Node<HTML.BodyContext>.element(named: "sup", nodes: [
+				Link(superscriptChars[number]!, url: "#fn\(number)")
+					.id("fnr\(number)")
+					.attribute(named: "title", value: "See footnote")
+					.class("fn-go").convertToNode()
+			])
 
 			guard let definition = self.metadata.footnote?.valueByPropertyName(name: numberWords[number]!) else {
 				fatalError("Missing footnote definition for \"\(self.title)\" (\(self.path))")
 			}
 
 			definitions[number] = definition
-			html = html.replacingCharacters(in: Range(match.range, in: html)!, with: link.render())
+			html = html.replacingCharacters(in: Range(match.range, in: html)!, with: sup.render())
 		}
 
-		html += List(definitions.sorted(by: <)) { definition in
-			ListItem {
-				Node<HTML.BodyContext>.raw(MarkdownParser().parse(definition.value).html)
-				Link("↑", url: "#fnr\(definition.key)").attribute(named: "title", value: "Return to article")
+		if !definitions.isEmpty {
+			html += List(definitions.sorted(by: <)) { definition in
+				let link = Link("◊", url: "#fnr\(definition.key)").attribute(named: "title", value: "Return to article").class("fn-return")
+				return ListItem {
+					Node<HTML.BodyContext>.raw(MarkdownParser().parse(definition.value + link.render()).html)
+				}
+				.id("fn\(definition.key)")
 			}
-			.id("fn\(definition.key)")
+			.listStyle(.ordered)
+			.class("footnotes")
+			.render()
 		}
-		.class("footnotes")
-		.render()
 
 		return Content.Body(html: html)
 	}
