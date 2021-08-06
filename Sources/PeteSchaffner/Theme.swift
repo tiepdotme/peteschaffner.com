@@ -165,7 +165,7 @@ private struct SiteFooter: Component {
 	var body: Component {
 		Footer {
 			List {
-				ListItem("© \(Calendar.current.component(.year, from: Date())) Pete Schaffner")
+				ListItem("Copyright \(Calendar.current.component(.year, from: Date()))")
 				ListItem {
 					Link("RSS", url: Path.defaultForRSSFeed.absoluteString)
 				}
