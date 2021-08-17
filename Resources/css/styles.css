@@ -6,7 +6,6 @@
 	--color-main-background: 255, 255, 255;
 	--color-blue-dark: 0, 148, 255;
 	--color-blue-light: 0, 200, 255;
-	--color-quote-background: 244, 245, 246;
 	--opacity-link-underline: 0.2;
 	--opacity-content-shadow: 0.05;
 }
@@ -20,7 +19,6 @@
 		--color-main-background: 34, 34, 34;
 		--color-blue-dark: 0, 52, 93;
 		--color-blue-light: 0, 106, 139;
-		--color-quote-background: 51, 51, 51;
 		--opacity-link-underline: 0.25;
 		--opacity-content-shadow: 1;
 	}
@@ -60,9 +58,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility; /* Enables kerning and optional ligatures */
 	color: rgba(var(--color-text), 0.9);
-	background-color: rgb(
-		var(--color-background)
-	); /* Safari uses the background color on body for overscroll   */
+	background-color: rgb(var(--color-background)); /* Safari uses the background color on body for overscroll   */
 }
 
 @media (max-width: 600px) {
@@ -78,16 +74,13 @@ body {
 	}
 }
 
-a,
-nav:hover a:not(.current),
-footer:hover a,
-.letter-links::after {
+a {
 	text-decoration: underline;
 	text-decoration-color: rgba(
 		var(--color-text),
 		var(--opacity-link-underline)
 	);
-	text-decoration-thickness: 0.07em;
+	text-decoration-thickness: 0.05em;
 	text-underline-offset: 0.1em;
 	color: inherit;
 }
@@ -97,39 +90,28 @@ a:hover {
 	text-decoration-color: rgb(var(--color-accent));
 }
 
-/* Navigation
+/* Navigation & footer
    ========== */
+
+nav, footer {
+	font-size: 15px;
+	text-align: center;
+	font-family: "Concourse C4", sans-serif;
+	text-transform: lowercase;
+	font-variant-numeric: oldstyle-nums;
+}
 
 nav {
 	position: relative;
 	margin-top: 70px;
 	padding-bottom: 30px;
-	font-size: 16px;
-	text-align: center;
-	font-family: "Concourse T4", sans-serif;
 	z-index: 0;
 	transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-nav p {
-	position: relative;
-	margin: 0;
-	z-index: 1;
-}
-
-nav.collapsed p {
-	opacity: 0;
-}
-
-nav,
-footer {
-	opacity: 0.6;
-}
-
-@media (prefers-color-scheme: dark) {
-	nav,
-	footer {
-		opacity: 0.4;
+@media (max-width: 600px) {
+	nav {
+		margin-top: 40px;
 	}
 }
 
@@ -137,7 +119,7 @@ nav.collapsed {
 	transform: translateY(86px);
 }
 
-nav.collapsed::before {
+nav::before {
 	content: "Menu";
 	display: block;
 	position: absolute;
@@ -147,14 +129,70 @@ nav.collapsed::before {
 	font-weight: bold;
 	transform: translateX(-50%);
 	left: 50%;
-	top: 12px;
+	top: 30px;
+	opacity: 0;
+}
+
+nav.collapsed::before {
 	opacity: 0.6;
+	transition: opacity 0.3s ease-out;
+}
+
+nav ul, footer ul {
+	position: relative;
+	list-style: none;
+	margin-bottom: 0;
+	padding: 0;
+}
+
+nav.collapsed ul {
+	opacity: 0;
+	transition: opacity 0.3s ease-out;
+}
+
+nav li, footer li {
+	display: inline-block;
+	opacity: 0.6;
+}
+
+nav li:not(:last-of-type)::after,
+footer li:not(:last-of-type)::after {
+	content: " · ";
+	font-weight: bold;
+	opacity: 0.4;
+}
+
+nav li:hover, footer li:hover:not(:first-of-type) {
+	opacity: 1;
+}
+
+nav a, footer a {
+	text-decoration: none;
+}
+
+nav a {
+	position: relative;
+}
+
+nav .current {
+	font-weight: bold;
+}
+
+nav a:hover, footer a:hover {
+	color: inherit;
+	/* opacity: 1; */
+}
+
+footer {
+	padding: 100px 0 calc(50px + env(safe-area-inset-bottom));
+	flex-shrink: 0; /* For a sticky footer */
 }
 
 #avatar {
 	position: relative;
-	bottom: -1.5em;
+	bottom: -2.5em;
 	z-index: 0;
+	opacity: 0.5;
 }
 
 #avatar path {
@@ -173,6 +211,10 @@ nav.collapsed::before {
 	opacity: 0;
 }
 
+#avatar-accessory {
+	opacity: 0.4;
+}
+
 @media (prefers-color-scheme: dark) {
 	#avatar-outline {
 		opacity: 0;
@@ -186,39 +228,9 @@ nav.collapsed::before {
 		opacity: 0.9;
 	}
 
-	#avatar-accessory {
-		opacity: 0.4;
-	}
-
 	#avatar-cheek {
 		opacity: 0;
 	}
-}
-
-@media (max-width: 600px) {
-	nav {
-		margin-top: 40px;
-	}
-}
-
-nav a {
-	position: relative;
-}
-
-@media (hover: hover) {
-	nav a,
-	footer a {
-		text-decoration: none;
-	}
-}
-
-nav .current {
-	font-family: "Concourse T7", sans-serif;
-	text-decoration: none;
-}
-
-nav .current:hover {
-	color: inherit;
 }
 
 /* Content
@@ -238,16 +250,12 @@ main {
 	-moz-hyphens: auto;
 	-ms-hyphens: auto;
 	hyphens: auto;
-
-	/* On all pages other than /words, this is creating weird artifacts when scrolling and moving the cursor in/out of <main> */
-	/*    filter: drop-shadow(0 0 30px rgba(0,0,0,var(--opacity-content-shadow)));*/
 }
 
-body:not(#words):not(.list) main,
-#words main article,
-.list main section {
+body:not(.list) main,
+.list main section,
+.list main article {
 	padding: 62px 102px 122px 102px;
-	/*    background-color: rgba(var(--color-main-background));*/
 	background: linear-gradient(
 		to bottom,
 		rgb(var(--color-main-background)) 0%,
@@ -257,24 +265,10 @@ body:not(#words):not(.list) main,
 	border-radius: 23px;
 }
 
-/*#words main article:not(:last-child):nth-child(n+2), .list main section:not(:last-child):nth-child(n+2) {*/
-/*    border-radius: 5px;*/
-/*}*/
-/**/
-/*#words main article:first-child, .list main section:first-child {*/
-/*    border-bottom-left-radius: 5px;*/
-/*    border-bottom-right-radius: 5px;*/
-/*}*/
-/**/
-/*#words main article:last-child, .list main section:last-child {*/
-/*    border-top-left-radius: 5px;*/
-/*    border-top-right-radius: 5px;*/
-/*}*/
-
 @media (max-width: 600px) {
-	body:not(#words):not(.list) main,
-	#words main article,
-	.list main section {
+	body:not(.list) main,
+	.list main section,
+	.list main article {
 		padding-left: 32px;
 		padding-right: 32px;
 	}
@@ -392,14 +386,31 @@ hr {
 
 hr:after {
 	content: "⁂";
-	font-family: "Concourse T4";
+	font-family: "Concourse C4";
 }
 
 blockquote {
 	position: relative;
-	margin: 0 2.5em;
-	font-size: 0.8em;
+	margin: 0;
+	padding-left: 2em;
+	font-size: 0.7em;
 	color: rgba(var(--color-text), 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+	blockquote {
+		color: rgba(var(--color-text), 0.4);
+	}
+}
+
+blockquote::after {
+	content: "“";
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 4em;
+	line-height: 0.8;
+	opacity: 0.2;
 }
 
 @media (max-width: 600px) {
@@ -504,88 +515,46 @@ time span {
 	opacity: 0.5;
 }
 
-/* Words
-   ======= */
+.fn-go:hover, .fn-return:hover {
+	opacity: 1;
+}
 
-#words article,
-.list section {
+/* Lists (blog, work, reading list)
+   ================================ */
+
+.list section,
+.list article {
 	margin-bottom: 5px;
 }
 
-#words article:last-child,
-.list section:last-child {
+.list section:last-child,
+.list article:last-child {
 	margin-bottom: 0;
 }
 
 .read-more {
-	font-family: "Concourse T4", sans-serif;
-	font-size: 17px;
-	color: rgb(var(--color-accent));
+	display: inline-block;
+	background-color: rgba(var(--color-text), 0.3);
+	padding: 0em 0.3em 0.1em;
+	border-radius: 1em;
+	font-size: 15px;
+	line-height: 1;
 }
 
-.read-more,
-.read-more:hover {
+.read-more, .read-more:hover {
 	text-decoration: none;
+	color: rgb(var(--color-main-background));
+}
+
+.read-more:hover {
+	background-color: rgba(var(--color-text), 0.5)
 }
 
 .reversefootnote,
 .reversefootnote:hover {
 	text-decoration: none;
 	margin-left: 3px;
-}
-
-/* Footer
-   ====== */
-   
-footer {
-	padding: 100px 0 calc(50px + env(safe-area-inset-bottom));
-	flex-shrink: 0; /* For a sticky footer */
-	font-size: 15px;
-	text-align: center;
-	font-family: "Concourse C4", sans-serif;
-	text-transform: lowercase;
-	font-variant-numeric: oldstyle-nums;
-}
-
-footer ul {
-	position: relative;
-	list-style: none;
-	margin-bottom: 0;
-	padding: 0;
-}
-
-footer li {
-	display: inline-block;
-}
-
-footer li:not(:last-of-type)::after {
-	content: " · ";
-}   
-
-#appearance {
-	display: block;
-	margin: 10px auto;
-	cursor: pointer;
-	opacity: 0.3;
-}
-
-#appearance path {
-	fill: rgb(var(--color-text));
-}
-
-#appearance-dark {
-	visibility: hidden;
-}
-
-@media (prefers-color-scheme: dark) {
-	#appearance-dark {
-		visibility: visible;
-	}
-
-	#appearance-light {
-		visibility: hidden;
-	}
-}
+}  
 
 /* 404
    === */
@@ -655,7 +624,7 @@ footer li:not(:last-of-type)::after {
 	margin-bottom: 35px;
 }
 
-#resume ul:first-of-type {
+#resume main ul:first-of-type {
 	width: fit-content;
 	margin: 0 auto;
 	margin-top: 4.5em;
@@ -663,11 +632,11 @@ footer li:not(:last-of-type)::after {
 	list-style: none;
 }
 
-#resume ul:first-of-type svg {
+#resume main ul:first-of-type svg {
 	opacity: 0.4;
 	position: relative;
 	top: 5px;
-	margin-right: 3px;
+	margin-right: 6px;
 }
 
 @media (max-width: 600px) {
@@ -706,10 +675,9 @@ footer li:not(:last-of-type)::after {
 }
 
 #work figcaption {
-	font-family: "Concourse T4", sans-serif;
 	font-size: 15px;
-	opacity: 0.3;
 	margin-top: 1em;
+	color: rgba(var(--color-text), 0.3);
 }
 
 #work section img[width] {
@@ -807,41 +775,4 @@ footer li:not(:last-of-type)::after {
 	top: -21%;
 	height: 110%;
 	z-index: -1;
-	/* A fix for the contents not clipping to the parent, which was caused by the shadow filter on the parent that is now disabled */
-	/*    filter: blur(0);*/
-}
-
-/* Home
-   ==== */
-
-.letter-links {
-	position: relative;
-	display: inline-block;
-	z-index: 1;
-}
-
-.letter-links a:not(:hover) {
-	text-decoration: none;
-}
-
-.letter-links::after {
-	content: "";
-	color: transparent;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: max-content;
-	z-index: -1;
-}
-
-.letter-links#type::after {
-	content: "type";
-}
-
-.letter-links#software::after {
-	content: "software";
-}
-
-.letter-links#pottery::after {
-	content: "pottery";
 }

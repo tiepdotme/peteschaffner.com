@@ -48,7 +48,9 @@ extension Theme where Site == PeteSchaffner {
 						}
 						item.addingFootnotes().deletingOccurrences(of: #"\+\+\+((.|\n)*)"#)
 						if item.body.html.contains("+++") {
-							Link("Read more…", url: item.path.absoluteString).class("read-more")
+							Link("•••", url: item.path.absoluteString)
+								.attribute(named: "title", value: "Read more")
+								.class("read-more")
 						}
 					}
 				}
@@ -137,21 +139,30 @@ private struct SiteNav: Component {
 					.attribute(named: "version", value: "1.1"),
 					.attribute(named: "xmlns", value: "http://www.w3.org/2000/svg"),
 					.attribute(named: "xmlns:xlink", value: "http://www.w3.org/1999/xlink"),
-					.raw(try! context.file(at: "Resources/images/avatar\(metaData.avatarSuffix).svg").readAsString())
+					.raw(try! context.file(at: "Resources/images/avatar.\(metaData.avatarSuffix).svg").readAsString())
 				]
 			)
-			Paragraph {
-				Text("The ")
-				if metaData.id == "resume" {
-					Link("résumé", url: "/resume").class("current")
-				} else {
-					Link("words", url: "/words").class(location.path.absoluteString.contains("/words") ? "current" : "")
-					Text(" & ")
-					Link("work", url: "/work").class(metaData.id == "work" ? "current" : "")
+			
+			List {
+				ListItem {
+					Link("About", url: "/")
 				}
-				Text(" of ")
-				Link("Pete Schaffner", url: "/").class(location.path.absoluteString == "/" ? "current" : "")
-				Text(".")
+				.class(metaData.id == "home" ? "current" : "")
+				ListItem {
+					Link("Blog", url: "/words")
+				}
+				.class(metaData.id == "words" ? "current" : "")
+				ListItem {
+					Link("Work", url: "/work")
+				}
+				.class(metaData.id == "work" ? "current" : "")
+				
+				if metaData.id == "resume" {
+					ListItem {
+						Link("Résumé", url: "/resume")
+					}
+					.class("current")
+				}
 			}
 		}
 		.class("constrained")
@@ -339,33 +350,36 @@ private func metadataFor(page: Location) -> (id: String, class: String, avatarSu
 	var avatarSuffix: String
 
 	switch page.path.absoluteString {
+	case "/":
+		pageID = "home"
+		avatarSuffix = "default"
 	case "/words":
 		pageID = "words"
-		avatarSuffix = ".words"
+		avatarSuffix = "words"
 	case "/readlater":
-		pageID = "words"
-		avatarSuffix = ""
+		pageID = "readlater"
+		avatarSuffix = "default"
 	case let str where str.contains("/words"):
-		pageID = ""
-		avatarSuffix = ".words"
+		pageID = "words"
+		avatarSuffix = "words"
 	case let str where str.contains("/work"):
 		pageID = "work"
-		avatarSuffix = ".work"
+		avatarSuffix = "work"
 	case "/resume":
 		pageID = "resume"
-		avatarSuffix = ".resume"
+		avatarSuffix = "resume"
 	default:
-		pageID = "home"
-		avatarSuffix = ""
+		pageID = ""
+		avatarSuffix = "default"
 	}
 
 	if page.title == "Four Oh Four!" {
 		pageID = "four-oh-four"
-		avatarSuffix = ".404"
+		avatarSuffix = "404"
 	}
 
 	switch pageID {
-	case "words", "work":
+	case "words", "work", "readlater":
 		pageClass = "list"
 	default:
 		pageClass = ""
