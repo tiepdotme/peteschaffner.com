@@ -176,7 +176,6 @@ private struct SiteFooter: Component {
 	var body: Component {
 		Footer {
 			List {
-				ListItem("Copyright \(Calendar.current.component(.year, from: Date()))")
 				ListItem {
 					Link("RSS", url: Path.defaultForRSSFeed.absoluteString)
 				}
@@ -187,6 +186,8 @@ private struct SiteFooter: Component {
 					Link("Source", url: "https://github.com/peteschaffner/peteschaffner.com")
 				}
 			}
+			
+			Paragraph("Copyright \(Calendar.current.component(.year, from: Date()))")
 		}
 		.class("constrained")
 	}
