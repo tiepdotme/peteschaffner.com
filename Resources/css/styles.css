@@ -156,7 +156,7 @@ nav li, footer li {
 }
 
 footer p {
-	opacity: 0.4;
+	opacity: 0.3;
 }
 
 nav li:not(:last-of-type)::after,
