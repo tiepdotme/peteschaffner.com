@@ -170,6 +170,12 @@ nav li:hover, footer li:hover {
 	opacity: 1;
 }
 
+@media (prefers-color-scheme: dark) {
+	nav .current {
+		opacity: 0.8;
+	}
+}
+
 nav a, footer a {
 	text-decoration: none;
 }
