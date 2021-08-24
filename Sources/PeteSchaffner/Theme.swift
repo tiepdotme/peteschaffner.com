@@ -177,17 +177,15 @@ private struct SiteFooter: Component {
 		Footer {
 			List {
 				ListItem {
-					Link("RSS", url: Path.defaultForRSSFeed.absoluteString)
+					Span("Copyright \(Calendar.current.component(.year, from: Date()))")
 				}
 				ListItem {
 					Link("Colophon", url: "/colophon")
 				}
 				ListItem {
-					Link("Source", url: "https://github.com/peteschaffner/peteschaffner.com")
+					Link("RSS", url: Path.defaultForRSSFeed.absoluteString)
 				}
 			}
-			
-			Paragraph("Copyright \(Calendar.current.component(.year, from: Date()))")
 		}
 		.class("constrained")
 	}
@@ -353,37 +351,37 @@ private func metadataFor(page: Location) -> (id: String, class: String, avatarSu
 	switch page.path.absoluteString {
 	case "/":
 		pageID = "home"
+		pageClass = ""
 		avatarSuffix = "default"
 	case "/words":
 		pageID = "words"
+		pageClass = "list"
 		avatarSuffix = "words"
 	case "/readlater":
 		pageID = "readlater"
+		pageClass = "list"
 		avatarSuffix = "default"
 	case let str where str.contains("/words"):
 		pageID = "words"
+		pageClass = ""
 		avatarSuffix = "words"
-	case let str where str.contains("/work"):
+	case "/work":
 		pageID = "work"
+		pageClass = "list"
 		avatarSuffix = "work"
 	case "/resume":
 		pageID = "resume"
+		pageClass = ""
 		avatarSuffix = "resume"
 	default:
 		pageID = ""
+		pageClass = ""
 		avatarSuffix = "default"
 	}
 
 	if page.title == "Four Oh Four!" {
 		pageID = "four-oh-four"
 		avatarSuffix = "404"
-	}
-
-	switch pageID {
-	case "words", "work", "readlater":
-		pageClass = "list"
-	default:
-		pageClass = ""
 	}
 
 	return (pageID, pageClass, avatarSuffix)

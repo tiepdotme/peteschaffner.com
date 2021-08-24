@@ -36,7 +36,6 @@
 }
 
 html {
-	height: 100%; /* For a sticky footer */
 	font-size: 1.5em;
 }
 
@@ -47,9 +46,9 @@ html {
 }
 
 body {
-	display: flex; /* For a sticky footer */
-	flex-direction: column; /* For a sticky footer */
-	height: 100%; /* For a sticky footer */
+	display: flex; /* 1 */
+	flex-direction: column; /* 1 */
+	height: 100%; /* 1 */
 	align-items: center;
 	margin: 0 20px;
 	font-family: "Ingeborg", serif;
@@ -59,6 +58,8 @@ body {
 	text-rendering: optimizeLegibility; /* Enables kerning and optional ligatures */
 	color: rgba(var(--color-text), 0.9);
 	background-color: rgb(var(--color-background)); /* Safari uses the background color on body for overscroll   */
+	
+	/* 1. Center content horizontally */
 }
 
 @media (max-width: 600px) {
@@ -94,7 +95,7 @@ a:hover {
    ========== */
 
 nav, footer {
-	font-size: 15px;
+	font-size: 14px;
 	text-align: center;
 	font-family: "Concourse C4", sans-serif;
 	text-transform: lowercase;
@@ -103,20 +104,20 @@ nav, footer {
 
 nav {
 	position: relative;
-	margin-top: 70px;
-	padding-bottom: 30px;
+	margin-top: 30px;
+	padding-bottom: 14px;
 	z-index: 0;
 	transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (max-width: 600px) {
 	nav {
-		margin-top: 40px;
+		margin-top: 0;
 	}
 }
 
 nav.collapsed {
-	transform: translateY(86px);
+	transform: translateY(70px);
 }
 
 nav::before {
@@ -152,26 +153,28 @@ nav.collapsed ul {
 
 nav li, footer li {
 	display: inline-block;
-	opacity: 0.6;
 }
 
-footer p {
+footer ul {
+	margin: 0;
+}
+
+nav li:not(:last-of-type)::after, footer li:not(:last-of-type)::after {
+	content: " · ";
+	font-weight: bold;
 	opacity: 0.3;
 }
 
-nav li:not(:last-of-type)::after,
 footer li:not(:last-of-type)::after {
-	content: " · ";
-	font-weight: bold;
-	opacity: 0.4;
+	opacity: 0.2;
 }
 
-nav li:hover, footer li:hover {
-	opacity: 1;
+nav .current a, nav a:hover, footer a:hover {
+	opacity: 0.7;
 }
 
 @media (prefers-color-scheme: dark) {
-	nav .current {
+	nav .current a, nav a:hover, footer a:hover {
 		opacity: 0.8;
 	}
 }
@@ -182,6 +185,11 @@ nav a, footer a {
 
 nav a {
 	position: relative;
+	opacity: 0.6;
+}
+
+footer a, footer li span {
+	opacity: 0.3;
 }
 
 nav .current {
@@ -193,8 +201,7 @@ nav a:hover, footer a:hover {
 }
 
 footer {
-	padding: 100px 0 calc(50px + env(safe-area-inset-bottom));
-	flex-shrink: 0; /* For a sticky footer */
+	padding: 30px 0 calc(50px + env(safe-area-inset-bottom));
 }
 
 #avatar {
@@ -248,13 +255,6 @@ footer {
 main {
 	position: relative;
 	z-index: 1;
-	flex: 1 0 auto; /* For a sticky footer */
-
-	/* Center content vertically (assumes one root container element) */
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	-ms-hyphens: auto;
@@ -468,7 +468,7 @@ article > img {
 
 time {
 	display: block;
-	margin-top: 3em;
+	margin-top: 1em;
 	font-size: 15px;
 	font-family: "Concourse C4", sans-serif;
 	text-transform: lowercase;

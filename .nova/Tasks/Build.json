@@ -10,5 +10,5 @@
     }
   },
   "identifier" : "864AFF56-6660-4A6B-9677-BE43409CD437",
-  "openLogOnRun" : "fail"
+  "openLogOnRun" : "start"
 }
