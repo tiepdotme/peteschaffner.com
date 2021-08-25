@@ -266,10 +266,9 @@ body:not(.list) main,
 .list main article {
 	padding: 62px 102px 122px 102px;
 	background: linear-gradient(
-		to bottom,
-		rgb(var(--color-main-background)) 0%,
-		rgb(var(--color-main-background)) 50%,
-		rgb(var(--color-background)) 95%
+		to top,
+		rgb(var(--color-background)) 50px,
+		rgb(var(--color-main-background)) 200px
 	);
 	border-radius: 23px;
 }
