@@ -21,27 +21,8 @@ private struct Intro: Component {
 
 	var body: Component {
 		ComponentGroup {
-			Node.blockquote(.text("I’m a technical and self-driven software designer with 10 years of experience building beautiful and usable interfaces for the Mac, iPhone and iPad. I give a damn."))
-
-			ResumeSection(name: "Personal info") {
-				List {
-					ListItem {
-						inlineSVG(named: "work")
-						Link("peteschaffner.com/work", url: "/work")
-					}
-					ListItem {
-						inlineSVG(named: "email")
-						Link("hello@peteschaffner.com", url: "mailto:hello@peteschaffner.com")
-					}
-					ListItem {
-						inlineSVG(named: "phone")
-						Link("+33 (0)6 42 73 18 05", url: "tel:+33642731805")
-					}
-					ListItem {
-						inlineSVG(named: "address")
-						Link("St. Nom La Bretèche, France", url: "https://maps.apple.com/?address=11%20Rue%20Lecoq,%2078860%20Saint-Nom-la-Bret%C3%A8che,%20France&amp;ll=48.863828,2.028852&amp;q=11%20Rue%20Lecoq&amp;_ext=EiYp7/1qaPxtSEAxTiX0M5MtAEA5bdOQxCJvSEBBNjYdgYpJAEBQBA%3D%3D")
-					}
-				}
+			ResumeSection() {
+				Node.blockquote(.strong(.text("Hi, I'm Pete and this is my résumé.")), .text(" I’m a self-driven software designer/developer with 10 years of experience building beautiful and usable interfaces for the Mac, iPhone, and iPad. I give a damn."))
 			}
 		}
 	}
@@ -256,14 +237,14 @@ private struct ReferencesSection: Component {
 // MARK: - Components & Helpers
 
 private struct ResumeSection: Component {
-	var name: String
+	var name: String?
 	@ComponentBuilder var content: ContentProvider
 
 	var body: Component {
-		ComponentGroup {
-			H2(name)
-			content()
-		}
+		Node.section(
+			.unwrap(name) { .h2(.text($0)) },
+			.components(content)
+		)
 	}
 }
 

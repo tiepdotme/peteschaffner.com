@@ -371,7 +371,7 @@ private func metadataFor(page: Location) -> (id: String, class: String, avatarSu
 		avatarSuffix = "work"
 	case "/resume":
 		pageID = "resume"
-		pageClass = ""
+		pageClass = "list"
 		avatarSuffix = "resume"
 	default:
 		pageID = ""

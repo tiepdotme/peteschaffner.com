@@ -587,15 +587,14 @@ time span {
 	font-family: "Concourse C4", sans-serif;
 	font-size: 0.9em;
 	text-transform: lowercase;
-	margin: 5em 0 2em;
-	padding-top: 0.5em;
-	border-top: 1px solid rgba(var(--color-text), 0.1);
 	text-align: center;
 	color: rgba(var(--color-text), 0.3);
 }
 
 #resume blockquote {
 	margin-top: 3em;
+	margin-bottom: 1em;
+	color: inherit;
 }
 
 #resume header {
@@ -621,41 +620,12 @@ time span {
 }
 
 #resume header time {
-	font-size: 0.9em;
+	font-size: 0.8em;
 	margin-top: 0;
 }
 
 #resume header + p {
 	margin: 0;
-}
-
-#resume main > div {
-	margin-bottom: 35px;
-}
-
-#resume main ul:first-of-type {
-	width: fit-content;
-	margin: 0 auto;
-	margin-top: 4.5em;
-	padding: 0;
-	list-style: none;
-}
-
-#resume main ul:first-of-type svg {
-	opacity: 0.4;
-	position: relative;
-	top: 5px;
-	margin-right: 6px;
-}
-
-@media (max-width: 600px) {
-	#resume ul:first-of-type svg {
-		top: 8px;
-	}
-}
-
-#resume ul:first-of-type path {
-	fill: rgb(var(--color-text));
 }
 
 /* Work
