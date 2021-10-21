@@ -37,19 +37,20 @@ private struct SkillsAndToolsSection: Component {
 		ResumeSection(name: "Skills & tools") {
 			ResumeHeader(header: "Design", subHead: nil, time: nil, id: "design")
 			List {
-				ListItem("Interface/interaction/icon design, prototyping, animation")
-				ListItem("Sketch, Pixelmator [Pro], PaintCode")
-				ListItem("Xcode (Interface Builder, Playgrounds, SwiftUI Previews, LLDB, etc.), Origami Studio")
-				ListItem("Typography, ceramics")
+				ListItem("Interface/interaction/icon design")
+				ListItem("Prototyping and animation")
+				ListItem("Sketch, Pixelmator, PaintCode, Origami Studio")
+				ListItem("Xcode (Interface Builder, Playgrounds, SwiftUI Previews)")
+				ListItem("Typography")
 			}
 
 			ResumeHeader(header: "Technical", subHead: nil, time: nil, id: "technical")
 			List {
 				ListItem("Swift, Objective-C")
-				ListItem("UIKit, AppKit, Auto Layout, Core Animation, SwiftUI")
+				ListItem("UIKit, AppKit, SwiftUI")
 				ListItem("HTML, CSS, JavaScript")
-				ListItem("Git, Vim, Zsh, Xcode")
-				ListItem("macOS, iOS, iPadOS, Unix")
+				ListItem("Git, Xcode, terminals")
+				ListItem("macOS, iOS, iPadOS, Linux")
 			}
 		}
 	}
@@ -58,7 +59,16 @@ private struct SkillsAndToolsSection: Component {
 private struct ExperienceSection: Component {
 	var body: Component {
 		ResumeSection(name: "Experience") {
-			ResumeHeader(header: "Shiny Frog", subHead: "Designer & wannabe programmer", time: DateRange(begin: 2020, end: nil), id: "shinyfrog")
+			ResumeHeader(header: "Tower", subHead: "macOS engineer & designer", time: DateRange(begin: 2021, end: nil), id: "tower")
+			List {
+				ListItem {
+					Text("Got ")
+					Link("Tower for Mac", url: "https://www.git-tower.com/mac")
+					Text(" to compile")
+				}
+			}
+			
+			ResumeHeader(header: "Shiny Frog", subHead: "Designer & wannabe programmer", time: DateRange(begin: 2020, end: 2021), id: "shinyfrog")
 			List {
 				ListItem {
 					Link("Bear", url: "https://bear.app")
