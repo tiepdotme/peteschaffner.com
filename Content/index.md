@@ -1,3 +1,3 @@
 # Welcome
 
-Hi, I'm Pete. I hail from Indiana, but live in France with my [wife](https://lauraschaffner.com), daughter, and son. Professionally, I work at [Tower](https://git-tower.com) developing and designing our Mac client. If you'd like to know more, feel free to [shoot me an email](mailto:hello@peteschaffner.com).
+Hi, I'm Pete. I hail from Indiana, but live in France with my [wife](https://lauraschaffner.com), daughter, and son. Macs, glyphs, and ceramics are some of my favorite things. I love about-pages too, but can't think of much to write on my own, so [shoot me an email](mailto:hello@peteschaffner.com) if there's something you'd like to know.
