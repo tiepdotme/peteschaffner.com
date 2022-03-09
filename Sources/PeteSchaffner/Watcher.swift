@@ -5,26 +5,26 @@ import Publish
 final class Watcher {
     private static let ignoredDirNames = ["Output", "resume-references"]
 
-    static var sources: [Path: DispatchSourceFileSystemObject] = [:]
+    static var sources: [String: DispatchSourceFileSystemObject] = [:]
 
-    private static var root: Path?
+    private static var root: String?
 
     private static var watchCount = 0
 
-	static func watch(path: Path, isRoot: Bool = false, action: @escaping ((URL) throws -> ())) throws {
+	static func watch(path: String, isRoot: Bool = false, action: @escaping ((URL) throws -> ())) throws {
         if isRoot {
             self.root = path
             sources.removeAll()
             watchCount += 1
 //            print("Watch count: \(watchCount)")
         }
-        let pathURL = URL(fileURLWithPath: path.string)
+        let pathURL = URL(fileURLWithPath: path)
         guard !ignoredDirNames.contains(pathURL.lastPathComponent) else {
             return
         }
         let fm = FileManager.default
         if sources[path] == nil  {
-            let sourceDirDescrptr = open(path.string, O_EVTONLY)
+            let sourceDirDescrptr = open(path, O_EVTONLY)
             guard sourceDirDescrptr != -1 else { return }
             let eventSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: sourceDirDescrptr, eventMask: DispatchSource.FileSystemEvent.write, queue: nil)
             eventSource.setEventHandler {
@@ -49,12 +49,12 @@ final class Watcher {
         }
 
         let contents = try fm.contentsOfDirectory(
-            at: URL(fileURLWithPath: path.string),
+            at: URL(fileURLWithPath: path),
             includingPropertiesForKeys: nil,
             options: [.skipsHiddenFiles]
         )
         for item in contents {
-            try watch(path: Path(item.path), action: action)
+            try watch(path: item.path, action: action)
         }
     }
 }

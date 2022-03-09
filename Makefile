@@ -1,10 +1,10 @@
 .PHONY: build
 build:
-	@swift run PeteSchaffner
+	@swift run PeteSchaffner --build-path=.tmp
 
 .PHONY: serve
 serve:
-	@swift run PeteSchaffner --serve
+	@swift run PeteSchaffner --build-path=.tmp --serve
 
 .PHONY: publish
 publish:
