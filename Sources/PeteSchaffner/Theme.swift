@@ -4,20 +4,20 @@ import Plot
 import Ink
 
 extension Theme where Site == PeteSchaffner {
-	static var pete: Self {
-		Theme(htmlFactory: PeteHTMLFactory())
-	}
+    static var pete: Self {
+        Theme(htmlFactory: PeteHTMLFactory())
+    }
 
-	private struct PeteHTMLFactory: HTMLFactory {
-		func makeIndexHTML(for index: Index, context: PublishingContext<PeteSchaffner>) throws -> HTML {
+    private struct PeteHTMLFactory: HTMLFactory {
+        func makeIndexHTML(for index: Index, context: PublishingContext<PeteSchaffner>) throws -> HTML {
 			HTML(for: index, with: context) {
 				Div {
 					index.body
 				}
 			}
-		}
+        }
 
-		func makeSectionHTML(for section: Section<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
+        func makeSectionHTML(for section: Section<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
 			HTML(for: section, with: context) {
 				ArticleList(section.items) { item in
 					ComponentGroup {
@@ -55,9 +55,9 @@ extension Theme where Site == PeteSchaffner {
 					}
 				}
 			}
-		}
+        }
 
-		func makeItemHTML(for item: Item<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
+        func makeItemHTML(for item: Item<PeteSchaffner>, context: PublishingContext<PeteSchaffner>) throws -> HTML {
 			HTML(for: item, with: context) {
 				Article {
 					Header {
@@ -85,20 +85,20 @@ extension Theme where Site == PeteSchaffner {
 					item.addingFootnotes().deletingOccurrences(of: #"<p>\+\+\+<\/p>"#)
 				}
 			}
-		}
+        }
 
-		func makePageHTML(for page: Page, context: PublishingContext<PeteSchaffner>) throws -> HTML {
+        func makePageHTML(for page: Page, context: PublishingContext<PeteSchaffner>) throws -> HTML {
 			HTML(for: page, with: context) {
 				Div {
 					page.body
 				}
 			}
-		}
+        }
 
-		func makeTagListHTML(for page: TagListPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? { nil }
+        func makeTagListHTML(for page: TagListPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? { nil }
 
-		func makeTagDetailsHTML(for page: TagDetailsPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? { nil }
-	}
+        func makeTagDetailsHTML(for page: TagDetailsPage, context: PublishingContext<PeteSchaffner>) throws -> HTML? { nil }
+    }
 }
 
 // MARK: - Main Layout
@@ -196,7 +196,7 @@ private struct ArticleList<Articles: Sequence>: Component {
 	var content: (Articles.Element) -> Component
 
 	init(_ articles: Articles,
-			 content: @escaping (Articles.Element) -> Component) {
+		 content: @escaping (Articles.Element) -> Component) {
 		self.articles = articles
 		self.content = content
 	}
@@ -225,6 +225,7 @@ private extension Node where Context == HTML.DocumentContext {
 				.description(context.site.description),
 				.meta(.name("author"), .content("Pete Schaffner")),
 				.rssFeedLink(Path.defaultForRSSFeed.absoluteString, title: "Pete Schaffner"),
+				.rssFeedLink("/readlater.rss", title: "Read Later"),
 				.link(.href("https://micro.blog/peteschaffner"), .attribute(named: "rel", value: "me")),
 				.stylesheet("/css/fonts.css"),
 				// Conditionally load monospaced fonts
@@ -276,28 +277,28 @@ extension Node where Context: HTML.BodyContext {
 }
 
 private extension Content.Body {
-	func deletingOccurrences(of string: String) -> Self {
-		Self(html: html.replacingOccurrences(
-			of: string,
-			with: "",
-			options: .regularExpression
-		))
-	}
+    func deletingOccurrences(of string: String) -> Self {
+        Self(html: html.replacingOccurrences(
+            of: string,
+            with: "",
+            options: .regularExpression
+        ))
+    }
 
-	func makingSmartSubstitutions() -> Self {
-		Self(html: html
-				 // Quotes
-					.replacingOccurrences(of: #"\b'(\w?)"#, with: "’$1", options: .regularExpression) // e.g. 'Quotation(') | Pete(')s | you(')ve
-					.replacingOccurrences(of: #"'(\d{2}s)"#, with: "’$1", options: .regularExpression) // e.g. (')30s
-					.replacingOccurrences(of: #"'\b"#, with: "‘", options: .regularExpression) // e.g. (')Quotation'
-					.replacingOccurrences(of: #""([^"><]+)"(?![^<]*>)"#, with: "“$1”", options: .regularExpression) // e.g. <a href="/path">(")Quotation(")</a>
-					.replacingOccurrences(of: #"(\d)"(\s)(?![^<]*>)"#, with: "$1”$2", options: .regularExpression) // e.g. 13(") MacBook Pro
-				 // Punctuation
-					.replacingOccurrences(of: "...", with: "…")
-					.replacingOccurrences(of: "---", with: "—")
-					.replacingOccurrences(of: "--", with: "–")
-		)
-	}
+    func makingSmartSubstitutions() -> Self {
+        Self(html: html
+            // Quotes
+            .replacingOccurrences(of: #"\b'(\w?)"#, with: "’$1", options: .regularExpression) // e.g. 'Quotation(') | Pete(')s | you(')ve
+            .replacingOccurrences(of: #"'(\d{2}s)"#, with: "’$1", options: .regularExpression) // e.g. (')30s
+            .replacingOccurrences(of: #"'\b"#, with: "‘", options: .regularExpression) // e.g. (')Quotation'
+            .replacingOccurrences(of: #""([^"><]+)"(?![^<]*>)"#, with: "“$1”", options: .regularExpression) // e.g. <a href="/path">(")Quotation(")</a>
+            .replacingOccurrences(of: #"(\d)"(\s)(?![^<]*>)"#, with: "$1”$2", options: .regularExpression) // e.g. 13(") MacBook Pro
+            // Punctuation
+            .replacingOccurrences(of: "...", with: "…")
+            .replacingOccurrences(of: "---", with: "—")
+            .replacingOccurrences(of: "--", with: "–")
+        )
+    }
 }
 
 private extension Item where Site == PeteSchaffner {
