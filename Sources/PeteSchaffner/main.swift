@@ -112,7 +112,7 @@ try PeteSchaffner().publish(using: [
 	.removeAllItems(), // Now that we've renamed our post files, remove them...
 	.addMarkdownFiles(), // ...and add them back :)
 	.sortItems(by: \.date, order: .descending),
-	.generateHTML(withTheme: .pete),
+	.generateHTML(withTheme: .pete, indentation: .tabs(1)),
 	.generateRSSFeed(
 		including: Set(arrayLiteral: PeteSchaffner.SectionID.words),
 		config: .default
