@@ -188,7 +188,7 @@ if CommandLine.arguments.contains("--serve") {
 	try! wsServer.start()
 	
 	try Watcher.watch(path: rootPath, isRoot: true) { url in
-		var buildCommand = "swift run PeteSchaffner --build-path=.tmp "
+		var buildCommand = "swift run PeteSchaffner "
 		
 		buildCommand += url.path.contains("Resources/css") ? "--copyResources" : "--livereload"
 		
