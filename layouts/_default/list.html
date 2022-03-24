@@ -1,0 +1,27 @@
+{{ define "title" }}
+  {{ with .Title }}{{ . }} · {{ end }}{{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+	{{ range .Pages }}
+	<article>
+		<header>
+		{{ if .Title }}
+			<h1>
+				<a href="{{ or .Params.link .Permalink }}">{{ .Title }}{{ if .Params.link }}<span class="external-link-arrow">→</span>{{ end }}</a>
+			</h1>
+		{{ end }}
+			<time datetime="{{ .Date.Format "2006-01-02" }}">
+				<a href="{{ .Permalink }}">{{ .Date.Format "January 2, 2006" }}<span>∞</span></a>
+			</time>
+		</header>
+	{{ $summaryDivider := findRE "<!--more-->" .RawContent | len }}
+	{{ if $summaryDivider }}
+		{{ .Summary }}
+		<a href="{{ .Permalink }}" title="Read more" class="read-more">•••</a>
+	{{ else }}
+		{{ .Content }}
+	{{ end }}
+	</article>
+	{{ end }}
+{{ end }}

@@ -1,3 +1,7 @@
+---
+title: "Colophon"
+---
+
 # Colophon
 
 This site is hosted on a [Gandi VPS](https://www.gandi.net/en/cloud) and built with [Publish](https://github.com/JohnSundell/Publish). I switch between Xcode and [Nova](https://nova.app) when working on it, and use [Bear](https://bear.app) (and [Panda](https://bear.app/alpha)) for writing.

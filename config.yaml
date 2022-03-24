@@ -1,0 +1,12 @@
+baseURL: "https://peteschaffner.com/"
+languageCode: "en-us"
+title: "Pete Schaffner"
+outputs:
+    home: [HTML] # Don't generate feed at root: https://discourse.gohugo.io/t/disabling-rss-for-sections/10479
+disableKinds:
+    - taxonomy
+    - term
+markup:
+    goldmark:
+        renderer:
+            unsafe: true

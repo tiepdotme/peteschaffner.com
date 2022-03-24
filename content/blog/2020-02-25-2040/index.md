@@ -1,0 +1,23 @@
+---
+title: "I Hate Slack"
+date: 2020-02-25T20:40:36+01:00
+aliases: [/blog/2020-02-25-2040-i-hate-slack/]
+---
+
+I just wrote about [why I hate Medium](/words/2020-02-25-2039-i-hate-medium), so while I’m all in a rage, let me rag on [Slack](https://slack.com).
+
+ <!--more-->
+
+I hate [Medium](https://medium.com) on principle: they are a walled garden (like Twitter or Facebook) that hoards our prose[^1]. But my reasons aren’t quite so righteous when it comes to Slack.
+
+[^1]: Tweets and selfies? Well, you should have known better. But meaningful thoughts… those should be all yours.
+
+I hate them simply because they do a shit job of making a Mac app. Normally this wouldn’t bother me—I would just look elsewhere. But everyone is using it and the peer pressure is getting harder to ignore.
+
+So why is their Mac app crap? In one word: [Electron](https://www.electronjs.org). I will leave it for another hate-post, but suffice it to say, I think Electron apps are a cancer. They masquerade as desktop-grade, yet deliver none of the deep platform richness that comes from truly native software. Oh, and they piss away your battery. Why not just give me a URL and let me suffer in the browser? At least there I’m not expecting much[^2].
+
+[^2]: To be clear, I have nothing against web browsers. I love the web. But the web I love is not the one of "apps," it is the one of blogs, about pages, portfolios, wikis. It is the “weird web” (as [my good friend](https://alexainslie.com) would put it).
+
+And, I guess I also hate Slack because I still remember [IRC](https://en.wikipedia.org/wiki/Internet_Relay_Chat). It is a stupid reason to hate on them—great artists steal after all. But IRC was open, and fun, and no one owned it, and damnit I just miss the good ol’ days.
+
+Sorry for being such a grouch. I should probably get off my soapbox and cut everyone some slack.

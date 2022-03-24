@@ -1,10 +1,16 @@
+POST_DATE = $(shell date "+%Y-%m-%d-%H%M")
+
 .PHONY: build
 build:
-	@swift run PeteSchaffner
+	@bin/hugo --cleanDestinationDir && find public -name '*.html' -type f -print -exec bin/tidy -miq '{}' \;
 
 .PHONY: serve
 serve:
-	@swift run PeteSchaffner --serve
+	@bin/hugo server --navigateToChanged --buildDrafts
+
+.PHONY: post
+post:
+	bin/hugo new blog/$(POST_DATE)
 
 .PHONY: publish
 publish:

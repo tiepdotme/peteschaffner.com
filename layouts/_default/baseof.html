@@ -1,0 +1,113 @@
+{{- $pageID := "" -}}
+{{- $pageClass := "" -}}
+
+{{- if .IsHome -}}
+	{{- $pageID = "home" -}}
+{{- else if eq .Page.RelPermalink "/blog/" -}}
+	{{- $pageID = "words" -}}
+	{{- $pageClass = "list" -}}
+{{- else if hasPrefix .Page.RelPermalink "/blog/" -}}
+	{{- $pageID = "words" -}}
+{{- else if eq .Page.RelPermalink "/work/" -}}
+	{{- $pageID = "work" -}}
+	{{- $pageClass = "list" -}}
+{{- else if eq .Page.RelPermalink "/resume/" -}}
+	{{- $pageID = "resume" -}}
+	{{- $pageClass = "list" -}}
+{{- else if eq .Page.RelPermalink "/reading-list/" -}}
+	{{- $pageID = "reading-list" -}}
+	{{- $pageClass = "list" -}}
+{{- else if eq .Page.RelPermalink "/404/" -}}
+	{{- $pageID = "four-oh-four" -}}
+{{- end -}}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- <title>{{- with .Title }}{{ . }} · {{ end }}{{ .Site.Title -}}</title> -->
+		<title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="The personal site of Pete Schaffner"
+		/>
+		<meta name="author" content="Pete Schaffner" />
+		<link
+			rel="alternate"
+			href="/blog/index.xml"
+			type="application/rss+xml"
+			title="Pete Schaffner's Blog"
+		/>
+		<link
+			rel="alternate"
+			href="/reading-list/index.xml"
+			type="application/rss+xml"
+			title="Pete Schaffner's Reading List"
+		/>
+		<link href="https://micro.blog/peteschaffner" rel="me" />
+		<link rel="stylesheet" href="/css/fonts.css" type="text/css" />
+		<link rel="stylesheet" href="/css/styles.css" type="text/css" />
+		<link rel="stylesheet" href="/css/code-fonts.css" type="text/css" />	
+		<link rel="shortcut icon" href="/favicon.png" type="image/png" />
+	</head>
+
+	<body{{ with $pageID }} id="{{ . }}"{{ end }}{{ with $pageClass }} class="{{ . }}"{{ end }}>
+		<nav class="constrained">
+			<svg
+				id="avatar"
+				width="90px"
+				height="90px"
+				viewBox="0 0 90 90"
+				version="1.1"
+				xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink"
+			>
+				{{ partial "avatar.html" . }}
+			</svg>
+			<ul>
+				<li{{ if .IsHome }} class="current"{{ end }}>
+					<a href="/">About</a>
+				</li>
+				<li{{ if hasPrefix .Page.RelPermalink "/blog/" }} class="current"{{ end }}>
+					<a href="/blog">Blog</a>
+				</li>
+				<li{{ if eq .Page.RelPermalink "/work/" }} class="current"{{ end }}>
+					<a href="/work">Work</a>
+				</li>
+				{{- if eq .Page.RelPermalink "/resume/" -}}
+				<li class="current">
+					<a href="/resume">Résumé</a>
+				</li>
+				{{- end -}}
+			</ul>
+		</nav>
+
+		<main class="constrained">
+			{{- block "main" . }}{{ end -}}
+		</main>
+
+		<footer class="constrained">
+			<ul>
+				<li>
+					<span>Copyright {{ now.Year }}</span>
+				</li>
+				<li>
+					<a href="/colophon">Colophon</a>
+				</li>
+				<li>
+					<a href="/feed.rss">RSS</a>
+				</li>
+			</ul>
+		</footer>
+		
+		{{ partial "scripts/nav.html" }}
+		
+		{{- if .IsHome -}}
+			{{ partial "scripts/welcome.html" }}
+		{{- else if eq .Page.RelPermalink "/work/" -}}
+			{{ partial "scripts/work.html" }}
+		{{- end -}}
+		
+	</body>
+</html>

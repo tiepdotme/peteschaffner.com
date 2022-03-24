@@ -1,9 +1,0 @@
-{
-  "actions" : {
-    "run" : {
-      "enabled" : true,
-      "script" : "ruby -run -ehttpd Output -p8000"
-    }
-  },
-  "identifier" : "D6E27553-01D3-4724-B46D-5E8CB781D131"
-}

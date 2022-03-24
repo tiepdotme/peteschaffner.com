@@ -1,0 +1,26 @@
+{{ define "title" }}
+	{{ with .Title }}
+		{{ . }}
+	{{ else }}
+		{{ .Date.Format "2 Jan 2006" }}
+	{{ end }}
+	 · {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+	<article>
+		<header>
+		{{ if .Title }}
+			<h1>
+			{{ if .Params.link }}
+				<a href="{{ .Params.link }}">{{ .Title }}<span class="external-link-arrow">→</span></a>
+			{{ else }}
+				{{ .Title }}
+			{{ end }}
+			</h1>
+		{{ end }}
+			<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+		</header>
+		{{ .Content }}
+	</article>
+{{ end }}

@@ -4,8 +4,9 @@
   "htmlvalidator.enabled" : false,
   "index.enabled" : true,
   "index.ignored_file_patterns" : [
-    "Resources\/resume-references"
+    "static\/resume-references"
   ],
+  "workspace.preview_root" : "public",
   "workspace.preview_type" : "custom",
-  "workspace.preview_url" : "localhost:8000"
+  "workspace.preview_url" : "localhost:1313"
 }

@@ -1,0 +1,9 @@
+{{ define "title" }}
+  {{ with .Title }}{{ . }} · {{ end }}{{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+	<div> <!-- This wrapping div is for... -->
+		{{ .Content }}
+	</div>
+{{ end }}

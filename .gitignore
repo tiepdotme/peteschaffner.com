@@ -1,9 +1,5 @@
 .DS_Store
+public
 .build
-.tmp
 .swiftpm
-*.xcodeproj
-.publish
-Output
-Content/words/drafts/**
-add-to-reading-list*
+.hugo_build.lock
