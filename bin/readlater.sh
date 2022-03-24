@@ -4,7 +4,7 @@ set -e
 basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
 url=$1
 title=$($basedir/title $url)
-post_date=$(date +%Y-%m-%dT%H:%M:%S%:z)
+post_date=$(date +%Y-%m-%dT%H:%M:%S%z)
 file_name=$(date +%Y-%m-%d-%H%M)
 
 if [ -n "$title" ]; then
