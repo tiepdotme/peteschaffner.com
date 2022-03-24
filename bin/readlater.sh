@@ -1,9 +1,10 @@
 #!/bin/bash
 set -e
 
+cmd=$(if [ "$(uname)" = "Darwin" ]; then echo mac/title; else echo linux/title; fi)
 basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
 url=$1
-title=$($basedir/title $url)
+title=$($basedir/$cmd $url)
 post_date=$(date +%Y-%m-%dT%H:%M:%S%z)
 file_name=$(date +%Y-%m-%d-%H%M)
 
