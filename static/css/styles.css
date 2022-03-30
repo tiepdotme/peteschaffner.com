@@ -485,6 +485,7 @@ h1 > a:hover,
 h2 > a,
 h2 > a:hover {
 	text-decoration: none;
+	overflow-wrap: break-word;
 }
 
 time a {
